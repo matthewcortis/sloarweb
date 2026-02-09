@@ -106,3 +106,81 @@ export const products = [
         area: "21 m2",
     },
 ];
+
+export const thietBi = [
+    {
+        id: 1,
+        name: "JA SOLAR 620WP",
+        image: productImage,
+        quantity: 8,
+        warranty: { physical: "12 năm vật lý", performance: "30 năm hiệu suất" },
+        power: "620wp",
+        size: "2278 x 1134 x 30 mm",
+        weight: "31.8kg",
+        price: "2.150.000đ",
+    },
+    {
+        id: 2,
+        name: "JA SOLAR 620WP",
+        image: productImage,
+        quantity: 8,
+        warranty: { physical: "12 năm vật lý", performance: "30 năm hiệu suất" },
+        power: "620wp",
+        size: "2278 x 1134 x 30 mm",
+        weight: "31.8kg",
+        price: "2.150.000đ",
+    },
+    {
+        id: 3,
+        name: "JA SOLAR 620WP",
+        image: productImage,
+        quantity: 8,
+        warranty: { physical: "12 năm vật lý", performance: "30 năm hiệu suất" },
+        power: "620wp",
+        size: "2278 x 1134 x 30 mm",
+        weight: "31.8kg",
+        price: "2.150.000đ",
+    },
+    {
+        id: 4,
+        name: "JA SOLAR 620WP",
+        image: productImage,
+        quantity: 8,
+        warranty: { physical: "12 năm vật lý", performance: "30 năm hiệu suất" },
+        power: "620wp",
+        size: "2278 x 1134 x 30 mm",
+        weight: "31.8kg",
+        price: "2.150.000đ",
+    },
+    {
+        id: 5,
+        name: "JA SOLAR 620WP",
+        image: productImage,
+        quantity: 8,
+        warranty: { physical: "12 năm vật lý", performance: "30 năm hiệu suất" },
+        power: "620wp",
+        size: "2278 x 1134 x 30 mm",
+        weight: "31.8kg",
+        price: "2.150.000đ",
+    },
+];
+
+
+
+// src/data/data.js
+export const ThietBi = [
+  {
+    id: 1,
+    name: "JA Solar 620Wp",
+    image: "/solar.png",
+    quantity: 8,
+    warranty: {
+      physical: "12 năm vật lý",
+      performance: "30 năm hiệu suất",
+    },
+    power: "620Wp",
+    size: "2278 x 1134 x 30 mm",
+    weight: "31.8kg",
+    price: "2.150.000đ",
+  },
+];

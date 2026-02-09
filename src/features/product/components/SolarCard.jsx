@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import checkicon from "../../../assets/icons/check.svg";
+import fallbackImage from "../../../assets/solarmax.jpg";
 
 export default function SolarCard({
   data,
@@ -8,10 +9,15 @@ export default function SolarCard({
   mainColor = "#00A859",
   textColor = "#000000ff",
   saveColor = "#E6F4ED",
+  hideDetailsOnMobile = false,
 }) {
   const navigate = useNavigate();
 
   if (!data) return null;
+
+  const handleNavigate = () => {
+    navigate(`/products/${data.id}`);
+  };
 
   return (
     <div
@@ -22,7 +28,17 @@ export default function SolarCard({
         flex flex-col
         overflow-hidden
         hover:shadow-lg transition-shadow
+        cursor-pointer
       "
+      role="button"
+      tabIndex={0}
+      onClick={handleNavigate}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleNavigate();
+        }
+      }}
       style={{ backgroundColor: cardBgColor }}
     >
       {/* ===== Tên + Ảnh ===== */}
@@ -30,18 +46,28 @@ export default function SolarCard({
         <div className="min-h-[44px] flex items-center">
           <h2
             className="text-[18px] font-semibold leading-[22px]"
-            style={{ color: textColor }}
+            style={{
+              color: textColor,
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 2,
+              overflow: "hidden",
+            }}
           >
             {data.title}
           </h2>
         </div>
 
         {/* Giữ tỉ lệ ảnh */}
-        <div className="aspect-square rounded-[12px] bg-[#F5F8FA] flex items-center justify-center">
+        <div className="aspect-square rounded-[12px] overflow-hidden bg-[#F5F8FA] flex items-center justify-center">
           <img
             src={data.image}
             alt="product"
-            className="object-contain max-h-full max-w-full"
+            className="h-full w-full object-cover"
+            onError={(event) => {
+              event.currentTarget.onerror = null;
+              event.currentTarget.src = fallbackImage;
+            }}
           />
         </div>
       </div>
@@ -49,11 +75,20 @@ export default function SolarCard({
       {/* ===== Tiết kiệm + Giá ===== */}
       <div className="flex flex-col">
         <div
-          className="px-3 py-2 flex items-center gap-2"
+          className="px-3 py-2 flex items-center gap-2 min-w-0"
           style={{ backgroundColor: saveColor }}
         >
           <img src={checkicon} alt="check" className="w-[18px] h-[18px]" />
-          <p className="text-[14px]" style={{ color: textColor }}>
+          <p
+            className="text-[14px] truncate"
+            style={{
+              fontFamily: "'SF Pro Display', sans-serif",
+              fontWeight: 400,
+              lineHeight: "19px",
+              letterSpacing: "0%",
+              color: textColor,
+            }}
+          >
             {data.save}
           </p>
         </div>
@@ -75,18 +110,34 @@ export default function SolarCard({
 
       {/* ===== Thông tin + Button ===== */}
       <div className="flex flex-col gap-2 p-3 flex-1">
-        <Info label="Công suất PV:" value={data.pv} color={textColor} />
-        <Info label="Biến tần Solis:" value={data.inverter} color={textColor} />
-        <Info label="Lưu trữ Dyness:" value={data.battery} color={textColor} />
-        <Info label="Sản Lượng:" value={data.production} color={textColor} />
-        <Info label="Hoàn Vốn:" value={data.roi} color={textColor} />
-        <Info label="Diện tích lắp đặt:" value={data.area} color={textColor} />
+        <div
+          className={
+            hideDetailsOnMobile
+              ? "hidden md:flex md:flex-col md:gap-2"
+              : "flex flex-col gap-2"
+          }
+        >
+          <Info label={data.pvLabel} value={data.pv} color={textColor} />
+          <Info
+            label={data.inverterLabel}
+            value={data.inverter}
+            color={textColor}
+          />
+          <Info
+            label={data.batteryLabel}
+            value={data.battery}
+            color={textColor}
+          />
+          <Info label="Sản Lượng:" value={data.production} color={textColor} />
+          <Info label="Hoàn Vốn:" value={data.roi} color={textColor} />
+          <Info label="Diện tích lắp đặt:" value={data.area} color={textColor} />
+        </div>
 
         {/* Buttons luôn dính đáy */}
         <div className="mt-auto flex gap-2 pt-2">
           <button
             onClick={() => navigate(`/products/${data.id}`)}
-            className="flex-1 h-[44px] rounded-[6px] text-white text-[14px] font-medium"
+            className="w-[163px] h-[48px] rounded-[12px] text-white text-[14px] font-medium flex items-center justify-center gap-2 px-[10px] leading-none"
             style={{ backgroundColor: mainColor }}
           >
             Xem chi tiết
@@ -94,7 +145,10 @@ export default function SolarCard({
 
           <button
             type="button"
-            className="flex-1 h-[44px] rounded-[6px] border text-[14px] font-medium"
+            onClick={(event) => event.stopPropagation()}
+            className={`w-[103px] h-[48px] rounded-[12px] border text-[14px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${
+              hideDetailsOnMobile ? "hidden md:flex" : ""
+            }`}
             style={{ borderColor: mainColor, color: mainColor }}
           >
             Liên hệ
@@ -110,21 +164,21 @@ function Info({ label, value, color }) {
     <div
       className="
         grid
-        grid-cols-[1fr_auto]
+        grid-cols-[minmax(0,1fr)_minmax(0,1fr)]
         gap-x-2
         text-[14px]
         leading-[20px]
+        items-center
       "
       style={{ color }}
     >
-      <span className="whitespace-nowrap">
+      <span className="min-w-0 truncate">
         {label}
       </span>
 
-      <span className="text-right font-medium">
+      <span className="min-w-0 truncate text-right font-medium">
         {value || "-"}
       </span>
     </div>
   );
 }
-

@@ -14,12 +14,11 @@ export default function BannerCard({ image, onClick }) {
         overflow-hidden
       "
     >
-      {/* Mobile padding wrapper */}
-      <div className="w-full h-full px-[16px] pr-[76px] py-[16px] lg:p-0">
+      <div className="w-full h-full p-0 lg:p-0">
         <img
           src={image}
           alt="banner"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-100 rotate-0"
         />
       </div>
     </div>

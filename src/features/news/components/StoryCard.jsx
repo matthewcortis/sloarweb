@@ -1,20 +1,22 @@
-export default function MegaStoryCard({ image, title, onClick }) {
+export default function MegaStoryCard({ image, title, onClick, className = "" }) {
   return (
     <div
       onClick={onClick}
-      className="
+      className={`
         flex-shrink-0
-        w-[260px] sm:w-[290px]
+        w-[252px] sm:w-[290px]
+        h-[273px] sm:h-[300px]
         bg-white
-        rounded-[12px]
-        pb-3
+        rounded-[6px] sm:rounded-[12px]
+        pb-2 sm:pb-3
         shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)]
         flex flex-col
-        gap-3
+        gap-2 sm:gap-3
         overflow-hidden
         cursor-pointer
         scroll-snap-align-start
-      "
+        ${className}
+      `}
     >
       {/* Image */}
       <img
@@ -22,18 +24,20 @@ export default function MegaStoryCard({ image, title, onClick }) {
         alt={title}
         className="
           w-full
-          h-[140px] sm:h-[145px]
+          h-[146px] sm:h-[165px]
+          rounded-[6px] sm:rounded-[12px]
           object-cover
         "
       />
 
       {/* Content */}
-      <div className="px-3 flex flex-col gap-2">
+      <div className="px-3 flex flex-1 flex-col gap-2">
         <h3
           className="
             font-semibold
             text-[18px] sm:text-[21px]
-            leading-tight
+            leading-[22px] sm:leading-[26px]
+            min-h-[66px] sm:min-h-[78px]
             text-[#242425]
             overflow-hidden
             [display:-webkit-box]
@@ -55,6 +59,7 @@ export default function MegaStoryCard({ image, title, onClick }) {
             text-[12px]
             font-medium
             flex items-center justify-center
+            mt-auto
           "
         >
           Đọc thêm

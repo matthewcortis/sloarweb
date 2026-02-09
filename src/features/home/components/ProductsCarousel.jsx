@@ -10,6 +10,8 @@ export default function ProductsCarousel({
   mainColor = "#00A859",
   textColor = "#000000ff",
   saveColor = "#E6F4ED",
+  hideDetailsOnMobile = false,
+  scrollContainerClassName = "",
 }) {
   /* =======================
      GRID MODE
@@ -47,6 +49,7 @@ export default function ProductsCarousel({
                     mainColor={mainColor}
                     textColor={textColor}
                     saveColor={saveColor}
+                    hideDetailsOnMobile={hideDetailsOnMobile}
                   />
                 </div>
               ))}
@@ -121,7 +124,7 @@ export default function ProductsCarousel({
     <div className="w-full">
       <div
         ref={containerRef}
-        className="
+        className={`
           flex
           gap-4
           w-full
@@ -131,7 +134,8 @@ export default function ProductsCarousel({
           no-scrollbar
           cursor-grab
           select-none
-        "
+          ${scrollContainerClassName}
+        `}
         onMouseDown={onMouseDown}
         onMouseLeave={onMouseLeave}
         onMouseUp={onMouseUp}
@@ -170,6 +174,7 @@ export default function ProductsCarousel({
                   mainColor={mainColor}
                   textColor={textColor}
                   saveColor={saveColor}
+                  hideDetailsOnMobile={hideDetailsOnMobile}
                 />
               </div>
             ))}

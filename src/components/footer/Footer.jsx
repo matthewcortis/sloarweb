@@ -45,9 +45,13 @@ const footer = {
   ],
 };
 
-export default function Footer() {
+export default function Footer({ variant = "light" }) {
+  const isDark = variant === "dark";
+  const footerClassName = isDark ? "bg-[#1D1D1F] text-white" : "bg-[#E5E7EB]";
+  const subTextClassName = isDark ? "text-gray-300" : "text-gray-700";
+
   return (
-    <footer className="bg-[#E5E7EB] py-12 px-6">
+    <footer className={`${footerClassName} py-12 px-6`}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
 
         {/* CỘT 1 — COMPANY */}
@@ -58,7 +62,7 @@ export default function Footer() {
           {footer.company.offices.map((office) => (
             <div key={office.title}>
               <p className="font-semibold">{office.title}</p>
-              <p className="text-sm text-gray-700 leading-5">{office.address}</p>
+              <p className={`text-sm ${subTextClassName} leading-5`}>{office.address}</p>
             </div>
           ))}
 
@@ -73,7 +77,7 @@ export default function Footer() {
           {footer.warehouses.map((item) => (
             <div key={item.title}>
               <p className="font-semibold">{item.title}</p>
-              <p className="text-sm text-gray-700 leading-5">{item.address}</p>
+              <p className={`text-sm ${subTextClassName} leading-5`}>{item.address}</p>
             </div>
           ))}
         </div>
@@ -83,7 +87,7 @@ export default function Footer() {
           {footer.others.map((item) => (
             <div key={item.title}>
               <p className="font-semibold">{item.title}</p>
-              <p className="text-sm text-gray-700 leading-5">{item.address}</p>
+              <p className={`text-sm ${subTextClassName} leading-5`}>{item.address}</p>
             </div>
           ))}
         </div>

@@ -32,7 +32,7 @@ const SavingBadge = ({ value }) => {
           font-['SF_Pro_Display']
         "
       >
-        Số tiền tiết kiệm/tháng: {value}
+        {value}
       </span>
     </div>
   );

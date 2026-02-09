@@ -4,8 +4,11 @@ import HybridBanner from "../components/MoTa.jsx";
 import { hybridData } from "../../../services/mota.js";
 import { moTaGioiThieu } from "../../../services/mota.js";
 import InfoCard from "../../../utils/GioiThieuCard.jsx";
-
+import { useNavigate } from "react-router-dom";
+import VeChungToiSection from "../../news/components/VeChungToiSection.jsx";
 export default function BannerSaleSupport() {
+  const navigate = useNavigate();
+
   const renderBoldInlineText = (text) => {
     if (!text) return null;
 
@@ -15,7 +18,7 @@ export default function BannerSaleSupport() {
       <>
         {parts.map((part, index) =>
           part.startsWith("**") && part.endsWith("**") ? (
-            <strong key={index} className="font-semibold text-gray-900">
+            <strong key={index} className="font-semibold text-[#1D1D1F]">
               {part.replace(/\*\*/g, "")}
             </strong>
           ) : (
@@ -25,6 +28,12 @@ export default function BannerSaleSupport() {
       </>
     );
   };
+
+  const introData = {
+    ...hybridData.moTaGioiThieu,
+    description: renderBoldInlineText(hybridData?.moTaGioiThieu?.description),
+  };
+  const introLink = hybridData?.moTaGioiThieu?.link || "/gioi-thieu";
 
   return (
     <div className="px-[16px] xl:px-[80px]">
@@ -40,15 +49,13 @@ export default function BannerSaleSupport() {
             py-[60px]
           "
         >
-          {/* Hybrid banner */}
+          
           <div className="flex flex-col items-center mx-auto max-w-[1280px]">
             <HybridBanner
-              data={{
-                ...hybridData.moTaGioiThieu,
-                description: renderBoldInlineText(
-                  hybridData.moTaGioiThieu.description
-                ),
-              }}
+              data={introData}
+              titleColor="#1D1D1F"
+              desColor="#4A4A4A"
+              onMoreClick={() => navigate(introLink)}
             />
           </div>
 

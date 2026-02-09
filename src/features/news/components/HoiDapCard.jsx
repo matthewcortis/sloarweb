@@ -4,7 +4,7 @@ export default function QAItem({ title, content }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full max-w-[813px] bg-white rounded-[12px]">
+    <div className="w-full max-w-[361px] md:max-w-[845px] bg-white rounded-[6px] md:rounded-[12px]">
       {/* Header */}
       <div
         onClick={() => setOpen(!open)}

@@ -1,30 +1,34 @@
 // src/components/HybridProductsSection.jsx
-import HybridBanner from "./MoTa.jsx";
-import { hybridData } from "../../../services/mota.js";
-import { products } from "../../../services/data.js";
-import ProductsCarousel from "./ProductsCarousel.jsx";
 import { useNavigate } from "react-router-dom";
+import { hybridData } from "../../../services/mota.js";
+import Hybrid1PhaView from "./Hybrid1PhaView.jsx";
+import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
+
+const HE_THONG = "Hy-Brid";
+const LOAI_PHA = "1 pha";
+const BAN_CHAY = true;
+
 export default function HybridProducts1Pha() {
+  const navigate = useNavigate();
+  const { products, loading } = useTronGoiProducts({
+    loaiHeThong: HE_THONG,
+    loaiPha: LOAI_PHA,
+    banChay: BAN_CHAY,
+  });
 
-   const navigate = useNavigate();
   return (
-    
-    <div className="px-[16px] xl:px-[80px]">
-      {/* MÔ TẢ – GIỮ MAX WIDTH */}
-      <div className="flex flex-col items-center max-w-[1280px] mx-auto">
-        <HybridBanner data={hybridData.moTa1Pha}  onMoreClick={() => navigate("/products")}  />
-      </div>
-
-
-      <div
-        className="
-          relative
-          -mr-[16px] xl:-mr-[80px]
-          w-[calc(100%+16px)] xl:w-[calc(100%+80px)]
-        "
-      >
-        <ProductsCarousel products={products} />
-      </div>
-    </div>
+    <Hybrid1PhaView
+      bannerData={hybridData.moTa1Pha}
+      onMoreClick={() =>
+        navigate(
+          `/products?${new URLSearchParams({
+            heThong: HE_THONG,
+            loaiPha: LOAI_PHA,
+          }).toString()}`
+        )
+      }
+      products={products}
+      loading={loading}
+    />
   );
 }
