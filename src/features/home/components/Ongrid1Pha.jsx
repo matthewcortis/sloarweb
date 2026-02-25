@@ -18,7 +18,7 @@ export default function OngridProducts1Pha() {
     });
 
     return (
-        <div className="px-[16px] xl:px-[80px]">
+        <div className="px-0 xl:px-[80px]">
             {/* CONTENT ĐỌC */}
             <div className="flex flex-col items-center max-w-[1280px] mx-auto">
                 <MoTa

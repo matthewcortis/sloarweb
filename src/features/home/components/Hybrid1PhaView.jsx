@@ -8,7 +8,7 @@ export default function Hybrid1PhaView({
   loading,
 }) {
   return (
-    <div className="px-[16px] xl:px-[80px]">
+    <div className="px-0 xl:px-[80px]">
       {/* MÔ TẢ – GIỮ MAX WIDTH */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <HybridBanner data={bannerData} onMoreClick={onMoreClick} />

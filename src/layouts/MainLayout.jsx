@@ -4,6 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 export default function MainLayout() {
   const location = useLocation();
   const isHuaweiPage = location.pathname === "/huawei";
+  const isHomePage = location.pathname === "/";
 
   return (
     <div
@@ -11,7 +12,10 @@ export default function MainLayout() {
         isHuaweiPage ? "bg-[#1D1D1F]" : "bg-gray-50"
       }`}
     >
-      <Header variant={isHuaweiPage ? "dark" : "light"} />
+      <Header
+        variant={isHuaweiPage ? "dark" : "light"}
+        autoHideOnMobile={isHomePage}
+      />
       <main className="flex-1 w-full p-0">
         <Outlet />
       </main>

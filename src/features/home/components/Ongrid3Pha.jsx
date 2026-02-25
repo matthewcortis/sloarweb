@@ -18,10 +18,10 @@ export default function OngridProducts3Pha() {
   });
 
   return (
-    <div className="px-[16px] xl:px-[80px] pb-[80px]">
+    <div className="px-0 xl:px-[80px] pb-[30px]">
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <MoTa
-          data={hybridData.moTa3Pha}
+          data={hybridData.moTaOngrid3Pha}
           onMoreClick={() =>
             navigate(
               `/products?${new URLSearchParams({

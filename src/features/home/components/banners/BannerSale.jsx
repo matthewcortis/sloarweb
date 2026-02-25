@@ -1,10 +1,39 @@
 import { useEffect, useState } from "react";
+import { fetchQuangCaoImageUrlByViTri } from "../../api/quangCaoApi";
+
+const HOME_BANNER_3_POSITION = "WEB_HOME_BANNER_3";
 
 export default function BannerSale({ data }) {
   const [show, setShow] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState(data?.background);
 
   useEffect(() => {
     setShow(true);
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const loadBanner = async () => {
+      try {
+        const imageUrl = await fetchQuangCaoImageUrlByViTri({
+          viTri: HOME_BANNER_3_POSITION,
+          page: 0,
+          size: 20,
+        });
+        if (isActive && imageUrl) {
+          setBackgroundImage(imageUrl);
+        }
+      } catch (error) {
+        console.error("Khong tai duoc banner WEB_HOME_BANNER_3", error);
+      }
+    };
+
+    loadBanner();
+
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   return (
@@ -17,10 +46,9 @@ export default function BannerSale({ data }) {
           gap-[17px]
           h-[253px]
           px-4 py-6
-          rounded-xl
           bg-cover bg-center
         "
-        style={{ backgroundImage: `url(${data.background})` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         {/* Ảnh nhân viên */}
         <img
@@ -116,7 +144,7 @@ export default function BannerSale({ data }) {
         {/* Background banner */}
         <div
           className="relative w-full h-full rounded-xl overflow-hidden bg-cover bg-center z-10"
-          style={{ backgroundImage: `url(${data.background})` }}
+          style={{ backgroundImage: `url(${backgroundImage})` }}
         />
       </div>
     </div>

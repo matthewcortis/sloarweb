@@ -3,6 +3,21 @@ import HybridBanner from "../../home/components/MoTa.jsx";
 import ProductsCarousel from "../../home/components/ProductsCarousel.jsx";
 import { useTronGoiProducts } from "../../home/controllers/useTronGoiProducts";
 import { BAN_CHAY, PRESETS, PRESET_BY_PATH } from "../hooks/productPresets.js";
+import { hybridData } from "../../../services/mota.js";
+
+const resolveBannerData = ({ loaiHeThong, loaiPha }) => {
+  if (loaiHeThong === "Hy-Brid") {
+    if (loaiPha === "3 pha") return hybridData.moTa3Pha;
+    return hybridData.moTa1Pha;
+  }
+
+  if (loaiHeThong === "On-Grid") {
+    if (loaiPha === "3 pha") return hybridData.moTaOngrid3Pha;
+    return hybridData.moTaOngrid1Pha;
+  }
+
+  return hybridData.moTa1Pha;
+};
 
 export default function ProductPage({ preset }) {
   const location = useLocation();
@@ -15,6 +30,7 @@ export default function ProductPage({ preset }) {
   const loaiPha = activePreset
     ? undefined
     : searchParams.get("loaiPha") || undefined;
+  const bannerData = resolveBannerData({ loaiHeThong, loaiPha });
   const { products, loading } = useTronGoiProducts({
     loaiHeThong,
     loaiPha,
@@ -27,14 +43,7 @@ export default function ProductPage({ preset }) {
 
   return (
     <main className="px-[16px] xl:px-[80px]">
-      <HybridBanner
-        data={{
-          title:
-            "Điện mặt trời Hy-Brid (Có pin lưu trữ) cho nguồn điện 1 pha",
-          description:
-            "Hệ thống điện mặt trời Hy-Brid, có bao gồm Pin lưu trữ Lithium...",
-        }}
-      />
+      <HybridBanner data={bannerData} />
 
       <ProductsCarousel
         products={products}

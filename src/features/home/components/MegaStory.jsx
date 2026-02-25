@@ -51,7 +51,7 @@ export default function MeGaStory() {
   const hasStories = stories.length > 0;
 
   return (
-    <div className="px-[16px] xl:px-[80px] pb-[80px]">
+    <div className="px-0 xl:px-[80px] pb-[30px]">
       {/* Mô tả */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <HybridBanner
@@ -69,7 +69,7 @@ export default function MeGaStory() {
           mt-8
         "
       >
-        <div className="flex flex-col gap-3 pl-[16px] xl:pl-[80px]">
+        <div className="flex flex-col gap-3 pl-0 xl:pl-[80px]">
           {loading && (
             <p className="text-[14px] text-[#667085]">Đang tải Mega Story...</p>
           )}
@@ -84,7 +84,7 @@ export default function MeGaStory() {
         </div>
 
         {hasStories && (
-          <div className="flex gap-4 overflow-x-auto pl-[16px] xl:pl-[80px]">
+          <div className="flex gap-4 overflow-x-auto pl-0 xl:pl-[80px]">
             {stories.map((item, index) => (
               <MegaStoryCard
                 key={item?.id ?? index}

@@ -1,21 +1,45 @@
 import React from "react";
 
-const HybridBanner = ({
-  data,
-  titleColor,
-  desColor,
-  showMore = true,
-  onMoreClick,
-}) => {
+  const HybridBanner = ({
+    data,
+    titleColor,
+    desColor,
+    showMore = true,
+    onMoreClick,
+  }) => {
+  const renderDescription = () => {
+    const description = data?.description;
+    if (!description) return null;
+
+    const highlight = data?.highlight;
+    if (!highlight || !description.includes(highlight)) {
+      return description;
+    }
+
+    const startIndex = description.indexOf(highlight);
+    const before = description.slice(0, startIndex);
+    const after = description.slice(startIndex + highlight.length);
+
+    return (
+      <>
+        {before}
+        <span className="font-sf font-semibold">
+          {highlight}
+        </span>
+        {after}
+      </>
+    );
+  };
+
   return (
-    <div className="w-full relative py-10 px-4">
+    <div className="w-full relative py-10">
 
       {/* DESKTOP BUTTON */}
       {showMore && onMoreClick && (
         <div className="hidden md:block absolute right-6 top-12">
           <button
             onClick={onMoreClick}
-            className="text-red-500 font-semibold hover:underline"
+            className="text-red-500 font-semibold underline decoration-red-500 underline-offset-2"
           >
             Tìm hiểu thêm
           </button>
@@ -41,7 +65,7 @@ const HybridBanner = ({
             className="mt-3 text-[14px] md:text-[15px]"
             style={{ color: desColor }}
           >
-            {data.description}
+            {renderDescription()}
           </div>
         )}
       </div>
@@ -51,7 +75,7 @@ const HybridBanner = ({
         <div className="block md:hidden mt-4">
           <button
             onClick={onMoreClick}
-            className="text-red-500 font-semibold hover:underline"
+            className="text-red-500 font-semibold underline decoration-red-500 underline-offset-2"
           >
             Tìm hiểu thêm
           </button>

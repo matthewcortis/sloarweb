@@ -86,3 +86,12 @@ https://v2.slmglobal.vn/api/basic-api/tron-goi/filter
 }
 
 
+
+
+cuộn xuống mới hiển thị  toolbar fix logo nút mobile 
+fix in đậm mô tả 
+gạch ngang 
+sửa so sánhmobile
+banner chi tiết combo tràn viền, thiếu mái bằng, thêm megastory    
+story card bên ngoài home 
+

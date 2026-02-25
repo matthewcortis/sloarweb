@@ -1,34 +1,41 @@
-import iconChart from "../../../assets/icons/Frame 4765.png";
-import iconRoof from "../../../assets/icons/Frame 4766.png";
-import iconStructure from "../../../assets/icons/Frame 4767.png";
-import iconBattery from "../../../assets/icons/battery-empty-1--phone-mobile-charge-device-electricity-empty-power-battery.png";
-import iconMedal from "../../../assets/icons/battery-empty-2--phone-mobile-charge-device-electricity-empty-power-battery.png";
+
+import gioithieu from "../../../assets/icons/gioithieu.png";
+import maigoi from "../../../assets/icons/maingoi.png";
+import maibang from "../../../assets/icons/tampin.png";
+import tudien from "../../../assets/icons/tudien.png";
+import star from "../../../assets/icons/star.png";
+import tot from "../../../assets/icons/tot.png";
 
 const aboutItems = [
   {
     id: 1,
-    icon: iconChart,
-    text: "Giải pháp SolarMax bám sát\nbiểu đồ và thói quen sử dụng\nđiện của khách hàng",
+    image: gioithieu,
+    text: "Giải pháp SolarMax bám sát biểu đồ và thói quen sử dụng điện của khách hàng",
   },
   {
     id: 2,
-    icon: iconRoof,
-    text: "Mái tôn, Mái ngói: 100% sử\ndụng thanh full-rail, thay vì sử\ndụng mini-rail",
+    image: maigoi,
+    text: "Mái tôn, Mái ngói: 100% sử dụng thanh full-rail, thay vì sử dụng mini-rail",
   },
   {
     id: 3,
-    icon: iconStructure,
-    text: "Mái bằng: 100% thiết kế 3D\nkhung thép trước khi thi công.",
+    image: maibang,
+    text: "Mái bằng: 100% thiết kế 3D khung thép trước khi thi công.",
   },
   {
     id: 4,
-    icon: iconBattery,
+    image: tudien,
     text: "Tủ điện:\nRộng - Đẹp - Bền",
   },
   {
     id: 5,
-    icon: iconMedal,
-    text: "Tấm quang năng, biến tần và\npin lưu trữ top 3 thế giới",
+    image: star,
+    text: "Tấm quang năng, biến tần và pin lưu trữ top 3 thế giới",
+  },
+  {
+    id: 6,
+    image: tot,
+    text: "",
   },
 ];
 
@@ -78,7 +85,7 @@ export default function VeChungToiSection() {
                   className="w-full md:w-[266px] md:h-[156px] bg-[#F6F6F6] rounded-[12px] p-[16px] flex flex-col items-center justify-center gap-[16px] text-center"
                 >
                   <img
-                    src={item.icon}
+                    src={item.image}
                     alt=""
                     className="w-[40px] h-[40px] object-contain"
                   />

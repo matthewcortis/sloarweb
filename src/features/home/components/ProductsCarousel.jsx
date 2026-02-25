@@ -175,6 +175,7 @@ export default function ProductsCarousel({
                   textColor={textColor}
                   saveColor={saveColor}
                   hideDetailsOnMobile={hideDetailsOnMobile}
+                  className="w-[312px] sm:w-[302px]"
                 />
               </div>
             ))}

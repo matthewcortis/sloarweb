@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-export default function Header({ variant = "light" }) {
+export default function Header({ variant = "light", autoHideOnMobile = false }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showOnMobile, setShowOnMobile] = useState(!autoHideOnMobile)
   const [location, setLocation] = useState(() => {
     if (typeof window === "undefined") return "HN"
     const storedLocation = window.localStorage.getItem("solarmax-location")
@@ -32,13 +33,61 @@ export default function Header({ variant = "light" }) {
     )
   }, [location])
 
+  useEffect(() => {
+    if (!autoHideOnMobile) {
+      setShowOnMobile(true)
+      return
+    }
+    if (typeof window === "undefined") return
+
+    const media = window.matchMedia("(max-width: 1023px)")
+    const updateVisibility = () => {
+      if (!media.matches) {
+        setShowOnMobile(true)
+        return
+      }
+      setShowOnMobile(window.scrollY > 40)
+    }
+
+    updateVisibility()
+    window.addEventListener("scroll", updateVisibility, { passive: true })
+    window.addEventListener("resize", updateVisibility, { passive: true })
+    if (media.addEventListener) {
+      media.addEventListener("change", updateVisibility)
+    } else {
+      media.addListener(updateVisibility)
+    }
+
+    return () => {
+      window.removeEventListener("scroll", updateVisibility)
+      window.removeEventListener("resize", updateVisibility)
+      if (media.removeEventListener) {
+        media.removeEventListener("change", updateVisibility)
+      } else {
+        media.removeListener(updateVisibility)
+      }
+    }
+  }, [autoHideOnMobile])
+
+  const autoHideClassName = autoHideOnMobile
+    ? `fixed left-0 right-0 top-0 z-40 transition-all duration-300 ease-out lg:static lg:translate-y-0 lg:opacity-100 lg:pointer-events-auto ${
+        showOnMobile
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-full opacity-0 pointer-events-none"
+      }`
+    : ""
+
   return (
-    <header className={headerClassName}>
+    <header className={`${headerClassName} ${autoHideClassName}`}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
 
         {/* LOGO */}
         <a href="/" className="flex items-center">
-          <img src={Logo} alt="Logo" className="h-8 w-auto" />
+          <img
+            src={Logo}
+            alt="Logo"
+            className="h-[19.078125px] w-[110px] sm:h-8 sm:w-auto"
+          />
         </a>
 
         {/* DESKTOP MENU */}
@@ -93,7 +142,11 @@ export default function Header({ variant = "light" }) {
           {/* TOP BAR */}
           <div className="flex items-center justify-between mb-8">
             <a href="/" className="flex items-center">
-              <img src={Logo} alt="Logo" className="h-4 w-auto" />
+              <img
+                src={Logo}
+                alt="Logo"
+                className="h-[19.078125px] w-[110px] sm:h-4 sm:w-auto"
+              />
             </a>
             <button onClick={() => setMobileMenuOpen(false)} className={closeButtonClassName}>
               <XMarkIcon className="h-6 w-6" />

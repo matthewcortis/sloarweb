@@ -1,17 +1,28 @@
+import { useEffect, useState } from "react";
+import solarmaxFallback from "../../../assets/solarmax.jpg";
+
 export default function MegaStoryCard({ image, title, onClick, className = "" }) {
+  const [imgSrc, setImgSrc] = useState(image || solarmaxFallback);
+
+  useEffect(() => {
+    setImgSrc(image || solarmaxFallback);
+  }, [image]);
+
+  const handleImageError = () => {
+    setImgSrc(solarmaxFallback);
+  };
+
   return (
     <div
       onClick={onClick}
       className={`
         flex-shrink-0
         w-[252px] sm:w-[290px]
-        h-[273px] sm:h-[300px]
+        h-[312px] sm:h-[500px]
         bg-white
         rounded-[6px] sm:rounded-[12px]
-        pb-2 sm:pb-3
         shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)]
         flex flex-col
-        gap-2 sm:gap-3
         overflow-hidden
         cursor-pointer
         scroll-snap-align-start
@@ -20,24 +31,25 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
     >
       {/* Image */}
       <img
-        src={image}
-        alt={title}
+        src={imgSrc}
+        alt={title || "Solarmax"}
+        onError={handleImageError}
         className="
           w-full
-          h-[146px] sm:h-[165px]
+          h-[180px] sm:h-[361px]
           rounded-[6px] sm:rounded-[12px]
           object-cover
         "
       />
 
       {/* Content */}
-      <div className="px-3 flex flex-1 flex-col gap-2">
+      <div className="px-3 py-2 flex flex-1 flex-col gap-2">
         <h3
           className="
             font-semibold
-            text-[18px] sm:text-[21px]
-            leading-[22px] sm:leading-[26px]
-            min-h-[66px] sm:min-h-[78px]
+            text-[18px] sm:text-[20px]
+            leading-[22px] sm:leading-[25px]
+            h-[66px] sm:h-[75px]
             text-[#242425]
             overflow-hidden
             [display:-webkit-box]

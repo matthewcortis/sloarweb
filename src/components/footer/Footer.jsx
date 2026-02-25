@@ -15,7 +15,7 @@ const footer = {
       },
     ],
     contact: {
-      phone: "+84 (95) 492-0242",
+      phone: "+84 (96) 492-0242",
       email: "sales@smsolar.com",
     },
   },

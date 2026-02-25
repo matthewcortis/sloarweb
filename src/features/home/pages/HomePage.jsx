@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SolarComparison from "../components/banners/SolarCompare";
 import HybridProducts1Pha from "../components/Hybrid1Pha.jsx";
 import HybridProducts3Pha from "../components/Hybrid3Pha.jsx";
@@ -12,42 +12,121 @@ import BannerSaleSupport from "../components/BannerSale.jsx";
 import MeGaStory from "../components/MegaStory.jsx";
 import HoiDapSection from "../components/HoiDap.jsx";
 import { PhoneIcon } from "@heroicons/react/24/solid";
+import { fetchQuangCaoImageUrlByViTri } from "../api/quangCaoApi";
+
+const HOME_BANNER_1_POSITION = "WEB_HOME_BANNER_1";
+const HOME_BANNER_2_POSITION = "WEB_HOME_BANNER_2";
 
 export default function Home() {
   const [showContact, setShowContact] = useState(false);
+  const [homeBanner1Image, setHomeBanner1Image] = useState(bannerData.banner1.image);
+  const [homeBanner2Image, setHomeBanner2Image] = useState(bannerData.banner2.image);
+  const topSentinelRef = useRef(null);
   const CONTACT_PHONE = "+84 (95) 492-0242";
   const CONTACT_PHONE_TEL = "+84954920242";
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if ("IntersectionObserver" in window && topSentinelRef.current) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setShowContact(!entry.isIntersecting);
+        },
+        { root: null, rootMargin: "240px 0px 0px 0px", threshold: 0 }
+      );
+      observer.observe(topSentinelRef.current);
+      return () => observer.disconnect();
+    }
+
+    const getScrollTop = () =>
+      window.pageYOffset ||
+      document.documentElement?.scrollTop ||
+      document.body?.scrollTop ||
+      0;
+
     const onScroll = () => {
-      setShowContact(window.scrollY > 240);
+      setShowContact(getScrollTop() > 240);
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const loadBannerByPosition = async ({ viTri, onResolved, errorLabel }) => {
+      try {
+        const imageUrl = await fetchQuangCaoImageUrlByViTri({
+          viTri,
+          page: 0,
+          size: 20,
+        });
+        if (isActive && imageUrl) {
+          onResolved(imageUrl);
+        }
+      } catch (error) {
+        console.error(errorLabel, error);
+      }
+    };
+
+    loadBannerByPosition({
+      viTri: HOME_BANNER_1_POSITION,
+      onResolved: setHomeBanner1Image,
+      errorLabel: "Khong tai duoc banner WEB_HOME_BANNER_1",
+    });
+
+    loadBannerByPosition({
+      viTri: HOME_BANNER_2_POSITION,
+      onResolved: setHomeBanner2Image,
+      errorLabel: "Khong tai duoc banner WEB_HOME_BANNER_2",
+    });
+
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   return (
     <>
-      <main className="w-full">
+      <main className="w-full px-4 xl:px-0">
+        <span
+          ref={topSentinelRef}
+          aria-hidden="true"
+          className="block h-px w-full"
+        />
         <SolarComparison />
     
         <HybridProducts1Pha />
         <HybridProducts3Pha />
-        <Banner
-          image={bannerData.banner1.image}
-          onClick={() => window.location.href = bannerData.banner1.link}
-        />
+        <div className="-mx-4 xl:mx-0">
+          <Banner
+            image={homeBanner1Image}
+            onClick={() => window.location.href = bannerData.banner1.link}
+          />
+        </div>
         <OngridProducts1Pha />
         <OngridProducts3Pha />
-        <Banner
-          image={bannerData.banner2.image}
-          onClick={() => window.location.href = bannerData.banner2.link}
-        />
-        <Huawei />
+        <div className="-mx-4 xl:mx-0">
+          
+          <Banner
+            image={homeBanner2Image}
+            onClick={() => window.location.href = bannerData.banner2.link}
+          />
+        </div>
+        <div className="-mx-4 xl:mx-0">
+          <Huawei />
+        </div>
         <CongNghiep />
-        <BannerSaleSupport />
+        <div className="-mx-4 xl:mx-0">
+          <BannerSaleSupport />
+        </div>
         <MeGaStory />
         <HoiDapSection />
       </main>

@@ -1,4 +1,5 @@
 import SavingBadge from "../../../utils/TietKiemCard";
+import fallbackImage from "../../../assets/solarmax.jpg";
 
 export default function ProductInfo({
   image,
@@ -16,9 +17,13 @@ export default function ProductInfo({
         className="w-full aspect-square bg-gray-100 overflow-hidden lg:flex-1 lg:max-h-[519px] lg:rounded-[12px]"
       >
         <img
-          src={image}
+          src={image || fallbackImage}
           alt={title}
           className="w-full h-full object-cover"
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = fallbackImage;
+          }}
         />
       </div>
 

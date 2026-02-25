@@ -6,7 +6,7 @@ import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
 
 const HE_THONG = "Hy-Brid";
 const LOAI_PHA = "1 pha";
-const BAN_CHAY = true;
+const BAN_CHAY = false;
 
 export default function HybridProducts1Pha() {
   const navigate = useNavigate();

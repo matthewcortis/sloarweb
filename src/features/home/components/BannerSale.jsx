@@ -36,21 +36,20 @@ export default function BannerSaleSupport() {
   const introLink = hybridData?.moTaGioiThieu?.link || "/gioi-thieu";
 
   return (
-    <div className="px-[16px] xl:px-[80px]">
+    <div className="px-0 xl:px-[80px]">
       <BannerSale data={bannerSaleData} />
 
       {/* ===== WHITE LAYOUT ===== */}
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center">
         <div
           className="
             w-full
             bg-white
-            rounded-[6px]
             py-[60px]
           "
         >
           
-          <div className="flex flex-col items-center mx-auto max-w-[1280px]">
+          <div className="flex px-4 flex-col items-center mx-auto max-w-[1280px]">
             <HybridBanner
               data={introData}
               titleColor="#1D1D1F"

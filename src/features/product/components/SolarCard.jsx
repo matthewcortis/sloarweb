@@ -10,13 +10,24 @@ export default function SolarCard({
   textColor = "#000000ff",
   saveColor = "#E6F4ED",
   hideDetailsOnMobile = false,
+  className = "",
 }) {
   const navigate = useNavigate();
 
   if (!data) return null;
 
+  const displayPrice =
+    typeof data.price === "string"
+      ? data.price.replace(/\s*đ$/i, "\u00A0đ").trim()
+      : data.price;
+
   const handleNavigate = () => {
     navigate(`/products/${data.id}`);
+  };
+
+  const handleContactCall = (event) => {
+    event.stopPropagation();
+    window.location.href = "tel:0964920242";
   };
 
   return (
@@ -29,6 +40,7 @@ export default function SolarCard({
         overflow-hidden
         hover:shadow-lg transition-shadow
         cursor-pointer
+        ${className}
       "
       role="button"
       tabIndex={0}
@@ -95,14 +107,14 @@ export default function SolarCard({
 
         <div className="py-4 px-4 flex items-center justify-center">
           <div className="text-center">
-            <p className="text-[12px] uppercase" style={{ color: textColor }}>
+            <p className="text-[11px] md:text-[12px] uppercase" style={{ color: textColor }}>
               Giá niêm yết
             </p>
             <p
-              className="text-[24px] font-semibold"
+              className="text-[22px] md:text-[24px] leading-none font-semibold whitespace-nowrap"
               style={{ color: mainColor }}
             >
-              {data.price}
+              {displayPrice}
             </p>
           </div>
         </div>
@@ -145,7 +157,7 @@ export default function SolarCard({
 
           <button
             type="button"
-            onClick={(event) => event.stopPropagation()}
+            onClick={handleContactCall}
             className={`w-[103px] h-[48px] rounded-[12px] border text-[14px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${
               hideDetailsOnMobile ? "hidden md:flex" : ""
             }`}

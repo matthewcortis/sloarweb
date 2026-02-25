@@ -17,14 +17,15 @@ export default function Huawei() {
     });
 
     return (
-        <div className="px-[16px] xl:px-[80px] bg-[#1D1D1F] py-[80px]">
+        <div className="px-4  bg-[#1D1D1F] pb-[30px] ">
             {/* CONTENT ĐỌC */}
             <div className="flex flex-col items-center max-w-[1280px] mx-auto">
                 <MoTa
-                    data={hybridData.moTa1Pha}
+                    data={hybridData.moTaHuawei}
                     titleColor="#FFFFFF"
                     desColor="#FFFFFF"
-                    onMoreClick={() => navigate("/huawei")}
+                    showMore={true}
+                    onMoreClick={() => navigate(hybridData.moTaHuawei.link)}
                 />
             </div>
 

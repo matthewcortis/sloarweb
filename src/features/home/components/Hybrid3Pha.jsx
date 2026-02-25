@@ -18,11 +18,14 @@ export default function HybridProductsSection() {
   });
 
   return (
-    <div className="px-[16px] xl:px-[80px] pb-[80px]">
+    <div className="px-0 xl:px-[80px] pb-[80px]">
      
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <MoTa
-          data={hybridData.moTa3Pha}
+          data={{
+            ...hybridData.moTa3Pha,
+            highlight: "Giải pháp phù hợp với hóa đơn tiền điện trên 3 triệu/tháng.",
+          }}
           onMoreClick={() =>
             navigate(
               `/products?${new URLSearchParams({

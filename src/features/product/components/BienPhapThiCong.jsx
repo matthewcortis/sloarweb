@@ -1,6 +1,11 @@
-import { useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
 import congNghiepImage from "../../../assets/congnghiep.png";
+import { fetchQuangCaoByViTri } from "../../home/api/quangCaoApi";
+
+const MAI_TON_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_1";
+const MAI_NGOI_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_2";
+const MAI_BANG_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_3";
 
 const defaultCards = [
   {
@@ -63,7 +68,32 @@ const defaultCategories = [
     ],
     items: defaultCards,
   },
-];
+    {
+    id: "mai-bang",
+    title: "Giải pháp cho mái bằng",
+    description: [
+      "100% là thiết kế 3D trước khi thi công giúp: Thứ nhất, tối ưu chi phí vật tư thép. ",
+      "Thứ hai, ưu tiên thiết kế hành lang hỗ trợ bảo trì tấm Pin",
+    ],
+    items: defaultCards,
+  },
+	];
+
+const mapQuangCaoToCards = (items = []) => {
+  const activeItems = items.filter(
+    (item) =>
+      item?.hoatDong === true &&
+      item?.trangThai === 1 &&
+      typeof item?.tepTin?.duongDan === "string" &&
+      item.tepTin.duongDan.length > 0
+  );
+
+  return activeItems.map((item, index) => ({
+    id: item?.id ?? `mai-ton-${index}`,
+    image: item.tepTin.duongDan,
+    items: [],
+  }));
+};
 
 function ScrollableCardList({
   items,
@@ -108,7 +138,7 @@ function ScrollableCardList({
         className={[
           "flex w-full overflow-x-auto scroll-smooth no-scrollbar",
           gapClassName || "gap-4 md:gap-3",
-          listClassName || "h-[329px] md:h-[372px]",
+          listClassName || "h-[279px] md:h-[322px]",
         ].join(" ")}
       >
         {items?.map((item, index) => renderItem(item, index))}
@@ -162,6 +192,135 @@ export default function BienPhapThiCong({
   categories = defaultCategories,
   renderItem,
 }) {
+  const [maiTonCards, setMaiTonCards] = useState(null);
+  const [maiNgoiCards, setMaiNgoiCards] = useState(null);
+  const [maiBangCards, setMaiBangCards] = useState(null);
+
+  const hasMaiTonCategory = useMemo(
+    () => categories.some((category) => category?.id === "mai-ton"),
+    [categories]
+  );
+  const hasMaiNgoiCategory = useMemo(
+    () => categories.some((category) => category?.id === "mai-ngoi"),
+    [categories]
+  );
+  const hasMaiBangCategory = useMemo(
+    () => categories.some((category) => category?.id === "mai-bang"),
+    [categories]
+  );
+
+  useEffect(() => {
+    if (!hasMaiTonCategory && !hasMaiNgoiCategory && !hasMaiBangCategory) {
+      setMaiTonCards(null);
+      setMaiNgoiCards(null);
+      setMaiBangCards(null);
+      return;
+    }
+
+    let isActive = true;
+
+    const loadCardsByPosition = async ({ viTri, onResolved, onReset, errorLabel }) => {
+      if (!viTri) return;
+
+      try {
+        const items = await fetchQuangCaoByViTri({
+          viTri,
+          page: 0,
+          size: 20,
+        });
+        const mappedCards = mapQuangCaoToCards(items);
+        if (isActive && mappedCards.length > 0) {
+          onResolved(mappedCards);
+          return;
+        }
+      } catch (error) {
+        console.error(errorLabel, error);
+      }
+
+      if (isActive) {
+        onReset(null);
+      }
+    };
+
+    if (hasMaiTonCategory) {
+      loadCardsByPosition({
+        viTri: MAI_TON_AD_POSITION,
+        onResolved: setMaiTonCards,
+        onReset: setMaiTonCards,
+        errorLabel: "Khong tai duoc danh sach WEB_BIEN_PHAP_THI_CONG_1",
+      });
+    } else {
+      setMaiTonCards(null);
+    }
+
+    if (hasMaiNgoiCategory) {
+      loadCardsByPosition({
+        viTri: MAI_NGOI_AD_POSITION,
+        onResolved: setMaiNgoiCards,
+        onReset: setMaiNgoiCards,
+        errorLabel: "Khong tai duoc danh sach WEB_BIEN_PHAP_THI_CONG_2",
+      });
+    } else {
+      setMaiNgoiCards(null);
+    }
+
+    if (hasMaiBangCategory) {
+      loadCardsByPosition({
+        viTri: MAI_BANG_AD_POSITION,
+        onResolved: setMaiBangCards,
+        onReset: setMaiBangCards,
+        errorLabel: "Khong tai duoc danh sach WEB_BIEN_PHAP_THI_CONG_3",
+      });
+    } else {
+      setMaiBangCards(null);
+    }
+
+    return () => {
+      isActive = false;
+    };
+  }, [hasMaiTonCategory, hasMaiNgoiCategory, hasMaiBangCategory]);
+
+  const resolvedCategories = useMemo(
+    () =>
+      categories.map((category) => {
+        if (
+          category?.id === "mai-ton" &&
+          Array.isArray(maiTonCards) &&
+          maiTonCards.length > 0
+        ) {
+          return {
+            ...category,
+            items: maiTonCards,
+          };
+        }
+
+        if (
+          category?.id === "mai-ngoi" &&
+          Array.isArray(maiNgoiCards) &&
+          maiNgoiCards.length > 0
+        ) {
+          return {
+            ...category,
+            items: maiNgoiCards,
+          };
+        }
+
+        if (
+          category?.id === "mai-bang" &&
+          Array.isArray(maiBangCards) &&
+          maiBangCards.length > 0
+        ) {
+          return {
+            ...category,
+            items: maiBangCards,
+          };
+        }
+
+        return category;
+      }),
+    [categories, maiTonCards, maiNgoiCards, maiBangCards]
+  );
+
   const defaultRenderItem = (item) => (
     <CongNghiepCard
       key={item.id}
@@ -178,7 +337,7 @@ export default function BienPhapThiCong({
       </h2>
 
       <div className="mt-4 flex flex-col gap-6">
-        {categories.map((category) => {
+        {resolvedCategories.map((category) => {
           const descriptionLines = Array.isArray(category.description)
             ? category.description
             : category.description
