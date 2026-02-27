@@ -74,24 +74,21 @@ export default function MegaStoryPage() {
   return (
     <div className="px-[9px] xl:px-[80px] pb-[80px] pt-[24px]">
       <div className="max-w-[1280px] mx-auto">
-        <h1
-          className="text-[20px] sm:text-[24px] font-semibold text-[#1D1D1F] text-left md:text-center"
-          style={{ fontFamily: "SF Pro Display" }}
-        >
+        <h1 className="typo-list-title text-[#1D1D1F] text-left md:text-center">
           Dự án điển hình (Megastory)
         </h1>
 
         <div className="mt-6 flex flex-col gap-3">
           {loading && (
-            <p className="text-[14px] text-[#667085]">Đang tải Mega Story...</p>
+            <p className="text-[16px] text-[#667085]">Đang tải Mega Story...</p>
           )}
           {!loading && error && (
-            <p className="text-[14px] text-[#B42318]">
+            <p className="text-[16px] text-[#B42318]">
               Không thể tải Mega Story. Vui lòng thử lại sau.
             </p>
           )}
           {!loading && !error && !hasStories && (
-            <p className="text-[14px] text-[#667085]">Chưa có Mega Story.</p>
+            <p className="text-[16px] text-[#667085]">Chưa có Mega Story.</p>
           )}
         </div>
 
@@ -126,7 +123,7 @@ export default function MegaStoryPage() {
                 item === "..." ? (
                   <span
                     key={`ellipsis-${index}`}
-                    className="w-[40px] h-[40px] rounded-full border border-[#D0D5DD] text-[#667085] text-[14px] font-medium flex items-center justify-center cursor-default select-none"
+                    className="w-[40px] h-[40px] rounded-full border border-[#D0D5DD] text-[#667085] text-[16px] font-medium flex items-center justify-center cursor-default select-none"
                   >
                     ...
                   </span>
@@ -158,7 +155,7 @@ export default function MegaStoryPage() {
 
 function PaginationButton({ children, active, onClick }) {
   const baseClass =
-    "w-[40px] h-[40px] rounded-full text-[14px] font-medium flex items-center justify-center border transition-colors";
+    "w-[40px] h-[40px] rounded-full text-[16px] font-medium flex items-center justify-center border transition-colors";
   const activeClass = "bg-[#242425] text-white border-[#242425]";
   const inactiveClass = "bg-white text-[#667085] border-[#D0D5DD]";
 
@@ -180,7 +177,7 @@ function PaginationArrow({ direction, disabled, onClick }) {
       onClick={onClick}
       disabled={disabled}
       aria-label={direction === "prev" ? "Previous page" : "Next page"}
-      className={`w-[40px] h-[40px] rounded-full text-[14px] font-medium flex items-center justify-center border transition-colors ${
+      className={`w-[40px] h-[40px] rounded-full text-[16px] font-medium flex items-center justify-center border transition-colors ${
         disabled
           ? "bg-white text-[#98A2B3] border-[#E4E7EC] cursor-not-allowed"
           : "bg-white text-[#667085] border-[#D0D5DD] hover:bg-[#F2F4F7]"

@@ -12,13 +12,7 @@ export default function QAItem({ title, content }) {
                    h-[48px] px-4 py-3 gap-2
                    cursor-pointer"
       >
-        <h3
-          className="text-[16px] font-semibold leading-[24px]"
-          style={{
-            fontFamily: "SF Pro Display",
-            color: "#242425",
-          }}
-        >
+        <h3 className="text-[16px] font-semibold leading-[24px] text-[#242425]">
           {title}
         </h3>
 
@@ -47,14 +41,7 @@ export default function QAItem({ title, content }) {
         }`}
       >
         <div className="px-4 pb-3">
-          <p
-            className="text-[16px] leading-[20px]"
-            style={{
-              fontFamily: "SF Pro Display",
-              color: "#48484D",
-              fontWeight: 400,
-            }}
-          >
+          <p className="text-[16px] leading-[20px] text-[#48484D] font-normal">
             {content}
           </p>
         </div>

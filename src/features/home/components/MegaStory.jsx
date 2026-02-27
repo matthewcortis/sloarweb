@@ -51,7 +51,7 @@ export default function MeGaStory() {
   const hasStories = stories.length > 0;
 
   return (
-    <div className="px-0 xl:px-[80px] pb-[30px]">
+    <div className="px-0  pb-[30px]">
       {/* Mô tả */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <HybridBanner
@@ -63,23 +63,20 @@ export default function MeGaStory() {
       {/* Mega Story list */}
       <div
         className="
-          relative
-          -mr-[16px] xl:-mr-[80px]
-          w-[calc(100%+16px)] xl:w-[calc(100%+80px)]
-          mt-8
+        
         "
       >
-        <div className="flex flex-col gap-3 pl-0 xl:pl-[80px]">
+        <div className="flex flex-col gap-3 pl-0 ">
           {loading && (
-            <p className="text-[14px] text-[#667085]">Đang tải Mega Story...</p>
+            <p className="text-[16px] text-[#667085]">Đang tải Mega Story...</p>
           )}
           {!loading && error && (
-            <p className="text-[14px] text-[#B42318]">
+            <p className="text-[16px] text-[#B42318]">
               Không thể tải Mega Story. Vui lòng thử lại sau.
             </p>
           )}
           {!loading && !error && !hasStories && (
-            <p className="text-[14px] text-[#667085]">Chưa có Mega Story.</p>
+            <p className="text-[16px] text-[#667085]">Chưa có Mega Story.</p>
           )}
         </div>
 

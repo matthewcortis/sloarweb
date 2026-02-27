@@ -92,14 +92,8 @@ export default function SolarCard({
         >
           <img src={checkicon} alt="check" className="w-[18px] h-[18px]" />
           <p
-            className="text-[14px] truncate"
-            style={{
-              fontFamily: "'SF Pro Display', sans-serif",
-              fontWeight: 400,
-              lineHeight: "19px",
-              letterSpacing: "0%",
-              color: textColor,
-            }}
+            className="text-[16px] font-normal leading-[19px] tracking-[0] truncate"
+            style={{ color: textColor }}
           >
             {data.save}
           </p>
@@ -107,7 +101,7 @@ export default function SolarCard({
 
         <div className="py-4 px-4 flex items-center justify-center">
           <div className="text-center">
-            <p className="text-[11px] md:text-[12px] uppercase" style={{ color: textColor }}>
+            <p className="text-[16px] md:text-[16px] uppercase" style={{ color: textColor }}>
               Giá niêm yết
             </p>
             <p
@@ -149,7 +143,7 @@ export default function SolarCard({
         <div className="mt-auto flex gap-2 pt-2">
           <button
             onClick={() => navigate(`/products/${data.id}`)}
-            className="w-[163px] h-[48px] rounded-[12px] text-white text-[14px] font-medium flex items-center justify-center gap-2 px-[10px] leading-none"
+            className="w-[163px] h-[48px] rounded-[12px] text-white text-[16px] font-medium flex items-center justify-center gap-2 px-[10px] leading-none"
             style={{ backgroundColor: mainColor }}
           >
             Xem chi tiết
@@ -158,7 +152,7 @@ export default function SolarCard({
           <button
             type="button"
             onClick={handleContactCall}
-            className={`w-[103px] h-[48px] rounded-[12px] border text-[14px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${
+            className={`w-[103px] h-[48px] rounded-[12px] border text-[16px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${
               hideDetailsOnMobile ? "hidden md:flex" : ""
             }`}
             style={{ borderColor: mainColor, color: mainColor }}
@@ -178,7 +172,7 @@ function Info({ label, value, color }) {
         grid
         grid-cols-[minmax(0,1fr)_minmax(0,1fr)]
         gap-x-2
-        text-[14px]
+        text-[16px]
         leading-[20px]
         items-center
       "

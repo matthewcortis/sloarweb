@@ -122,27 +122,15 @@ export default function ThietBi_ThuongHieuPage() {
         <div className="flex flex-col gap-[32px]">
           {selectedBrand ? (
             <section key={selectedBrand.id} className="w-full">
-              <div className="flex flex-col gap-[12px]">
-                <h1
-                  className="text-[32px] font-semibold text-[#111111]"
-                  style={{
-                    fontFamily: "SF Pro Display, sans-serif",
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                  }}
-                >
+              <div className="flex flex-col gap-[2px]">
+                <h1 className="typo-display text-[#111111]">
                   {selectedBrand.title}
                 </h1>
                 <div className="flex flex-col gap-3">
                   {descriptionBlocks.map((text, index) => (
                     <p
                       key={`${selectedBrand.id}-desc-${index}`}
-                      className="text-[16px] text-[#242425]"
-                      style={{
-                        fontFamily: "SF Pro Display, sans-serif",
-                        lineHeight: "100%",
-                        letterSpacing: "0%",
-                      }}
+                      className="typo-body-base text-[#242425]"
                     >
                       {text}
                     </p>
@@ -172,16 +160,16 @@ export default function ThietBi_ThuongHieuPage() {
       <section className="mt-[32px] bg-[#F6F6F6]">
         <div className="px-[16px] lg:px-[80px] py-[24px] lg:py-[40px]">
           <div className="w-full max-w-[1232px] mx-auto">
-            <h2 className="text-[20px] md:text-[24px] font-semibold text-[#111111]">
+            <h2 className="typo-section-title text-[#111111]">
               Danh mục thiết bị{selectedTitle ? `: ${selectedTitle}` : ""}
             </h2>
 
             {loadingDevices ? (
-              <div className="mt-6 text-sm text-gray-500">
+              <div className="mt-6 text-base text-gray-500">
                 Đang tải danh sách thiết bị...
               </div>
             ) : errorDevices ? (
-              <div className="mt-6 text-sm text-gray-500">
+              <div className="mt-6 text-base text-gray-500">
                 Lỗi tải dữ liệu thiết bị
               </div>
             ) : devices.length > 0 ? (
@@ -213,7 +201,7 @@ export default function ThietBi_ThuongHieuPage() {
                 ) : null}
               </div>
             ) : (
-              <div className="mt-6 text-sm text-gray-500">
+              <div className="mt-6 text-base text-gray-500">
                 Chưa có thiết bị trong danh mục này.
               </div>
             )}

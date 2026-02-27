@@ -280,7 +280,7 @@ export default function ThietBiDetail() {
                 {device.name}
               </h1>
               <div className="mt-3">
-                <div className="text-[11px] text-gray-500">GIÁ NIÊM YẾT</div>
+                <div className="text-[16px] text-gray-500">GIÁ NIÊM YẾT</div>
                 <div className="text-[20px] lg:text-[22px] font-bold text-[#FF4D4F]">
                   {device.price}
                 </div>
@@ -292,7 +292,7 @@ export default function ThietBiDetail() {
               {detailRows.map((row) => (
                 <div
                   key={row.label}
-                  className="flex items-center justify-between text-[13px] text-[#2A2A2A]"
+                  className="flex items-center justify-between text-[16px] text-[#2A2A2A]"
                 >
                   <span>{row.label}</span>
                   <span className="font-medium">{row.value}</span>
@@ -302,7 +302,7 @@ export default function ThietBiDetail() {
 
             {/* CTA 1 */}
             <div className="flex flex-col gap-3">
-              <div className="text-[14px] font-semibold text-[#1A1A1A]">
+              <div className="text-[16px] font-semibold text-[#1A1A1A]">
                 Thông tin chi tiết
               </div>
               {device.sheetLink ? (
@@ -310,7 +310,7 @@ export default function ThietBiDetail() {
                   href={device.sheetLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="h-[40px] w-full rounded-[8px] bg-[#3AA85E] text-white text-[13px] font-semibold flex items-center justify-center gap-2"
+                  className="h-[40px] w-full rounded-[8px] bg-[#3AA85E] text-white text-[16px] font-semibold flex items-center justify-center gap-2"
                 >
                   {downloadIcon}
                   Tải về Datasheet
@@ -319,7 +319,7 @@ export default function ThietBiDetail() {
                 <button
                   type="button"
                   disabled
-                  className="h-[40px] w-full rounded-[8px] bg-[#3AA85E]/60 text-white text-[13px] font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
+                  className="h-[40px] w-full rounded-[8px] bg-[#3AA85E]/60 text-white text-[16px] font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
                 >
                   {downloadIcon}
                   Tải về Datasheet
@@ -329,10 +329,10 @@ export default function ThietBiDetail() {
 
             {/* CTA 2 */}
             <div className="flex flex-col gap-3">
-              <div className="text-[14px] font-semibold text-[#1A1A1A]">
+              <div className="text-[16px] font-semibold text-[#1A1A1A]">
                 Danh mục pin lithium tương thích
               </div>
-              <button className="h-[40px] w-full rounded-[8px] bg-[#3AA85E] text-white text-[13px] font-semibold flex items-center justify-center gap-2">
+              <button className="h-[40px] w-full rounded-[8px] bg-[#3AA85E] text-white text-[16px] font-semibold flex items-center justify-center gap-2">
                 {downloadIcon}
                 Tải về Datasheet
               </button>

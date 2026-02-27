@@ -9,12 +9,14 @@ import { useNavigate } from "react-router-dom";
 const HE_THONG = "Hy-Brid";
 const LOAI_PHA = "3 pha";
 const BAN_CHAY = false;
+const NHOM_TRON_GOI_TEN = "JA Solar - Solis - Dyness";
 export default function HybridProductsSection() {
   const navigate = useNavigate();
   const { products, loading } = useTronGoiProducts({
     loaiHeThong: HE_THONG,
     loaiPha: LOAI_PHA,
     banChay: BAN_CHAY,
+    nhomTronGoiTen: NHOM_TRON_GOI_TEN,
   });
 
   return (

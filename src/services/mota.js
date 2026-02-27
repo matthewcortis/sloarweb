@@ -28,10 +28,10 @@ export const hybridData = {
   },
   moTaHuawei: {
     title: "Gói giải pháp điện mặt trời mang đẳng cấp Huawei",
-    description: `Hệ thống điện mặt trời On-Grid 3 pha Văn phòng Huawei Việt Nam thành lập năm 1998, đến nay đã gần 30 năm. Chính sách Huawei là bảo hành 10 năm, 1 đổi 1 đối với pin lưu trữ và biến tần. SolarMax tin điều đó vì Huawei có bề dày lịch sử và là thương hiệu số 1 toàn cầu. hệ thống vận hành kết hợp giữa nguồn điện mặt trời và nguồn điện lưới, không bao gồm Pin lithium. Do vậy khi mất điện lưới hệ thống sẽ không sử dụng được. Phù hợp với hộ gia đình, văn phòng, nhà xưởng, nhà hàng chủ yếu dùng điện ban ngày và có hóa đơn trên 5 triệu/tháng. Biến tần mặt trời - On-Grid 3 pha bao gồm: 10 kW, 15 kW, 20 kW, 30 kW, 40 kW, 50 kW, 60 kW, 75 kW, 80 kW, 100 kW, 110 kW.`,
+    description: `Văn phòng Huawei Việt Nam thành lập năm 1998, đến nay đã gần 30 năm. Chính sách Huawei là bảo hành 10 năm, 1 đổi 1 đối với pin lưu trữ và biến tần. Solarmax tin điều đó vì Huawei có bề dày lịch sử và là thương hiệu số 1 toàn cầu.`,
     link: "/huawei"
   }, moTaCongNghiep: {
-    title: "Hệ thống điện mặt trời công nghiệp",
+    title: "Giải pháp công nghiệp",
     description: ``,
     link: "/cong-nghiep"
   }, moTaGioiThieu: {
@@ -43,7 +43,7 @@ export const hybridData = {
     description: "",
     link: "/gioi-thieu"
   }, moTaHoiDap: {
-    title: "Hỏi Đáp",
+    title: "Hỏi & Đáp",
     description: "",
     link: "/hoi-dap"
   },

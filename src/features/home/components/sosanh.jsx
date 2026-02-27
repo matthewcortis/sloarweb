@@ -3,7 +3,7 @@ export default function SoSanh3Pha() {
   return (
     <div className="relative w-full">
       {/* MOBILE */}
-      <div className="w-full pb-5 font-sf md:hidden">
+      <div className="w-full pb-5 md:hidden">
         <div className="mx-auto max-w-[846px]">
           <h3 className="text-left font-[600] text-[23px] leading-[29px] text-[#2B2B2B]">
             So sánh điện mặt trời 3 pha
@@ -62,7 +62,7 @@ export default function SoSanh3Pha() {
             So sánh điện mặt trời 3 pha áp thấp - áp cao
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:justify-items-center text-black font-sans text-[14px] md:text-[16px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:justify-items-center text-black text-[16px] md:text-[16px]">
             <div className="flex flex-col gap-4 items-center text-center bg-white rounded-[12px] p-6 w-full md:w-[411px] md:h-[274px] leading-[24px]">
               <h4 className="font-[600] text-[16px] md:text-[18px] leading-[24px]">3 pha Áp Thấp</h4>
               <div className="flex flex-col gap-1">

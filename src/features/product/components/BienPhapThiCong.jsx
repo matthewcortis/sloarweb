@@ -332,7 +332,7 @@ export default function BienPhapThiCong({
 
   return (
     <section className="w-full">
-      <h2 className="text-[20px] md:text-[24px] font-semibold text-[#111111]">
+      <h2 className="typo-section-title text-[#111111]">
         {title}
       </h2>
 
@@ -352,12 +352,12 @@ export default function BienPhapThiCong({
               {(category.title || descriptionLines.length > 0) && (
                 <div className="flex flex-col gap-2">
                   {category.title ? (
-                    <h3 className="text-[14px] md:text-[16px] font-semibold text-[#111111]">
+                    <h3 className="typo-subtitle text-[#111111]">
                       {category.title}
                     </h3>
                   ) : null}
                   {descriptionLines.length > 0 ? (
-                    <div className="text-[12px] md:text-[13px] text-[#4B5563] flex flex-col gap-1">
+                    <div className="typo-body-base text-[#4B5563] flex flex-col gap-1">
                       {descriptionLines.map((line, index) => (
                         <p key={`${category.id}-desc-${index}`}>{line}</p>
                       ))}

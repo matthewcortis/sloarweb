@@ -1,24 +1,22 @@
-import {
-  Battery0Icon,
-  Battery100Icon,
-  BoltIcon,
-  BoltSlashIcon,
-  CpuChipIcon,
-  MoonIcon,
-  SunIcon,
-} from "@heroicons/react/24/outline";
+import controlIcon from "../../../assets/icons/robot.png";
+import gridOnIcon from "../../../assets/icons/set.png";
+import gridOffIcon from "../../../assets/icons/noset.png";
+import sunIcon from "../../../assets/icons/sun.png";
+import moonIcon from "../../../assets/icons/new moon.png";
+import pinFullIcon from "../../../assets/icons/pin1.png";
+import pinLowIcon from "../../../assets/icons/battery-empty-1--phone-mobile-charge-device-electricity-empty-power-battery.png";
 
 const commonRows = [
   {
-    Icon: CpuChipIcon,
+    iconSrc: controlIcon,
     text: "Vận hành tự động 100% không cần can thiệp",
   },
   {
-    Icon: BoltIcon,
+    iconSrc: gridOnIcon,
     text: "Hoạt động song song cùng điện lưới",
   },
   {
-    Icon: SunIcon,
+    iconSrc: sunIcon,
     text: "Ưu tiên sử dụng tối đa điện mặt trời, nếu thiếu, tự động huy động điện lưới",
   },
 ];
@@ -26,31 +24,31 @@ const commonRows = [
 const compareRows = [
   {
     left: {
-      Icon: Battery100Icon,
+      iconSrc: pinLowIcon,
       text: "Điện mặt trời dư được tự động sạc vào pin lưu trữ và xả ra khi thiếu nắng",
     },
     right: {
-      Icon: Battery0Icon,
+      iconSrc: pinFullIcon,
       text: "Không có pin lưu trữ, gây lãng phí điện mặt trời dư",
     },
   },
   {
     left: {
-      Icon: BoltIcon,
+      iconSrc: gridOnIcon,
       text: "Sử dụng được khi mất điện",
     },
     right: {
-      Icon: BoltSlashIcon,
+      iconSrc: gridOffIcon,
       text: "Không sử dụng được khi mất điện",
     },
   },
   {
     left: {
-      Icon: MoonIcon,
+      iconSrc: moonIcon,
       text: "Sử dụng được vào ban đêm",
     },
     right: {
-      Icon: SunIcon,
+      iconSrc: sunIcon,
       text: "Chỉ sử dụng được khi có nắng",
     },
   },
@@ -59,59 +57,69 @@ const compareRows = [
 export default function SoSanhHyOn() {
   return (
     <section className="w-full flex justify-center">
-      <div className="w-full max-w-[846px] bg-white border border-[#E5E7EB] md:rounded-l-[12px] px-4 pt-[39px] pb-[39px] md:p-[9px] flex flex-col gap-4 md:gap-3 h-[529px] md:h-[542px] font-sf text-[#2B2B2B]">
-        <div className="flex flex-col gap-3 md:gap-3">
-          <h3 className="text-left md:text-center font-semibold text-[20px] md:text-[24px] leading-[1.2] md:leading-[1.25]">
+      <div className="w-full max-w-[846px] bg-[#FFFFFFF] border border-[#E5E7EB] rounded-none md:rounded-l-[12px] px-[13px] md:px-6 pt-8 pb-4 md:py-10 flex flex-col gap-4 md:gap-6 text-[#2B2B2B]">
+        <div className="flex flex-col gap-4 md:gap-5">
+          <h3 className="typo-page-title md:text-[32px] text-left md:text-center max-w-[700px] md:mx-auto">
             So sánh điện mặt trời Hy-Brid và điện mặt trời On-Grid
           </h3>
 
-          <div className="grid grid-cols-2 text-center text-[16px] leading-[1] font-semibold">
+          <div className="typo-title grid grid-cols-2 text-center">
             <div className="flex flex-col gap-1">
               <span>Hy-Brid</span>
-              <span className="text-[#6B7280]">
+              <span className="text-[#2B2B2B]">
                 (có pin lưu trữ)
               </span>
             </div>
             <div className="flex flex-col gap-1">
               <span>On-Grid</span>
-              <span className="text-[#6B7280]">
+              <span className="text-[#2B2B2B]">
                 (không pin lưu trữ)
               </span>
             </div>
           </div>
-
-
         </div>
 
-        <div className="flex flex-col border-t border-[#E5E7EB] divide-y divide-[#E5E7EB] text-[13px] md:text-[14px] text-[#4B5563] md:flex-1">
-          {commonRows.map(({ Icon, text }) => (
+        <div className="typo-body flex flex-col border-t border-[#D1D5DB] divide-y divide-[#D1D5DB] md:divide-y-0 text-[#4B5563]">
+          {commonRows.map(({ iconSrc, text }) => (
             <div
               key={text}
-              className="flex items-start md:flex-1 md:items-center md:justify-center gap-3 py-3 md:py-[9px] text-left md:text-center"
+              className="max-w-[720px] mx-auto w-full flex items-start md:items-center justify-start md:justify-center gap-3 md:gap-4 py-2.5 md:py-3 text-left md:text-center"
             >
-              <Icon className="mt-0.5 md:mt-0 h-5 w-5 md:h-6 md:w-6 text-[#4B5563]" />
-              <p className="max-w-[680px] md:max-w-none leading-[1.35] md:leading-[1.35]">
+              <img
+                src={iconSrc}
+                alt=""
+                className="h-6 w-6 md:h-7 md:w-7 object-contain shrink-0 mt-0.5 md:mt-0"
+              />
+              <p className="leading-[120%]">
                 {text}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="flex flex-col border-t border-[#E5E7EB] divide-y divide-[#E5E7EB] text-[13px] md:text-[14px] text-[#4B5563] md:flex-1">
+        <div className="typo-body flex flex-col border-t border-[#D1D5DB] md:border-t-0 divide-y divide-[#D1D5DB] md:divide-y-0 md:gap-4 pt-0 md:pt-1 text-[#4B5563]">
           {compareRows.map((row) => (
             <div
               key={row.left.text}
-              className="grid grid-cols-2 gap-3 md:gap-4 py-3 md:py-[9px] md:flex-1"
+              className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-8 py-2.5 md:py-0"
             >
               <div className="flex items-start gap-3">
-                <row.left.Icon className="mt-0.5 md:mt-0 h-5 w-5 md:h-6 md:w-6 text-[#4B5563]" />
-                <p className="leading-[1.35] md:leading-[1.35]">
+                <img
+                  src={row.left.iconSrc}
+                  alt=""
+                  className="h-6 w-6 md:h-7 md:w-7 object-contain shrink-0 mt-0.5"
+                />
+                <p className="text-left leading-[120%] md:leading-[125%]">
                   {row.left.text}
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <row.right.Icon className="mt-0.5 md:mt-0 h-5 w-5 md:h-6 md:w-6 text-[#4B5563]" />
-                <p className="leading-[1.35] md:leading-[1.35]">
+                <img
+                  src={row.right.iconSrc}
+                  alt=""
+                  className="h-6 w-6 md:h-7 md:w-7 object-contain shrink-0 mt-0.5"
+                />
+                <p className="text-left leading-[120%] md:leading-[125%]">
                   {row.right.text}
                 </p>
               </div>

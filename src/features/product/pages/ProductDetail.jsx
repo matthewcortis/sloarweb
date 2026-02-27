@@ -377,10 +377,7 @@ export default function ProductDetail() {
         </div>
         {/* công thức sản lượng điện */}
         <div className="w-full h-[152px] p-[10px] pt-[20px]">
-          <div
-            className="text-left text-[#4A4A4A] text-[16px] leading-[100%]"
-            style={{ fontFamily: "SF Pro Display", letterSpacing: "0" }}
-          >
+          <div className="text-left text-[#4A4A4A] text-[16px] leading-[100%] tracking-[0]">
             <p className="font-normal">
               Công thức sản lượng điện mặt trời:
             </p>
@@ -415,7 +412,7 @@ export default function ProductDetail() {
             )}
           />
         </div>
-        <div className="w-full p-[10px]">
+        <div className="w-full">
          <MeGaStory />
         </div>
         

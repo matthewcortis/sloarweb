@@ -9,7 +9,7 @@ const statCards = [
 
 export default function HuaweiSafetyActiveSection() {
   return (
-    <section className="w-full flex flex-col items-center gap-[24px] md:gap-[40px] font-sf">
+    <section className="w-full flex flex-col items-center gap-[24px] md:gap-[40px]">
       <div className="w-full max-w-[1300px] mx-auto flex flex-col items-center gap-[20px] md:gap-[32px]">
         <div className="text-white text-center text-[20px] md:text-[32px] font-semibold leading-[1.2] max-w-[860px]">
           <p>Tỏa sáng trong an toàn chủ động</p>
@@ -37,10 +37,10 @@ export default function HuaweiSafetyActiveSection() {
               key={card.label}
               className="h-[88px] md:h-[120px] bg-black rounded-[12px] flex flex-col items-center justify-center gap-[6px] text-center"
             >
-              <div className="text-[#EE4037] text-[14px] md:text-[20px] font-semibold">
+              <div className="text-[#EE4037] text-[16px] md:text-[20px] font-semibold">
                 {card.highlight}
               </div>
-              <div className="text-white text-[10px] md:text-[14px] font-medium">
+              <div className="text-white text-[16px] md:text-[16px] font-medium">
                 {card.label}
               </div>
             </div>

@@ -18,7 +18,7 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
       className={`
         flex-shrink-0
         w-[252px] sm:w-[290px]
-        h-[312px] sm:h-[500px]
+        h-auto
         bg-white
         rounded-[6px] sm:rounded-[12px]
         shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)]
@@ -29,18 +29,18 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
         ${className}
       `}
     >
-      {/* Image */}
-      <img
-        src={imgSrc}
-        alt={title || "Solarmax"}
-        onError={handleImageError}
-        className="
-          w-full
-          h-[180px] sm:h-[361px]
-          rounded-[6px] sm:rounded-[12px]
-          object-cover
-        "
-      />
+      
+      <div className="relative w-full h-[126px] sm:h-[145px] overflow-hidden rounded-[6px] sm:rounded-[12px]">
+        <img
+          src={imgSrc}
+          alt={title || "Solarmax"}
+          onError={handleImageError}
+          className="
+            w-full h-full
+            object-cover
+          "
+        />
+      </div>
 
       {/* Content */}
       <div className="px-3 py-2 flex flex-1 flex-col gap-2">
@@ -68,7 +68,7 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
             px-3
             bg-[#242425]
             text-white
-            text-[12px]
+            text-[16px]
             font-medium
             flex items-center justify-center
             mt-auto

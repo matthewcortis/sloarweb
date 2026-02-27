@@ -79,7 +79,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
 
   return (
     <header className={`${headerClassName} ${autoHideClassName}`}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+      <nav className="mx-auto flex h-12 w-full max-w-7xl items-center justify-between px-3 lg:h-auto lg:p-4 lg:px-8">
 
         {/* LOGO */}
         <a href="/" className="flex items-center">
@@ -91,7 +91,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
         </a>
 
         {/* DESKTOP MENU */}
-        <div className={`hidden lg:flex gap-10 text-sm font-semibold ${menuTextClassName}`}>
+        <div className={`hidden lg:flex gap-10 text-base font-semibold ${menuTextClassName}`}>
           <a href="/combo-on-grid">Combo On-Grid</a>
           <a href="/combo-hy-brid">Combo Hy-Brid</a>
           <a href="/device">Thiết bị</a>
@@ -103,7 +103,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
         <div className="hidden lg:flex items-center gap-4">
           <select
             aria-label="Chọn khu vực"
-            className={`rounded-md border px-2 py-1 text-sm font-semibold ${selectClassName}`}
+            className={`rounded-md border px-2 py-1 text-base font-semibold ${selectClassName}`}
             value={location}
             onChange={(event) => setLocation(event.target.value)}
           >
@@ -164,7 +164,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
           </nav>
 
           <div className="mt-6">
-            <label className="block text-sm font-semibold mb-2">Khu vực</label>
+            <label className="block text-base font-semibold mb-2">Khu vực</label>
             <select
               aria-label="Chọn khu vực"
               className={`w-full rounded-md border px-3 py-2 text-base font-semibold ${selectClassName}`}

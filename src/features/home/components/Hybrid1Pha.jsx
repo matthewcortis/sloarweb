@@ -7,6 +7,7 @@ import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
 const HE_THONG = "Hy-Brid";
 const LOAI_PHA = "1 pha";
 const BAN_CHAY = false;
+const NHOM_TRON_GOI_TEN = "JA Solar - Solis - Dyness";
 
 export default function HybridProducts1Pha() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function HybridProducts1Pha() {
     loaiHeThong: HE_THONG,
     loaiPha: LOAI_PHA,
     banChay: BAN_CHAY,
+    nhomTronGoiTen: NHOM_TRON_GOI_TEN,
   });
 
   return (

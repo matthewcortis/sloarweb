@@ -14,7 +14,7 @@ export default function ProductInfo({
     >
       {/* IMAGE */}
       <div
-        className="w-full aspect-square bg-gray-100 overflow-hidden lg:flex-1 lg:max-h-[519px] lg:rounded-[12px]"
+        className="w-full aspect-square bg-gray-100 overflow-hidden lg:aspect-auto lg:shrink-0 lg:rounded-[12px] lg:w-[min(519px,46vw)] lg:h-[min(519px,46vw)] xl:w-[519px] xl:h-[519px]"
       >
         <img
           src={image || fallbackImage}
@@ -40,7 +40,7 @@ export default function ProductInfo({
         {/* PRICE */}
         <div className="w-full border-y border-gray-200 py-2 flex flex-col items-center text-center lg:items-start lg:text-left">
           <span
-            className="text-xs text-gray-500 lg:text-sm"
+            className="text-base text-gray-500"
           >
             GIÁ NIÊM YẾT
           </span>
@@ -53,7 +53,7 @@ export default function ProductInfo({
         </div>
 
         {/* SPECS */}
-        <div className="text-sm text-gray-700 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 lg:gap-x-8 lg:gap-y-2 lg:flex-1">
+        <div className="text-base text-gray-700 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 lg:gap-x-8 lg:gap-y-2 lg:flex-1">
           {specs.map((item) => (
             <span key={item.key ?? item.label} className="contents">
               <span>{item.label}</span>

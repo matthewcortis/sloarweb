@@ -35,11 +35,11 @@ export default function DeviceCategorySection({
     <section className={isContained ? "w-full" : "w-full px-[16px] xl:px-[80px]"}>
       <div className={isContained ? "w-full" : "max-w-[1280px] mx-auto"}>
         <div className="flex items-center gap-4 h-[38px]">
-          <h2 className="text-[20px] md:text-[24px] font-semibold text-[#111111]">
+          <h2 className="typo-section-title text-[#111111]">
             {title}
           </h2>
           <span
-            className="h-[32px] min-w-[100px] px-[10px] inline-flex items-center justify-center rounded-[6px] bg-[#F1F1F2] text-[12px] font-medium text-[#2A2A2A]"
+            className="h-[32px] min-w-[100px] px-[10px] inline-flex items-center justify-center rounded-[6px] bg-[#F1F1F2] text-[16px] font-medium text-[#2A2A2A]"
           >
             {resolvedBadge}
           </span>

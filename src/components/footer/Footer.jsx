@@ -62,13 +62,22 @@ export default function Footer({ variant = "light" }) {
           {footer.company.offices.map((office) => (
             <div key={office.title}>
               <p className="font-semibold">{office.title}</p>
-              <p className={`text-sm ${subTextClassName} leading-5`}>{office.address}</p>
+              <p className={`text-base ${subTextClassName} leading-5`}>{office.address}</p>
             </div>
           ))}
 
-          <p className="text-sm font-semibold">A: {footer.company.offices[0].address}</p>
-          <p className="text-sm">P: {footer.company.contact.phone}</p>
-          <p className="text-sm">M: {footer.company.contact.email}</p>
+          <p className="text-base">
+            <span className="font-bold uppercase">A:</span>{" "}
+            <span className="font-normal normal-case">{footer.company.offices[0].address}</span>
+          </p>
+          <p className="text-base">
+            <span className="font-bold uppercase">P:</span>{" "}
+            <span className="font-normal normal-case">{footer.company.contact.phone}</span>
+          </p>
+          <p className="text-base">
+            <span className="font-bold uppercase">M:</span>{" "}
+            <span className="font-normal normal-case">{footer.company.contact.email}</span>
+          </p>
         </div>
 
         {/* CỘT 2 — WAREHOUSE */}
@@ -77,7 +86,7 @@ export default function Footer({ variant = "light" }) {
           {footer.warehouses.map((item) => (
             <div key={item.title}>
               <p className="font-semibold">{item.title}</p>
-              <p className={`text-sm ${subTextClassName} leading-5`}>{item.address}</p>
+              <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
             </div>
           ))}
         </div>
@@ -87,7 +96,7 @@ export default function Footer({ variant = "light" }) {
           {footer.others.map((item) => (
             <div key={item.title}>
               <p className="font-semibold">{item.title}</p>
-              <p className={`text-sm ${subTextClassName} leading-5`}>{item.address}</p>
+              <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
             </div>
           ))}
         </div>

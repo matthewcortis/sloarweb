@@ -49,7 +49,7 @@ export default function NotFoundPage({ mode = "404" }) {
           <div className="mt-10 flex justify-center">
             <a
               href="/"
-              className="text-sm/7 font-semibold text-white hover:text-white/90"
+              className="text-base/7 font-semibold text-white hover:text-white/90"
             >
               <span aria-hidden="true">&larr;</span> {pageMeta.cta}
             </a>

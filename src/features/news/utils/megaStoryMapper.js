@@ -31,7 +31,7 @@ export const resolveStoryImage = (story) => {
     story?.tepTin,
     story?.anhDaiDien,
     story?.anhDaiDienUrl,
-    story?.anhBia,
+    story?.anhNgoai,
     story?.hinhAnh,
     story?.image,
     story?.anh,

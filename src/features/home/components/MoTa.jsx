@@ -23,7 +23,7 @@ import React from "react";
     return (
       <>
         {before}
-        <span className="font-sf font-semibold">
+        <span className="font-semibold">
           {highlight}
         </span>
         {after}
@@ -54,7 +54,7 @@ import React from "react";
         "
       >
         <h2
-          className="text-[20px] font-semibold md:text-[32px] md:leading-snug"
+          className="typo-section-title md:text-[32px] md:leading-snug md:px-[140px]"
           style={{ color: titleColor }}
         >
           {data.title}
@@ -62,7 +62,7 @@ import React from "react";
 
         {data?.description && (
           <div
-            className="mt-3 text-[14px] md:text-[15px]"
+            className="mt-3 text-[16px] font-normal [&_strong]:font-semibold"
             style={{ color: desColor }}
           >
             {renderDescription()}

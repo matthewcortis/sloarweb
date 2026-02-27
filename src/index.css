@@ -1,14 +1,156 @@
 @import "tailwindcss";
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SFPRODISPLAYBOLD.OTF") format("opentype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SFPRODISPLAYBOLD.OTF") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --font-sf-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --type-display-size: 32px;
+  --type-title-size: 16px;
+  --type-body-size: 16px;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-sf-display);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  }
+}
+
+@layer components {
+  .typo-display {
+    font-family: var(--font-sf-display);
+    font-weight: 600;
+    font-size: var(--type-display-size);
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-title {
+    font-family: var(--font-sf-display);
+    font-weight: 600;
+    font-size: var(--type-title-size);
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-subtitle {
+    font-family: var(--font-sf-display);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-body {
+    font-family: var(--font-sf-display);
+    font-weight: 400;
+    font-size: var(--type-body-size);
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-body-base {
+    font-family: var(--font-sf-display);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .typo-page-title {
+    font-family: var(--font-sf-display);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-section-title {
+    font-family: var(--font-sf-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-list-title {
+    font-family: var(--font-sf-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-block-title {
+    font-family: var(--font-sf-display);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  .typo-longform {
+    font-family: var(--font-sf-display);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .typo-list-title {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .typo-page-title {
+    font-size: 32px;
+  }
+
+  .typo-section-title {
+    font-size: 24px;
+  }
+
+  .typo-block-title {
+    font-size: 24px;
+  }
+
 }

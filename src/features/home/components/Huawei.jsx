@@ -8,24 +8,31 @@ import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
 const NHOM_TRON_GOI_TEN = "HUAWEI";
 const BAN_CHAY = false;
 
-export default function Huawei() {
+export default function Huawei({ hideDescriptionAndButton = false }) {
     const navigate = useNavigate();
     const { products, loading } = useTronGoiProducts({
         nhomTronGoiTen: NHOM_TRON_GOI_TEN,
         banChay: BAN_CHAY,
         sortDirection: "DESC",
     });
+    const huaweiBannerData = hideDescriptionAndButton
+      ? { ...hybridData.moTaHuawei, description: "" }
+      : hybridData.moTaHuawei;
 
     return (
         <div className="px-4  bg-[#1D1D1F] pb-[30px] ">
             {/* CONTENT ĐỌC */}
             <div className="flex flex-col items-center max-w-[1280px] mx-auto">
                 <MoTa
-                    data={hybridData.moTaHuawei}
+                    data={huaweiBannerData}
                     titleColor="#FFFFFF"
                     desColor="#FFFFFF"
-                    showMore={true}
-                    onMoreClick={() => navigate(hybridData.moTaHuawei.link)}
+                    showMore={!hideDescriptionAndButton}
+                    onMoreClick={
+                      hideDescriptionAndButton
+                        ? undefined
+                        : () => navigate(hybridData.moTaHuawei.link)
+                    }
                 />
             </div>
 

@@ -66,15 +66,15 @@ export default function BannerSale({ data }) {
             text-white
           "
         >
-          <p className="text-[12px] leading-snug opacity-90">
+          <p className="text-[16px] leading-snug opacity-90">
             {data.description}
           </p>
 
-          <h3 className="text-[14px] font-semibold">
+          <h3 className="text-[16px] font-semibold">
             {data.title}
           </h3>
 
-          <p className="text-[13px] leading-snug">
+          <p className="text-[16px] leading-snug">
             {data.name}
           </p>
 
@@ -86,7 +86,7 @@ export default function BannerSale({ data }) {
               w-full h-[36px]
               rounded-full
               bg-red-600
-              text-[13px] font-semibold
+              text-[16px] font-semibold
             "
           >
             📞 {data.phoneLabel}
@@ -121,11 +121,11 @@ export default function BannerSale({ data }) {
               ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
             `}
           >
-            <p className="text-sm opacity-90">{data.description}</p>
+            <p className="text-base opacity-90">{data.description}</p>
 
             <h3 className="font-semibold text-base">{data.title}</h3>
 
-            <p className="text-[15px] leading-relaxed">{data.name}</p>
+            <p className="text-[16px] leading-relaxed">{data.name}</p>
 
             <a
               href={`tel:${data.phone}`}

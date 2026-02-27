@@ -92,7 +92,7 @@ function BrandBadge({ brand }) {
 
   return (
     <span
-      className="inline-flex h-[25px] items-center gap-[10px] rounded-[6px] border border-[#E1E3E6] px-[8px] text-[10px] text-[#2A2A2A]"
+      className="inline-flex h-[25px] items-center gap-[10px] rounded-[6px] border border-[#E1E3E6] px-[8px] text-[16px] text-[#2A2A2A]"
     >
       <img
         src={brand.logo}
@@ -136,18 +136,18 @@ export default function VatTuKhac({
   return (
     <section className="w-full">
       <div className="flex items-center gap-4">
-        <h2 className="text-[20px] md:text-[24px] font-semibold text-[#111111]">
+        <h2 className="typo-section-title text-[#111111]">
           {title}
         </h2>
         <span
-          className="h-[32px] min-w-[100px] px-[10px] inline-flex items-center justify-center rounded-[6px] bg-[#F1F1F2] text-[12px] font-medium text-[#2A2A2A]"
+          className="h-[32px] min-w-[100px] px-[10px] inline-flex items-center justify-center rounded-[6px] bg-[#F1F1F2] text-[16px] font-medium text-[#2A2A2A]"
         >
           {resolvedBadge}
         </span>
       </div>
 
       <div className="mt-4 w-full overflow-hidden rounded-[12px] border border-[#ECEEF0]">
-        <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] md:grid-cols-[minmax(0,1fr)_271px_67px] gap-4 md:gap-0 bg-[#F6F6F6] px-[16px] py-[10px] text-[12px] text-[#6B7280]">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] md:grid-cols-[minmax(0,1fr)_271px_67px] gap-4 md:gap-0 bg-[#F6F6F6] px-[16px] py-[10px] text-[16px] text-[#6B7280]">
           <span className="text-left">Tên hệ</span>
           <span className="text-left md:text-center">Bảo hành</span>
           <span className="text-right md:text-center">Số lượng</span>
@@ -160,20 +160,17 @@ export default function VatTuKhac({
               className="grid grid-cols-[minmax(0,1fr)_auto_auto] md:grid-cols-[minmax(0,1fr)_271px_67px] gap-4 md:gap-0 border-b border-[#ECEEF0] px-[16px] py-[12px] md:h-[72px] md:items-center last:border-b-0"
             >
               <div className="flex flex-col gap-2">
-                <p
-                  className="text-[16px] font-normal leading-none text-[#1F2933]"
-                  style={{ fontFamily: "SF Pro Display, sans-serif" }}
-                >
+                <p className="typo-body leading-none text-[#1F2933]">
                   {row.label}
                 </p>
               </div>
 
-              <div className="flex h-[27px] items-center text-[14px] text-[#1F2933] md:justify-center md:w-[271px]">
+              <div className="flex h-[27px] items-center text-[16px] text-[#1F2933] md:justify-center md:w-[271px]">
                 {row.warranty}
               </div>
 
               <div className="flex justify-end md:justify-center">
-                <span className="inline-flex h-[27px] w-[67px] items-center justify-center rounded-[6px] bg-[#E6E7E9] text-[13px] font-medium text-[#2A2A2A]">
+                <span className="inline-flex h-[27px] w-[67px] items-center justify-center rounded-[6px] bg-[#E6E7E9] text-[16px] font-medium text-[#2A2A2A]">
                   {row.quantity}
                 </span>
               </div>

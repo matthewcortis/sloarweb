@@ -41,12 +41,12 @@ export default function DeviceCard({ ThietBiCard }) {
             className="w-full h-full object-contain"
           />
 
-          <span className="absolute top-2 left-2 bg-white px-2 py-1 rounded-full text-xs shadow">
+          <span className="absolute top-2 left-2 bg-white px-2 py-1 rounded-full text-[16px] shadow">
             Số lượng: {quantity}
           </span>
         </div>
 
-        <div className="w-full h-[54px] bg-[#F1F1F2] rounded-[12px] flex items-center justify-center px-2 py-2 text-center text-sm text-[#242425]">
+        <div className="w-full h-[54px] bg-[#F1F1F2] rounded-[12px] flex items-center justify-center px-2 py-2 text-center text-base text-[#242425]">
           <div>
             <p>Bảo hành {warranty.physical}</p>
             {warranty.performance ? <p>{warranty.performance}</p> : null}
@@ -55,7 +55,7 @@ export default function DeviceCard({ ThietBiCard }) {
       </div>
 
       {/* PHẦN 2: THÔNG TIN */}
-      <div className="w-full flex flex-col gap-2 text-sm text-[#242425]">
+      <div className="w-full flex flex-col gap-2 text-base text-[#242425]">
         <h3
           className="text-[16px] font-semibold uppercase leading-[24px] min-h-[48px]"
           style={{

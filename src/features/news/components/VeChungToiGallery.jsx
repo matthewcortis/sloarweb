@@ -43,10 +43,7 @@ export default function VeChungToiGallery({ slides = [], stats = [] }) {
             />
           </div>
 
-          <p
-            className="w-full md:w-[850px] text-left text-[13px] md:text-[14px] text-[#4A4A4A]"
-            style={{ fontFamily: "SF Pro Display" }}
-          >
+          <p className="w-full md:w-[850px] text-left text-[16px] md:text-[16px] text-[#4A4A4A]">
             {safeSlides[activeIndex]?.caption}
           </p>
         </div>
@@ -61,7 +58,7 @@ export default function VeChungToiGallery({ slides = [], stats = [] }) {
                 <div className="text-[18px] md:text-[20px] font-semibold text-[#1D1D1F]">
                   {stat.value}
                 </div>
-                <div className="text-[12px] md:text-[13px] text-[#4A4A4A]">
+                <div className="text-[16px] md:text-[16px] text-[#4A4A4A]">
                   {stat.label}
                 </div>
               </div>

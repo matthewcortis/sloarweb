@@ -140,7 +140,7 @@ export default function Home() {
             : "pointer-events-none translate-y-4 opacity-0"
         } hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(0,0,0,0.16)] motion-reduce:transform-none motion-reduce:transition-none`}
       >
-        <span className="text-sm font-semibold text-gray-800">
+        <span className="text-base font-semibold text-gray-800">
           Liên hệ tư vấn trực tiếp
         </span>
         <span className="contact-fab__icon flex h-10 w-10 items-center justify-center rounded-full bg-[#E34B4B] text-white shadow-[0_6px_16px_rgba(227,75,75,0.4)]">

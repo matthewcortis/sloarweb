@@ -102,19 +102,12 @@ export default function ThietBiPage() {
           <section key={section.code} className="w-full">
             <div className="w-full max-w-[1232px] mx-auto">
               <div className="flex items-center justify-between gap-4">
-                <h2
-                  className="text-[24px] md:text-[32px] font-semibold text-[#111111]"
-                  style={{
-                    fontFamily: "SF Pro Display, sans-serif",
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                  }}
-                >
+                <h2 className="typo-page-title text-[#111111]">
                   {section.title}
                 </h2>
                 <button
                   type="button"
-                  className="text-[14px] font-medium text-[#E53935]"
+                  className="text-[16px] font-medium text-[#E53935]"
                   onClick={() =>
                     navigate(`/device/thuong-hieu?group=${section.code}`)
                   }
@@ -135,22 +128,12 @@ export default function ThietBiPage() {
                             className="w-[127px] h-[39px] object-contain"
                           />
                         ) : (
-                          <span
-                            className="text-[16px] font-semibold text-[#111111]"
-                            style={{ fontFamily: "SF Pro Display, sans-serif" }}
-                          >
+                          <span className="typo-title text-[#111111]">
                             {group.name}
                           </span>
                         )}
 
-                        <p
-                          className="text-[16px] font-normal text-[#242425]"
-                          style={{
-                            fontFamily: "SF Pro Display, sans-serif",
-                            lineHeight: "100%",
-                            letterSpacing: "0%",
-                          }}
-                        >
+                        <p className="typo-body text-[#242425]">
                           {group.description}
                         </p>
                       </div>
@@ -163,7 +146,7 @@ export default function ThietBiPage() {
                   ))}
                 </div>
               ) : (
-                <div className="mt-6 text-sm text-gray-500">
+                <div className="mt-6 text-base text-gray-500">
                   Chưa có thiết bị trong danh mục này.
                 </div>
               )}

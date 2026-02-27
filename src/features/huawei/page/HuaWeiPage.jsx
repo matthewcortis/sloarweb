@@ -19,7 +19,7 @@ export default function HuaWeiPage() {
         <div className="mt-[40px] md:mt-[80px]">
           <HuaweiOptimizerSection />
         </div>
-        <Huawei />
+        <Huawei hideDescriptionAndButton />
 
       </main>
     </div>

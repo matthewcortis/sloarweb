@@ -67,24 +67,21 @@ export default function HoiDapPage() {
   return (
     <div className="px-[16px] xl:px-[80px] pb-[80px] pt-[24px]">
       <div className="max-w-[1280px] mx-auto">
-        <h1
-          className="text-[24px] md:text-[32px] font-semibold text-[#1D1D1F] text-left md:text-center"
-          style={{ fontFamily: "SF Pro Display" }}
-        >
+        <h1 className="typo-page-title text-[#1D1D1F] text-left md:text-center">
           Hỏi &amp; đáp
         </h1>
 
         <div className="mt-6 flex flex-col items-center gap-4">
           {loading && (
-            <p className="text-[14px] text-[#667085]">Đang tải hỏi đáp...</p>
+            <p className="text-[16px] text-[#667085]">Đang tải hỏi đáp...</p>
           )}
           {!loading && error && (
-            <p className="text-[14px] text-[#B42318]">
+            <p className="text-[16px] text-[#B42318]">
               Không thể tải hỏi đáp. Vui lòng thử lại sau.
             </p>
           )}
           {!loading && !error && !hasItems && (
-            <p className="text-[14px] text-[#667085]">Chưa có hỏi đáp.</p>
+            <p className="text-[16px] text-[#667085]">Chưa có hỏi đáp.</p>
           )}
           {hasItems &&
             items.map((item, index) => (

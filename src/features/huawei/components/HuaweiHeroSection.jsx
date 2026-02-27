@@ -30,10 +30,7 @@ export default function HuaweiHeroSection({ data }) {
           <img src={Huawei} alt="Huawei" className="h-[28px] w-auto" />
         </div>
 
-        <h1
-          className="text-[24px] md:text-[32px] font-semibold leading-[1] text-center text-white"
-          style={{ fontFamily: "SF Pro Display, system-ui, sans-serif" }}
-        >
+        <h1 className="typo-page-title text-center text-white">
           {title}
         </h1>
       </div>
@@ -53,7 +50,7 @@ export default function HuaweiHeroSection({ data }) {
               key={item.id}
               className="w-[176.5px] h-[176.5px] md:w-[300.5px] md:h-[300.5px] bg-black rounded-[12px] p-4 md:p-6 flex flex-col items-start gap-[10px]"
             >
-              <div className="text-white text-sm md:text-base font-semibold">
+              <div className="text-white text-base md:text-base font-semibold">
                 {item.title}
               </div>
               <div className="w-full flex justify-center">

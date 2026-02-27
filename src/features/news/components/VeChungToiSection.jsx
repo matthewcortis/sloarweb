@@ -44,37 +44,39 @@ export default function VeChungToiSection() {
     <div className="px-[9px] xl:px-[80px] pb-[80px] pt-[24px]">
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col items-center text-center">
-          <h1
-            className="text-[24px] md:text-[32px] font-semibold text-[#1D1D1F]"
-            style={{ fontFamily: "SF Pro Display" }}
-          >
+          <h1 className="typo-page-title text-[#1D1D1F]">
             Về chúng tôi
           </h1>
 
-          <div
-            className="mt-4 max-w-[846px] text-[14px] md:text-[16px] leading-[22px] md:leading-[24px] text-[#4A4A4A] space-y-3"
-            style={{ fontFamily: "SF Pro Display" }}
-          >
-            <p>
-              Với <strong>hơn 10 năm kinh nghiệm</strong> trong lĩnh vực năng
-              lượng tái tạo tại thị trường Việt Nam, SolarMax đã ghi dấu ấn qua
-              nhiều dự án trọng điểm như:
-            </p>
-            <p className="font-semibold text-[#3D3D3D]">
-              Điện mặt trời Easup 600 MW, Điện mặt trời Phong Phú 50 MW, Điện mặt
-              trời Trúc Sơn 50 MW.
-            </p>
-            <p>
-              Năm 2021, SolarMax gia nhập thị trường điện mặt trời áp mái dân
-              dụng. Tính đến nay, SolarMax đã thành công đưa vào vận hành
-              <strong> hơn 1,000 dự án dân dụng có công suất từ 5kW đến 500 kW</strong>.
-            </p>
-            <p>
-              Ngay từ những ngày đầu thành lập, SolarMax hướng đến giải pháp đảm
-              bảo chất lượng sản phẩm vượt trội và
-              <strong> dịch vụ thi công theo tiêu chuẩn châu Âu - 10 năm không cần bảo trì</strong>.
-              Hiện tại, SolarMax đang áp dụng tiêu chuẩn cốt lõi sau:
-            </p>
+          <div className="mt-4 w-full px-[12px] py-[20px] md:px-[24px] md:py-[28px]">
+            <div className="typo-longform mx-auto max-w-[900px] text-[#4A4A4A] space-y-[18px] md:space-y-[20px]">
+              <p>
+                Với <strong>hơn 10 năm kinh nghiệm</strong> trong lĩnh vực năng lượng tái
+                tạo tại thị trường Việt Nam, SolarMax đã ghi dấu ấn qua nhiều dự án
+                <br className="hidden md:block" /> trọng điểm như:
+              </p>
+              <p className="font-semibold text-[#3D3D3D]">
+                Điện mặt trời Easup 600 MW, Điện mặt trời Phong Phú 50 MW, Điện mặt
+                trời Trúc Sơn 50 MW.
+              </p>
+              <p>
+                Năm 2021, SolarMax gia nhập thị trường điện mặt trời áp mái dân dụng.
+                Tính đến nay, SolarMax đã thành công đưa vào vận hành
+                <br className="hidden md:block" />
+                <strong> hơn 1,000 dự án dân dụng có công suất từ 5kW đến 500 kW.</strong>
+              </p>
+              <p>
+                Ngay từ những ngày đầu thành lập, SolarMax hướng đến giải pháp đảm bảo
+                chất lượng sản phẩm vượt trội và
+                <strong>
+                  {" "}
+                  dịch vụ thi công
+                  <br className="hidden md:block" />
+                  theo tiêu chuẩn châu Âu - 10 năm không cần bảo trì.
+                </strong>{" "}
+                Hiện tại, SolarMax đang áp dụng tiêu chuẩn cốt lõi sau:
+              </p>
+            </div>
           </div>
 
           <div className="mt-8 w-full flex justify-center">
@@ -89,7 +91,7 @@ export default function VeChungToiSection() {
                     alt=""
                     className="w-[40px] h-[40px] object-contain"
                   />
-                  <p className="text-[13px] md:text-[14px] font-semibold text-[#4A4A4A] whitespace-pre-line">
+                  <p className="text-[16px] md:text-[16px] font-semibold text-[#4A4A4A] whitespace-pre-line">
                     {item.text}
                   </p>
                 </div>

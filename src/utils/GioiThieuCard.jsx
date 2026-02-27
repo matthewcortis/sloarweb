@@ -39,8 +39,11 @@ const InfoCard = ({ image, text }) => {
         {hasText && (
           <p className="
             text-[#48484D]
-            text-sm
-            leading-snug
+            text-[17px]
+            font-semibold
+            leading-[22px]
+            tracking-[0]
+            text-center
             whitespace-pre-line
             break-words
           ">

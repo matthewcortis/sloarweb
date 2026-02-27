@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HybridBanner from "./MoTa.jsx";
 import { hybridData } from "../../../services/mota.js";
 import { fetchHoiDap } from "../api/baiVietApi";
@@ -28,6 +29,7 @@ const resolveHoiDapContent = (item) =>
     );
 
 export default function HoiDapSection() {
+    const navigate = useNavigate();
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -70,7 +72,10 @@ export default function HoiDapSection() {
         <div className="px-0 xl:px-[80px] pb-[80px]">
             {/* Banner */}
             <div className="flex flex-col items-center max-w-[1280px] mx-auto">
-                <HybridBanner data={hybridData.moTaHoiDap} />
+                <HybridBanner
+                    data={hybridData.moTaHoiDap}
+                    onMoreClick={() => navigate(hybridData.moTaHoiDap.link || "/hoi-dap")}
+                />
             </div>
 
             {/* Q&A list */}
@@ -83,17 +88,17 @@ export default function HoiDapSection() {
             >
                 <div className="flex flex-col items-center gap-4 mt-6">
                     {loading && (
-                        <p className="text-[14px] text-[#667085]">
+                        <p className="text-[16px] text-[#667085]">
                             Đang tải hỏi đáp...
                         </p>
                     )}
                     {!loading && error && (
-                        <p className="text-[14px] text-[#B42318]">
+                        <p className="text-[16px] text-[#B42318]">
                             Không thể tải hỏi đáp. Vui lòng thử lại sau.
                         </p>
                     )}
                     {!loading && !error && !hasItems && (
-                        <p className="text-[14px] text-[#667085]">
+                        <p className="text-[16px] text-[#667085]">
                             Chưa có hỏi đáp.
                         </p>
                     )}

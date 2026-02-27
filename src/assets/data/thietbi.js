@@ -54,10 +54,10 @@ export const thietBiThuongHieuData = [
     groupCode: "PIN_LUU_TRU",
     title: "Thương hiệu Dyness",
     description: [
-        "Dyness, một công ty tiên phong trong lĩnh vực lưu trữ năng lượng, đã khẳng định vị thế dẫn đầu nhờ vào kho tàng sở hữu trí tuệ phong phú. Với hơn 120 quyền sở hữu trí tuệ độc lập, bao gồm các công nghệ cốt lõi như pin lithium iron phosphate (LiFePO4), hệ thống quản lý pin (BMS), hệ thống quản lý năng lượng (EMS) và tích hợp hệ thống lưu trữ năng lượng, Dyness không chỉ đảm bảo hiệu suất cao mà còn thúc đẩy sự phát triển bền vững toàn cầu. ",
-        "Năm 2022, Dyness lọt top 10 nhà cung cấp ESS Trung Quốc, khẳng định cam kết với trung hòa carbon. Thành lập năm 2017 tại Tô Châu, Trung Quốc, Dyness tập trung vào nghiên cứu, phát triển và sản xuất hệ thống pin lưu trữ năng lượng mặt trời tiên tiến. Các bằng sáng chế cốt lõi của họ bao gồm: LiFePO4 (an toàn tuyệt đối, tuổi thọ trên 6.000 chu kỳ), hệ thống quản lý pin BMS (giám sát và bảo vệ thời gian thực) chống cháy.",
+      "Dyness, một công ty tiên phong trong lĩnh vực lưu trữ năng lượng, đã khẳng định vị thế dẫn đầu nhờ vào kho tàng sở hữu trí tuệ phong phú. Với hơn 120 quyền sở hữu trí tuệ độc lập, bao gồm các công nghệ cốt lõi như pin lithium iron phosphate (LiFePO4), hệ thống quản lý pin (BMS), hệ thống quản lý năng lượng (EMS) và tích hợp hệ thống lưu trữ năng lượng, Dyness không chỉ đảm bảo hiệu suất cao mà còn thúc đẩy sự phát triển bền vững toàn cầu. ",
+      "Năm 2022, Dyness lọt top 10 nhà cung cấp ESS Trung Quốc, khẳng định cam kết với trung hòa carbon. Thành lập năm 2017 tại Tô Châu, Trung Quốc, Dyness tập trung vào nghiên cứu, phát triển và sản xuất hệ thống pin lưu trữ năng lượng mặt trời tiên tiến. Các bằng sáng chế cốt lõi của họ bao gồm: LiFePO4 (an toàn tuyệt đối, tuổi thọ trên 6.000 chu kỳ), hệ thống quản lý pin BMS (giám sát và bảo vệ thời gian thực) chống cháy.",
     ],
-    images: [   
+    images: [
       {
         id: "dyness-1",
         src: dynessBanner1,

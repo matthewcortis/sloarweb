@@ -151,7 +151,7 @@ export default function HybridProducts1Pha() {
     <div Triangle className="px-0 xl:px-[80px] pb-[30px]">
       {/* MÔ TẢ */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
-        <MoTa data={hybridData.moTaCongNghiep} />
+        <MoTa data={hybridData.moTaCongNghiep}  />
       </div>
 
       {/* SLIDER */}

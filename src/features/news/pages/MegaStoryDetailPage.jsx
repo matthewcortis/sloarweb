@@ -108,36 +108,33 @@ export default function MegaStoryDetailPage() {
         <button
           type="button"
           onClick={() => navigate("/megastory")}
-          className="text-[14px] text-[#667085] mb-4"
+          className="text-[16px] text-[#667085] mb-4"
         >
           ← Quay lại Mega Story
         </button>
 
         {loading && (
-          <p className="text-[14px] text-[#667085]">Đang tải nội dung...</p>
+          <p className="text-[16px] text-[#667085]">Đang tải nội dung...</p>
         )}
 
         {!loading && error && (
-          <p className="text-[14px] text-[#B42318]">
+          <p className="text-[16px] text-[#B42318]">
             Không thể tải bài viết. Vui lòng thử lại sau.
           </p>
         )}
 
         {!loading && !error && !story && (
-          <p className="text-[14px] text-[#667085]">Không tìm thấy bài viết.</p>
+          <p className="text-[16px] text-[#667085]">Không tìm thấy bài viết.</p>
         )}
 
         {!loading && !error && story && (
           <div>
-            <h1
-              className="text-[22px] sm:text-[28px] font-semibold text-[#1D1D1F]"
-              style={{ fontFamily: "SF Pro Display" }}
-            >
+            <h1 className="text-[22px] sm:text-[28px] font-semibold text-[#1D1D1F]">
               {title}
             </h1>
 
             {summary && (
-              <p className="mt-2 text-[14px] text-[#667085]">{summary}</p>
+              <p className="mt-2 text-[16px] text-[#667085]">{summary}</p>
             )}
 
             {image && (
@@ -150,13 +147,13 @@ export default function MegaStoryDetailPage() {
               </div>
             )}
 
-            <div className="mt-6 text-[15px] leading-7 text-[#344054]">
+            <div className="mt-6 text-[16px] leading-7 text-[#344054]">
               {contentLoading && (
-                <p className="text-[14px] text-[#667085]">Đang tải nội dung...</p>
+                <p className="text-[16px] text-[#667085]">Đang tải nội dung...</p>
               )}
 
               {!contentLoading && contentError && (
-                <p className="text-[14px] text-[#B42318]">
+                <p className="text-[16px] text-[#B42318]">
                   Không thể tải nội dung chi tiết.
                 </p>
               )}
@@ -170,7 +167,7 @@ export default function MegaStoryDetailPage() {
               )}
 
               {!contentLoading && !contentError && !content && !summary && (
-                <p className="text-[14px] text-[#667085]">Chưa có nội dung.</p>
+                <p className="text-[16px] text-[#667085]">Chưa có nội dung.</p>
               )}
             </div>
           </div>
