@@ -3,9 +3,9 @@ import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
 import congNghiepImage from "../../../assets/congnghiep.png";
 import { fetchQuangCaoByViTri } from "../../home/api/quangCaoApi";
 
-const MAI_TON_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_1";
-const MAI_NGOI_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_2";
-const MAI_BANG_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_3";
+const MAI_TON_AD_POSITION = "WEB_BIEN_PHAP_THI_MAI_TON";
+const MAI_NGOI_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_MAI_NGOI";
+const MAI_BANG_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_MAI_BANG";
 
 const defaultCards = [
   {
