@@ -3,7 +3,7 @@ import maigoi from "../assets/icons/maingoi.png";
 import maibang from "../assets/icons/tampin.png";
 import tudien from "../assets/icons/tudien.png";
 import star from "../assets/icons/star.png";
-import tot from "../assets/icons/tot.png";
+import tothontotmai from "../assets/icons/tothontotmai.svg";
 export const hybridData = {
   moTa1Pha: {
     title: "Điện mặt trời Hy-Brid (Có pin lưu trữ) cho nguồn điện 1 pha",
@@ -79,7 +79,7 @@ export const moTaGioiThieu = [
   },
   {
     id: 6,
-    image: tot,
+    image: tothontotmai,
     text: "",
   },
 ];

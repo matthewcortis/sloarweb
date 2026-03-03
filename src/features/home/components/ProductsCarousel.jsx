@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import ProductCard from "../../product/components/SolarCard.jsx";
 import SolarCardShimmer from "../../product/components/SolarCardShimmer.jsx";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 export default function ProductsCarousel({
   products = [],
@@ -13,6 +14,14 @@ export default function ProductsCarousel({
   hideDetailsOnMobile = false,
   scrollContainerClassName = "",
 }) {
+  const containerRef = useRef(null);
+  const [current, setCurrent] = useState(0);
+
+  // drag state
+  const isDown = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
   /* =======================
      GRID MODE
   ======================= */
@@ -62,16 +71,9 @@ export default function ProductsCarousel({
      CAROUSEL MODE
   ======================= */
 
-  const containerRef = useRef(null);
-  const [current, setCurrent] = useState(0);
-
-  // drag state
-  const isDown = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
-
   /* ===== Intersection Observer ===== */
   useEffect(() => {
+    if (viewMode !== "carousel") return;
     if (loading) return;
 
     const container = containerRef.current;
@@ -92,7 +94,7 @@ export default function ProductsCarousel({
 
     items.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
-  }, [products, loading]);
+  }, [products, loading, viewMode]);
 
   /* ===== Mouse drag ===== */
   const onMouseDown = (e) => {
@@ -120,8 +122,51 @@ export default function ProductsCarousel({
     containerRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
+  const scrollByOneItem = (direction) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const firstItem = container.querySelector(".carousel-item");
+    const itemWidth = firstItem?.getBoundingClientRect().width ?? 300;
+    const styles = window.getComputedStyle(container);
+    const gapValue = styles.columnGap || styles.gap || "16px";
+    const gap = Number.parseFloat(gapValue) || 16;
+
+    container.scrollBy({
+      left: direction * (itemWidth + gap),
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="w-full">
+    <div className="w-full relative">
+      {/* Desktop prev/next buttons */}
+      <button
+        type="button"
+        aria-label="Xem sản phẩm trước"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          scrollByOneItem(-1);
+        }}
+        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow-md ring-1 ring-black/5 hover:bg-white"
+      >
+        <ChevronLeftIcon className="h-5 w-5 text-gray-900" />
+      </button>
+
+      <button
+        type="button"
+        aria-label="Xem sản phẩm tiếp theo"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          scrollByOneItem(1);
+        }}
+        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow-md ring-1 ring-black/5 hover:bg-white"
+      >
+        <ChevronRightIcon className="h-5 w-5 text-gray-900" />
+      </button>
+
       <div
         ref={containerRef}
         className={`

@@ -5,7 +5,7 @@ import { solarData } from "../../../services/congnghiep.js";
 import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
 import { fetchQuangCaoByViTri } from "../api/quangCaoApi";
 
-const CONG_NGHIEP_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_1";
+const CONG_NGHIEP_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_CONG_NGHIEP";
 
 const mapQuangCaoToCards = (items = []) => {
   const activeItems = items.filter(
@@ -148,7 +148,7 @@ export default function HybridProducts1Pha() {
   }, [cards.length]);
 
   return (
-    <div Triangle className="px-0 xl:px-[80px] pb-[30px]">
+    <div Triangle className="px-0 xl:px-[80px] pt-[20px]">
       {/* MÔ TẢ */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <MoTa data={hybridData.moTaCongNghiep}  />

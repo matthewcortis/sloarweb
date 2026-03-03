@@ -26,18 +26,7 @@ export const resolveStoryTitle = (story) =>
   story?.moTa ??
   "Mega Story";
 
-export const resolveStoryImage = (story) => {
-  const candidates = [
-    story?.tepTin,
-    story?.anhDaiDien,
-    story?.anhDaiDienUrl,
-    story?.anhNgoai,
-    story?.hinhAnh,
-    story?.image,
-    story?.anh,
-    story?.media,
-  ];
-
+const resolveStoryImageFromCandidates = (candidates = []) => {
   for (const candidate of candidates) {
     const resolved = resolveImageValue(candidate);
     if (resolved) return resolved;
@@ -45,6 +34,41 @@ export const resolveStoryImage = (story) => {
 
   return megaFallbackImage;
 };
+
+export const resolveStoryCardImage = (story) => {
+  const candidates = [
+    story?.anhNgoai,
+    story?.anhNgoaiUrl,
+    story?.tepTin,
+    story?.anhDaiDien,
+    story?.anhDaiDienUrl,
+    story?.hinhAnh,
+    story?.image,
+    story?.anh,
+    story?.media,
+  ];
+
+  return resolveStoryImageFromCandidates(candidates);
+};
+
+export const resolveStoryCoverImage = (story) => {
+  const candidates = [
+    story?.anhBia,
+    story?.anhBiaUrl,
+    story?.tepTin,
+    story?.anhDaiDien,
+    story?.anhDaiDienUrl,
+    story?.hinhAnh,
+    story?.image,
+    story?.anh,
+    story?.media,
+  ];
+
+  return resolveStoryImageFromCandidates(candidates);
+};
+
+// Backward compatible default (prefer cover image).
+export const resolveStoryImage = resolveStoryCoverImage;
 
 export const resolveStorySummary = (story) =>
   story?.moTa ?? story?.moTaNgan ?? story?.tomTat ?? "";

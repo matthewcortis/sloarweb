@@ -28,9 +28,9 @@ export default function ProductInfo({
       </div>
 
       {/* INFO */}
-      <div className="p-[9px] flex flex-col gap-4 lg:flex-1 lg:max-h-[519px] lg:rounded-[12px] lg:p-4 lg:gap-6 lg:shadow-[0px_8px_16px_0px_#E7EAED66]">
+      <div className="p-[9px] flex flex-col gap-4 lg:flex-1 lg:max-h-[529px] lg:rounded-[12px] lg:p-4 lg:gap-6 lg:shadow-[0px_8px_16px_0px_#E7EAED66]">
         <h1
-          className="font-semibold text-[18px] text-black lg:text-[21px] lg:line-clamp-2"
+          className="font-semibold text-[18px] text-black line-clamp-2 lg:text-[21px]"
         >
           {title}
         </h1>

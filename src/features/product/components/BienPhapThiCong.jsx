@@ -3,7 +3,7 @@ import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
 import congNghiepImage from "../../../assets/congnghiep.png";
 import { fetchQuangCaoByViTri } from "../../home/api/quangCaoApi";
 
-const MAI_TON_AD_POSITION = "WEB_BIEN_PHAP_THI_MAI_TON";
+const MAI_TON_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_MAI_TON";
 const MAI_NGOI_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_MAI_NGOI";
 const MAI_BANG_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_MAI_BANG";
 
@@ -59,7 +59,7 @@ const defaultCategories = [
     ],
     items: defaultCards,
   },
-    {
+  {
     id: "mai-ngoi",
     title: "Giải pháp cho mái ngói",
     description: [
@@ -68,7 +68,7 @@ const defaultCategories = [
     ],
     items: defaultCards,
   },
-    {
+  {
     id: "mai-bang",
     title: "Giải pháp cho mái bằng",
     description: [
@@ -77,7 +77,7 @@ const defaultCategories = [
     ],
     items: defaultCards,
   },
-	];
+];
 
 const mapQuangCaoToCards = (items = []) => {
   const activeItems = items.filter(
@@ -341,8 +341,8 @@ export default function BienPhapThiCong({
           const descriptionLines = Array.isArray(category.description)
             ? category.description
             : category.description
-            ? [category.description]
-            : [];
+              ? [category.description]
+              : [];
           const resolvedRenderItem =
             category.renderItem || renderItem || defaultRenderItem;
           const ariaLabel = category.ariaLabel || category.title || title;

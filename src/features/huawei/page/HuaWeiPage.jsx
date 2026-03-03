@@ -8,15 +8,15 @@ import Huawei from "../../home/components/Huawei.jsx";
 export default function HuaWeiPage() {
   return (
     <div className="bg-[#1D1D1F]">
-      <main className="px-[16px] xl:px-[80px] pt-[36px] pb-[80px]">
+      <main className="px-[16px] xl:px-[80px] pt-[40px] pb-[80px]">
         <HuaweiHeroSection data={huaweiHeroData} />
-        <div className="mt-[40px] md:mt-[80px]">
+        <div className=" md:mt-[80px]">
           <HuaweiFusionSolarSection />
         </div>
-        <div className="mt-[40px] md:mt-[80px]">
+        <div className="mt-[24px] md:mt-[80px]">
           <HuaweiSafetyActiveSection />
         </div>
-        <div className="mt-[40px] md:mt-[80px]">
+        <div className="mt-[39px] md:mt-[80px]">
           <HuaweiOptimizerSection />
         </div>
         <Huawei hideDescriptionAndButton />

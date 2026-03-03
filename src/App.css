@@ -100,6 +100,13 @@
   }
 }
 
+@media (max-width: 767px) {
+  .contact-fab,
+  .contact-fab__icon::after {
+    animation: none;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

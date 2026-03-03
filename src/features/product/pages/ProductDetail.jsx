@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom";
 import ProductInfo from "../components/ProductInfo";
 import BannerCard from "../../../utils/BannerCard";
 import { bannerData } from "../../../services/banner.js";
+import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
 import DeviceCategorySection from "../components/ThietBi";
 import VatTuKhac from "../components/VatTuKhac";
 import BienPhapThiCong from "../components/BienPhapThiCong";
-import MeGaStory from "../../home/components/MegaStory.jsx";
+import MegaStorySection from "../components/MegaStorySection.jsx";
 import congNghiepImage from "../../../assets/congnghiep.png";
 import pvhcm from "../../../assets/pvhcm.png";
 import pvhn from "../../../assets/pvhn.png";
@@ -23,7 +24,7 @@ import {
 } from "../../home/services/tronGoiProductMapper";
 
 const TRON_GOI_BANNER_POSITION = "WEB_BANNER_TRON_GOI_1";
-const THI_CONG_THIET_BI_POSITION = "WEB_THI_CONG_THIET_BI";
+const THI_CONG_THIET_BI_POSITION = "WEB_BIEN_PHAP_THI_CONG_THIET_BI";
 const BIEU_DO_DIEN_POSITION = "WEB_BIEU_DO_DIEN";
 
 const defaultThiCongThietBiCards = [
@@ -211,7 +212,10 @@ export default function ProductDetail() {
           setThiCongThietBiCards(mappedCards);
         }
       } catch (fetchError) {
-        console.error("Khong tai duoc danh sach WEB_THI_CONG_THIET_BI", fetchError);
+        console.error(
+          "Khong tai duoc danh sach WEB_BIEN_PHAP_THI_CONG_THIET_BI",
+          fetchError
+        );
       }
     };
 
@@ -260,7 +264,7 @@ export default function ProductDetail() {
         if (diff !== 0) return diff;
         return a.__index - b.__index;
       })
-      .map(({ __index, ...item }) => item);
+      .map(({ __index: _index, ...item }) => item);
   }, [tronGoi]);
   const otherMaterials = useMemo(
     () => mapTronGoiOtherMaterials(tronGoi),
@@ -318,7 +322,7 @@ export default function ProductDetail() {
   ];
 
   return (
-    <main className="w-full min-h-screen lg:px-[173px] lg:py-[39px]">
+    <main className="w-full min-h-screen lg:px-[173px] lg:pb-[39px] lg:pt-[40px]">
       <div className="bg-white lg:flex lg:flex-col lg:rounded-[12px] lg:shadow-[0px_8px_16px_0px_#E7EAED66]">
         <ProductInfo
           image={image}
@@ -328,59 +332,48 @@ export default function ProductDetail() {
           specs={specs}
         />
 
-        <div className="w-full px-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[40px] px-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BannerCard
             image={tronGoiBannerImage}
-            onClick={() => window.location.href = bannerData.banner3.link}
+            onClick={() => (window.location.href = bannerData.banner3.link)}
           />
         </div>
-        <div className="w-full p-[10px]">
+
+        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <DeviceCategorySection
             products={deviceProducts}
             badgeText={`${deviceProducts.length} thiết bị`}
             variant="contained"
           />
         </div>
-        <div className="w-full p-[10px]">
-          <VatTuKhac
-            items={otherMaterials}
-            badgeText={`7 vật tư`}
-          />
-        </div>
-        <div className="w-full p-[10px]">
-          <BienPhapThiCong />
-        </div>
-        <div className="w-full p-[10px]">
-          <BienPhapThiCong
-            title="Thi công thiết bị"
-            categories={thiCongThietBiCategories}
-          />
+
+        <div className="w-full mt-[40px] px-4 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+          <VatTuKhac items={otherMaterials} badgeText={`7 vật tư`} />
         </div>
 
-        <div className="w-full p-[10px]">
+        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+          <BienPhapThiCong />
+        </div>
+
+        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong
             title="Hệ số PV out"
             categories={pvOutCategories}
             renderItem={(item) => (
-              <div
+              <CongNghiepCard
                 key={item.id}
-                className="w-[252px] h-[252px] md:w-[290px] md:h-[291px] rounded-[6px] md:rounded-[12px] overflow-hidden shadow-[0px_8px_16px_rgba(231,234,237,0.4)] flex-shrink-0 bg-white"
-              >
-                <img
-                  src={item.image}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
+                image={item.image}
+                variant="responsive"
+                alt="Hệ số PV out"
+              />
             )}
           />
         </div>
+
         {/* công thức sản lượng điện */}
-        <div className="w-full h-[152px] p-[10px] pt-[20px]">
+        <div className="w-full h-[152px] px-4 pt-[20px] pb-[10px] lg:px-[10px] lg:pt-[20px] lg:pb-[10px]">
           <div className="text-left text-[#4A4A4A] text-[16px] leading-[100%] tracking-[0]">
-            <p className="font-normal">
-              Công thức sản lượng điện mặt trời:
-            </p>
+            <p className="font-normal">Công thức sản lượng điện mặt trời:</p>
             <p className="mt-[2px] font-semibold">
               Sản lượng điện mặt trời = Hệ số PV out × Tổng công suất tấm quang
               năng
@@ -394,38 +387,25 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="w-full p-[10px]">
+        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong
             title="Biểu đồ điện"
             categories={bieuDoDienCategories}
             renderItem={(item) => (
-              <div
+              <CongNghiepCard
                 key={item.id}
-                className="w-[252px] h-[252px] md:w-[290px] md:h-[291px] rounded-[6px] md:rounded-[12px] overflow-hidden shadow-[0px_8px_16px_rgba(231,234,237,0.4)] flex-shrink-0 bg-white"
-              >
-                <img
-                  src={item.image}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
+                image={item.image}
+                variant="responsive"
+                alt="Biểu đồ điện"
+              />
             )}
           />
         </div>
-        <div className="w-full">
-         <MeGaStory />
+
+        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+          <MegaStorySection />
         </div>
-        
-     
-
-
-        
-
       </div>
-
-
     </main>
-
-
   );
 }

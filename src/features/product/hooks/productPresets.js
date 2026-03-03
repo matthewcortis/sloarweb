@@ -13,7 +13,7 @@ const COMBO_HY_BRID = {
 const COMBO_ON_GRID = {
   loaiHeThong: "On-Grid",
   page: 0,
-  size: 20,
+  size: 100,
   sortField: "tongGia",
   sortDirection: "ASC",
 };

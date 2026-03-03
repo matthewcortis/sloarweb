@@ -16,11 +16,11 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
         sortDirection: "DESC",
     });
     const huaweiBannerData = hideDescriptionAndButton
-      ? { ...hybridData.moTaHuawei, description: "" }
-      : hybridData.moTaHuawei;
+        ? { ...hybridData.moTaHuawei, description: "" }
+        : hybridData.moTaHuawei;
 
     return (
-        <div className="px-4  bg-[#1D1D1F] pb-[30px] ">
+        <div className="bg-[#1D1D1F] px-0 xl:px-[80px]">
             {/* CONTENT ĐỌC */}
             <div className="flex flex-col items-center max-w-[1280px] mx-auto">
                 <MoTa
@@ -29,9 +29,9 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
                     desColor="#FFFFFF"
                     showMore={!hideDescriptionAndButton}
                     onMoreClick={
-                      hideDescriptionAndButton
-                        ? undefined
-                        : () => navigate(hybridData.moTaHuawei.link)
+                        hideDescriptionAndButton
+                            ? undefined
+                            : () => navigate(hybridData.moTaHuawei.link)
                     }
                 />
             </div>
@@ -39,10 +39,11 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
             {/* CAROUSEL – TRÁI THEO PX, PHẢI FULL */}
             <div
                 className="
-          relative
-          -mr-[16px] xl:-mr-[80px]
-          w-[calc(100%+16px)] xl:w-[calc(100%+80px)]
-        "
+	          relative
+	          w-[calc(100%+2rem)]
+	          xl:mx-0 xl:-mr-[80px]
+	          xl:w-[calc(100%+80px)]
+	        "
             >
                 <ProductsCarousel
                     products={products}

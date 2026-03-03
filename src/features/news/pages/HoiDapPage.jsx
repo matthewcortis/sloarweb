@@ -4,6 +4,7 @@ import QAItem from "../components/HoiDapCard.jsx";
 
 export default function HoiDapPage() {
   const [items, setItems] = useState([]);
+  const [contents, setContents] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -16,13 +17,36 @@ export default function HoiDapPage() {
 
       try {
         const response = await fetchHoiDap({ page: 0, size: 100 });
+        const data = Array.isArray(response) ? response : [];
+
+        if (!isMounted) return;
+        setItems(data);
+
+        const htmlMap = {};
+        await Promise.all(
+          data.map(async (item) => {
+            const url = item?.noiDung?.duongDan;
+            if (!url) return;
+
+            try {
+              const res = await fetch(url);
+              const text = await res.text();
+              htmlMap[item.id] = text;
+            } catch (contentError) {
+              console.error("Load content failed", contentError);
+              htmlMap[item.id] = "Không tải được nội dung.";
+            }
+          })
+        );
+
         if (isMounted) {
-          setItems(Array.isArray(response) ? response : []);
+          setContents(htmlMap);
         }
       } catch (fetchError) {
         console.error("Failed to load hoi dap page", fetchError);
         if (isMounted) {
           setItems([]);
+          setContents({});
           setError(fetchError);
         }
       } finally {
@@ -55,15 +79,6 @@ export default function HoiDapPage() {
       item?.cauHoi
     ) || "Hỏi đáp";
 
-  const resolveHoiDapContent = (item) =>
-    pickString(
-      item?.moTa,
-      item?.moTaNgan,
-      item?.traLoi,
-      item?.tomTat,
-      typeof item?.noiDung === "string" ? item.noiDung : ""
-    );
-
   return (
     <div className="px-[16px] xl:px-[80px] pb-[80px] pt-[24px]">
       <div className="max-w-[1280px] mx-auto">
@@ -88,11 +103,11 @@ export default function HoiDapPage() {
               <QAItem
                 key={item?.id ?? index}
                 title={resolveHoiDapTitle(item)}
-                content={resolveHoiDapContent(item) || "Đang cập nhật."}
+                content={contents[item.id] || "Đang cập nhật..."}
               />
             ))}
         </div>
       </div>
     </div>
   );
-}
+} 

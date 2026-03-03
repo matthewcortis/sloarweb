@@ -30,6 +30,10 @@ export default function HuaweiSafetyActiveSection() {
         </div>
       </div>
 
+      <p className="md:hidden w-full max-w-[361px] font-['SF_Pro_Display'] text-white text-[18px] font-semibold leading-[100%] tracking-[0] text-center">
+        Không tai nạn cháy nổ do pin lưu trữ.
+      </p>
+
       <div className="w-full max-w-[1300px] mx-auto">
         <div className="grid grid-cols-3 gap-[8px] md:gap-[24px]">
           {statCards.map((card) => (

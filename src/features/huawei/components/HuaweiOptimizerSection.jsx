@@ -75,11 +75,11 @@ export default function HuaweiOptimizerSection() {
           ))}
         </div>
 
-        <div className="relative z-10 w-full max-w-[361px] h-[199px] md:h-auto md:max-w-none bg-black rounded-[12px] p-[16px] flex flex-row gap-[8px] md:gap-[20px]">
+        <div className="relative z-10 w-full max-w-[361px] min-h-[199px] md:h-auto md:max-w-none bg-black rounded-[12px] p-[16px] flex flex-row gap-[8px] md:gap-[20px]">
           {benefitItems.map((benefit) => (
             <div
               key={benefit.id}
-              className="w-[104px] h-[167px] md:w-auto md:h-auto md:flex-1 flex flex-col items-center text-center gap-[8px]"
+              className="flex-1 min-w-0 min-h-[167px] md:w-auto md:h-auto md:flex-1 flex flex-col items-center text-center gap-[8px]"
             >
               <div className="h-[26px] w-[26px] rounded-full bg-[#F2B43C] text-black text-[16px] font-semibold flex items-center justify-center">
                 {benefit.id}

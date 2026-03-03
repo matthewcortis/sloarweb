@@ -37,13 +37,15 @@ export default function HybridProductsSection() {
             )
           }
         />
-        <SoSanh3Pha />
+        <div className="mb-6 w-full">
+          <SoSanh3Pha />
+        </div>
 
       </div>
 
-      {/* CAROUSEL – TRÁI THEO PX, PHẢI FULL */}
       <div
         className="
+          mt-6
           relative
           -mr-[16px] xl:-mr-[80px]
           w-[calc(100%+16px)] xl:w-[calc(100%+80px)]

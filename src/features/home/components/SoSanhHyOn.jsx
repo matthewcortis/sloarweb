@@ -79,7 +79,7 @@ export default function SoSanhHyOn() {
           </div>
         </div>
 
-        <div className="typo-body flex flex-col border-t border-[#D1D5DB] divide-y divide-[#D1D5DB] md:divide-y-0 text-[#4B5563]">
+        <div className="typo-body flex flex-col border-t border-[#D1D5DB] divide-y divide-[#D1D5DB] md:divide-y-0 text-[#4B4B4B]">
           {commonRows.map(({ iconSrc, text }) => (
             <div
               key={text}
@@ -97,7 +97,7 @@ export default function SoSanhHyOn() {
           ))}
         </div>
 
-        <div className="typo-body flex flex-col border-t border-[#D1D5DB] md:border-t-0 divide-y divide-[#D1D5DB] md:divide-y-0 md:gap-4 pt-0 md:pt-1 text-[#4B5563]">
+        <div className="typo-body flex flex-col border-t border-[#D1D5DB] md:border-t-0 divide-y divide-[#D1D5DB] md:divide-y-0 md:gap-4 pt-0 md:pt-1 text-[#4B4B4B]">
           {compareRows.map((row) => (
             <div
               key={row.left.text}

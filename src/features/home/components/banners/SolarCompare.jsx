@@ -43,7 +43,7 @@ export default function SolarCompare() {
           </div>
 
           {/* Khối bên phải */}
-          <div className="relative w-full lg:w-[542px] h-[340px] sm:h-[420px] lg:h-[542px]">
+          <div className="relative w-full lg:w-[542px] aspect-square">
             <img
               src={bannerSrc}
               alt="Solar compare banner"

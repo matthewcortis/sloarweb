@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { fetchBaiVietById } from "../../home/api/baiVietApi";
 import {
   resolveStoryContentSource,
-  resolveStoryImage,
+  resolveStoryCoverImage,
   resolveStorySummary,
   resolveStoryTitle,
 } from "../utils/megaStoryMapper";
@@ -100,7 +100,7 @@ export default function MegaStoryDetailPage() {
 
   const title = resolveStoryTitle(story);
   const summary = resolveStorySummary(story);
-  const image = resolveStoryImage(story);
+  const image = resolveStoryCoverImage(story);
 
   return (
     <div className="px-[16px] xl:px-[80px] pb-[80px] pt-[24px]">
@@ -138,11 +138,11 @@ export default function MegaStoryDetailPage() {
             )}
 
             {image && (
-              <div className="mt-6">
+              <div className="mt-6 w-full overflow-hidden rounded-[12px] sm:mx-auto sm:max-w-[420px] sm:aspect-[1/1]">
                 <img
                   src={image}
                   alt={title}
-                  className="w-full h-auto max-h-[420px] object-cover rounded-[12px]"
+                  className="w-full h-auto sm:h-full object-cover"
                 />
               </div>
             )}

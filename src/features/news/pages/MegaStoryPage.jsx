@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MegaStoryCard from "../components/StoryCard.jsx";
 import { fetchMegaStoryPage } from "../../home/api/baiVietApi";
-import { resolveStoryImage, resolveStoryTitle } from "../utils/megaStoryMapper";
+import { resolveStoryCardImage, resolveStoryTitle } from "../utils/megaStoryMapper";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -93,13 +93,13 @@ export default function MegaStoryPage() {
         </div>
 
         {hasStories && (
-          <div className="mt-6 flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-6 grid grid-cols-1 justify-items-center gap-4 sm:justify-items-start sm:gap-6 sm:grid-cols-[repeat(auto-fit,290px)] sm:justify-center">
             {stories.map((item, index) => (
               <MegaStoryCard
                 key={item?.id ?? index}
-                image={resolveStoryImage(item)}
+                image={resolveStoryCardImage(item)}
                 title={resolveStoryTitle(item)}
-                className="w-full sm:w-[290px] h-auto sm:h-[280px]"
+                className="sm:h-[280px]"
                 onClick={() => {
                   if (item?.id) {
                     navigate(`/megastory/${item.id}`);

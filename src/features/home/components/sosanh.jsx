@@ -51,7 +51,7 @@ export default function SoSanh3Pha() {
       </div>
 
       {/* DESKTOP - GIU NGUYEN */}
-      <div className="hidden w-full flex-col gap-6 px-4 py-6 md:flex">
+      <div className="hidden w-full flex-col md:flex">
         <div className="max-w-[846px] mx-auto flex flex-col gap-6">
           <h3
             className="

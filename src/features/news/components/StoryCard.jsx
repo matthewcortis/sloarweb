@@ -17,7 +17,6 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
       onClick={onClick}
       className={`
         flex-shrink-0
-        w-[252px] sm:w-[290px]
         h-auto
         bg-white
         rounded-[6px] sm:rounded-[12px]
@@ -27,10 +26,11 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
         cursor-pointer
         scroll-snap-align-start
         ${className}
+        w-full max-w-[361px] sm:w-[290px] sm:max-w-none
       `}
     >
       
-      <div className="relative w-full h-[126px] sm:h-[145px] overflow-hidden rounded-[6px] sm:rounded-[12px]">
+      <div className="relative w-full flex-none h-[180px] sm:h-auto sm:aspect-[2/1] overflow-hidden rounded-[6px] sm:rounded-[12px]">
         <img
           src={imgSrc}
           alt={title || "Solarmax"}
@@ -49,11 +49,11 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
             font-semibold
             text-[18px] sm:text-[20px]
             leading-[22px] sm:leading-[25px]
-            h-[66px] sm:h-[75px]
+            h-[44px] sm:h-[50px]
             text-[#242425]
             overflow-hidden
             [display:-webkit-box]
-            [-webkit-line-clamp:3]
+            [-webkit-line-clamp:2]
             [-webkit-box-orient:vertical]
           "
         >
@@ -61,17 +61,22 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
         </h3>
 
         <button
+          type="button"
           className="
-            w-fit
-            h-[28px]
-            rounded-[20px]
-            px-3
-            bg-[#242425]
-            text-white
-            text-[16px]
-            font-medium
-            flex items-center justify-center
+         
             mt-auto
+            bg-transparent
+            p-0
+            text-[16px]
+            font-semibold
+            leading-[16px]
+            text-[#737477]
+            underline
+            decoration-solid
+            decoration-[#737477]
+            underline-offset-0
+            inline-flex
+            items-center
           "
         >
           Đọc thêm

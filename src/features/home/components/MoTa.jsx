@@ -62,7 +62,7 @@ import React from "react";
 
         {data?.description && (
           <div
-            className="mt-3 text-[16px] font-normal [&_strong]:font-semibold"
+            className="mt-6 text-[16px] font-normal [&_strong]:font-semibold"
             style={{ color: desColor }}
           >
             {renderDescription()}

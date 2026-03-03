@@ -1,8 +1,7 @@
 import { bannerSaleData } from "../../../services/banner.js";
 import BannerSale from "./banners/BannerSale.jsx";
-import HybridBanner from "../components/MoTa.jsx";
-import { hybridData } from "../../../services/mota.js";
-import { moTaGioiThieu } from "../../../services/mota.js";
+import HybridBanner from "./MoTa.jsx";
+import { hybridData, moTaGioiThieu } from "../../../services/mota.js";
 import InfoCard from "../../../utils/GioiThieuCard.jsx";
 import { useNavigate } from "react-router-dom";
 export default function BannerSaleSupport() {
@@ -35,19 +34,20 @@ export default function BannerSaleSupport() {
   const introLink = hybridData?.moTaGioiThieu?.link || "/gioi-thieu";
 
   return (
-    <div className="px-0 xl:px-[80px]">
-      <BannerSale data={bannerSaleData} />
+    <section className="w-full">
+      <div className="px-0 xl:px-[80px]">
+        <BannerSale data={bannerSaleData} />
+      </div>
 
-      {/* ===== WHITE LAYOUT ===== */}
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-[40px] xl:px-[80px] ">
         <div
           className="
             w-full
             bg-white
-            py-[60px]
+            rounded-[12px]
+            xl:pb-[40px]
           "
         >
-          
           <div className="flex px-4 flex-col items-center mx-auto max-w-[1280px]">
             <div className="block md:hidden w-full">
               <HybridBanner
@@ -66,7 +66,7 @@ export default function BannerSaleSupport() {
                 onMoreClick={() => navigate(introLink)}
               />
 
-              <div className="mt-4 w-full px-[12px] py-[20px] md:px-[24px] md:py-[28px] text-center">
+              <div className="w-full px-[24px] text-center">
                 <div className="typo-longform mx-auto max-w-[900px] text-[#4A4A4A] space-y-[18px] md:space-y-[20px]">
                   <p>
                     Với <strong>hơn 10 năm kinh nghiệm</strong> trong lĩnh vực năng lượng tái
@@ -101,7 +101,6 @@ export default function BannerSaleSupport() {
 
           {/* Grid InfoCard */}
           <div
-
             className="
                 mt-10
                 grid
@@ -127,7 +126,6 @@ export default function BannerSaleSupport() {
           </div>
         </div>
       </div>
-      {/* ===== END WHITE LAYOUT ===== */}
-    </div>
+    </section>
   );
 }

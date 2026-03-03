@@ -123,14 +123,14 @@ export default function SolarCard({
               : "flex flex-col gap-2"
           }
         >
-          <Info label={data.pvLabel} value={data.pv} color={textColor} />
+          <Info label={"Công suất PV: "} value={data.pv} color={textColor} />
           <Info
-            label={data.inverterLabel}
+            label={"Biến tần solis:"}
             value={data.inverter}
             color={textColor}
           />
           <Info
-            label={data.batteryLabel}
+            label={"Lưu trữ Dyness: "}
             value={data.battery}
             color={textColor}
           />

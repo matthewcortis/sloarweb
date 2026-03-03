@@ -21,11 +21,11 @@ export default function HuaweiHeroSection({ data }) {
         flex flex-col
         items-center
         gap-[24px]
-        md:gap-[32px]
+        md:gap-[39px]
       ">
 
       <div className="w-full max-w-[1280px] h-[118px] md:h-[90px] flex flex-col items-center justify-center gap-[24px]">
-        <div className="w-[231px] h-[28px] flex items-center justify-center gap-[15px]">
+        <div className="w-full  flex items-center justify-center gap-[15px]">
           <img src={SolarMaxLogo} alt="SolarMax" className="h-[28px] w-auto" />
           <img src={Huawei} alt="Huawei" className="h-[28px] w-auto" />
         </div>
@@ -35,7 +35,7 @@ export default function HuaweiHeroSection({ data }) {
         </h1>
       </div>
  
-      <div className="w-[calc(100%+32px)] -mx-[16px] md:w-full md:mx-0 h-[197px] md:h-[740px]">
+      <div className="w-full h-[197px] md:h-[740px]">
         <img
           src={heroSrc}
           alt="Huawei solar solution"
@@ -44,7 +44,7 @@ export default function HuaweiHeroSection({ data }) {
       </div>
 
       <div className="w-full flex justify-center">
-        <div className="w-full max-w-[1280px] grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 justify-items-center">
+        <div className="w-full max-w-[1280px] flex flex-wrap justify-center gap-6 md:gap-6">
           {devices.map((item) => (
             <div
               key={item.id}

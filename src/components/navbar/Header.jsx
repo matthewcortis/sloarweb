@@ -91,7 +91,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
         </a>
 
         {/* DESKTOP MENU */}
-        <div className={`hidden lg:flex gap-10 text-base font-semibold ${menuTextClassName}`}>
+        <div className={`hidden lg:flex gap-10 text-base normal-case ${menuTextClassName}`}>
           <a href="/combo-on-grid">Combo On-Grid</a>
           <a href="/combo-hy-brid">Combo Hy-Brid</a>
           <a href="/device">Thiết bị</a>
@@ -103,7 +103,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
         <div className="hidden lg:flex items-center gap-4">
           <select
             aria-label="Chọn khu vực"
-            className={`rounded-md border px-2 py-1 text-base font-semibold ${selectClassName}`}
+            className={`rounded-md border px-2 py-1 text-base normal-case ${selectClassName}`}
             value={location}
             onChange={(event) => setLocation(event.target.value)}
           >
@@ -134,12 +134,9 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
         onClose={() => setMobileMenuOpen(false)}
         className="relative z-50 lg:hidden"
       >
-        {/* Backdrop */}
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
-        {/* Panel */}
         <DialogPanel className={`fixed inset-y-0 right-0 w-full p-6 overflow-y-auto ${panelClassName}`}>
-          {/* TOP BAR */}
           <div className="flex items-center justify-between mb-8">
             <a href="/" className="flex items-center">
               <img
@@ -153,21 +150,19 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
             </button>
           </div>
 
-          {/* MENU */}
-          <nav className={`flex flex-col gap-4 text-lg font-semibold ${panelTextClassName}`}>
+          <nav className={`flex flex-col gap-4 text-lg normal-case ${panelTextClassName}`}>
             <a href="/combo-on-grid">Combo On-Grid</a>
             <a href="/combo-hy-brid">Combo Hy-Brid</a>
             <a href="/device">Thiết bị</a>
             <a href="/megastory">Dự án</a>
             <a href="/q&a">Hỏi đáp</a>
-            
           </nav>
 
           <div className="mt-6">
-            <label className="block text-base font-semibold mb-2">Khu vực</label>
+            <label className="block text-base normal-case mb-2">Khu vực</label>
             <select
               aria-label="Chọn khu vực"
-              className={`w-full rounded-md border px-3 py-2 text-base font-semibold ${selectClassName}`}
+              className={`w-full rounded-md border px-3 py-2 text-base normal-case ${selectClassName}`}
               value={location}
               onChange={(event) => setLocation(event.target.value)}
             >
@@ -176,7 +171,6 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
             </select>
           </div>
 
-          {/* Icons */}
           <div className="flex items-center gap-4 mt-10">
             <img src={facebook} className="h-6 w-6" alt="Facebook" />
             <img src={tiktok} className="h-6 w-6" alt="TikTok" />
@@ -184,8 +178,6 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
           </div>
         </DialogPanel>
       </Dialog>
-
-
     </header>
   )
 }

@@ -56,7 +56,11 @@ export default function Footer({ variant = "light" }) {
 
         {/* CỘT 1 — COMPANY */}
         <div className="space-y-4">
-          <img src={footer.company.logo} alt="Logo" className="h-8" />
+          <img
+            src={footer.company.logo}
+            alt="Logo"
+            className="h-[22px] w-[130px] object-contain"
+          />
           <p className="font-semibold">{footer.company.name}</p>
 
           {footer.company.offices.map((office) => (

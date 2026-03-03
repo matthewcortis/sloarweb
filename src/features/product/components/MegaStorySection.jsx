@@ -1,16 +1,18 @@
-// src/components/HybridProductsSection.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HybridBanner from "./MoTa.jsx";
-import { hybridData } from "../../../services/mota.js";
-import { fetchMegaStory } from "../api/baiVietApi";
+import { fetchMegaStory } from "../../home/api/baiVietApi";
 import MegaStoryCard from "../../news/components/StoryCard.jsx";
+import { hybridData } from "../../../services/mota.js";
 import {
   resolveStoryCardImage,
   resolveStoryTitle,
 } from "../../news/utils/megaStoryMapper";
 
-export default function MeGaStory() {
+export default function MegaStorySection({
+  page = 0,
+  size = 10,
+  title = hybridData?.moTaMegaStory?.title || "Dự án điển hình (Megastory)",
+}) {
   const navigate = useNavigate();
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ export default function MeGaStory() {
       setError(null);
 
       try {
-        const response = await fetchMegaStory({ page: 0, size: 10 });
+        const response = await fetchMegaStory({ page, size });
         if (isMounted) {
           setStories(Array.isArray(response) ? response : []);
         }
@@ -46,42 +48,31 @@ export default function MeGaStory() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [page, size]);
 
   const hasStories = stories.length > 0;
 
   return (
-    <div className="">
-      {/* Mô tả */}
-      <div className="flex flex-col items-center max-w-[1280px] mx-auto">
-        <HybridBanner
-          data={hybridData.moTaMegaStory}
-          onMoreClick={() => navigate("/megastory")}
-        />
-      </div>
+    <section className="w-full">
+      <h2 className="typo-section-title text-[#111111]">
+        {title}
+      </h2>
 
-      {/* Mega Story list */}
-      <div
-        className="
-        
-        "
-      >
-        <div className="flex flex-col gap-3 pl-0 ">
-          {loading && (
-            <p className="text-[16px] text-[#667085]">Đang tải Mega Story...</p>
-          )}
-          {!loading && error && (
-            <p className="text-[16px] text-[#B42318]">
-              Không thể tải Mega Story. Vui lòng thử lại sau.
-            </p>
-          )}
-          {!loading && !error && !hasStories && (
-            <p className="text-[16px] text-[#667085]">Chưa có Mega Story.</p>
-          )}
-        </div>
+      <div className="mt-4">
+        {loading && (
+          <p className="text-[16px] text-[#667085]">Đang tải Mega Story...</p>
+        )}
+        {!loading && error && (
+          <p className="text-[16px] text-[#B42318]">
+            Không thể tải Mega Story. Vui lòng thử lại sau.
+          </p>
+        )}
+        {!loading && !error && !hasStories && (
+          <p className="text-[16px] text-[#667085]">Chưa có Mega Story.</p>
+        )}
 
         {hasStories && (
-          <div className="flex gap-4 overflow-x-auto pl-0 xl:pl-[80px]">
+          <div className="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory pb-2">
             {stories.map((item, index) => (
               <MegaStoryCard
                 key={item?.id ?? index}
@@ -99,6 +90,6 @@ export default function MeGaStory() {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

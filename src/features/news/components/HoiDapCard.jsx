@@ -18,9 +18,8 @@ export default function QAItem({ title, content }) {
 
         {/* Arrow */}
         <svg
-          className={`w-5 h-5 transition-transform duration-300 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`w-5 h-5 transition-transform duration-300 ${open ? "rotate-180" : ""
+            }`}
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -36,14 +35,14 @@ export default function QAItem({ title, content }) {
 
       {/* Content */}
       <div
-        className={`overflow-hidden transition-all duration-300 ${
-          open ? "max-h-[500px]" : "max-h-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ${open ? "max-h-[500px]" : "max-h-0"
+          }`}
       >
         <div className="px-4 pb-3">
-          <p className="text-[16px] leading-[20px] text-[#48484D] font-normal">
-            {content}
-          </p>
+          <div
+            className="text-[16px] leading-[20px] text-[#48484D] font-normal"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         </div>
       </div>
     </div>
