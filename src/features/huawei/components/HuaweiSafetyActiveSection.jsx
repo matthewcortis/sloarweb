@@ -20,11 +20,15 @@ export default function HuaweiSafetyActiveSection() {
           <img
             src={homemobile}
             alt="Mô hình nhà an toàn"
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto object-contain md:hidden"
           />
           <img
             src={homedesktop}
             alt="Mô hình nhà an toàn"
+            loading="lazy"
+            decoding="async"
             className="hidden md:block w-full h-auto object-contain"
           />
         </div>

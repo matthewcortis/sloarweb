@@ -2,8 +2,8 @@ const InfoCard = ({ image, text }) => {
   const hasImage = !!image;
   const hasText = !!text;
   const imageClassName = hasText
-    ? "w-[42px] h-[42px] object-contain shrink-0"
-    : "w-full max-w-[240px] h-[72px] sm:h-[80px] object-contain shrink-0";
+    ? "w-[40px] h-[40px] object-contain shrink-0"
+    : "w-full max-w-[130px] h-[72px] sm:h-[80px] object-contain shrink-0";
 
   return (
     <div
@@ -27,7 +27,7 @@ const InfoCard = ({ image, text }) => {
           flex flex-col
           items-center
           text-center
-          gap-3
+          gap-4
           ${hasImage && hasText ? "justify-start" : "justify-center"}
         `}
       >
@@ -42,9 +42,9 @@ const InfoCard = ({ image, text }) => {
         {hasText && (
           <p className="
             text-[#48484D]
-            text-[17px]
+            text-[16px]
             font-semibold
-            leading-[22px]
+            leading-[24px]
             tracking-[0]
             text-center
             whitespace-pre-line

@@ -32,37 +32,38 @@ import React from "react";
   };
 
   return (
-    <div className="w-full relative py-10">
-
-      {/* DESKTOP BUTTON */}
-      {showMore && onMoreClick && (
-        <div className="hidden md:block absolute right-6 top-12">
-          <button
-            onClick={onMoreClick}
-            className="text-red-500 font-semibold underline decoration-red-500 underline-offset-2"
-          >
-            Tìm hiểu thêm
-          </button>
-        </div>
-      )}
-
+    <div className="w-full relative">
       {/* TEXT BLOCK */}
       <div
         className="
-          w-full max-w-[842px] mx-auto whitespace-pre-line
+          w-full whitespace-pre-line
           leading-relaxed break-words text-left md:text-center
         "
       >
-        <h2
-          className="typo-section-title md:text-[32px] md:leading-snug md:px-[140px]"
-          style={{ color: titleColor }}
-        >
-          {data.title}
-        </h2>
+        <div className="relative">
+          <h2
+            className="typo-section-title max-w-[842px] mx-auto md:text-[32px] md:leading-snug md:px-[140px]"
+            style={{ color: titleColor }}
+          >
+            {data.title}
+          </h2>
+
+          {/* DESKTOP BUTTON */}
+          {showMore && onMoreClick && (
+            <div className="hidden md:block absolute right-6 top-[22px] -translate-y-1/2">
+              <button
+                onClick={onMoreClick}
+                className="text-red-500 font-semibold underline decoration-red-500 underline-offset-2"
+              >
+                Tìm hiểu thêm
+              </button>
+            </div>
+          )}
+        </div>
 
         {data?.description && (
           <div
-            className="mt-6 text-[16px] font-normal [&_strong]:font-semibold"
+            className="mt-6 max-w-[842px] mx-auto text-[16px] font-normal [&_strong]:font-semibold"
             style={{ color: desColor }}
           >
             {renderDescription()}

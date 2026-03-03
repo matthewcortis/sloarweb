@@ -43,6 +43,8 @@ export default function HuaweiOptimizerSection() {
           src={backgroundHuawei}
           alt=""
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
           className="hidden md:block absolute inset-0 h-full w-full object-cover"
         />
 
@@ -68,6 +70,8 @@ export default function HuaweiOptimizerSection() {
                 <img
                   src={item.image}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-[177px] h-[177px] md:w-[276px] md:h-[163px] object-contain mx-auto"
                 />
               </div>

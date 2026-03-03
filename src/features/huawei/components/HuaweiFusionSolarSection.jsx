@@ -45,11 +45,15 @@ export default function HuaweiFusionSolarSection() {
           <img
             src={fusionSolarMobileImage}
             alt="Giải pháp điện mặt trời FusionSolar"
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover md:hidden"
           />
           <img
             src={fusionSolarDesktopImage}
             alt="Giải pháp điện mặt trời FusionSolar"
+            loading="lazy"
+            decoding="async"
             className="hidden h-full w-full object-contain md:block"
           />
         </div>

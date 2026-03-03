@@ -54,6 +54,8 @@ export default function BannerSale({ data }) {
         <img
           src={data.staffImage}
           alt="Nhân viên tư vấn"
+          loading="lazy"
+          decoding="async"
           className="w-[137px] h-[205px] object-contain shrink-0"
         />
 
@@ -110,6 +112,8 @@ export default function BannerSale({ data }) {
           <img
             src={data.staffImage}
             alt="Nhân viên tư vấn"
+            loading="lazy"
+            decoding="async"
             className="w-[214px] h-[320px] object-contain shrink-0"
           />
 

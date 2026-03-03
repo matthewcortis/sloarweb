@@ -15,6 +15,7 @@ export default function MeGaStory() {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const megaStoryTitle = "Mega story";
 
   useEffect(() => {
     let isMounted = true;
@@ -54,18 +55,31 @@ export default function MeGaStory() {
     <div className="">
       {/* Mô tả */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
-        <HybridBanner
-          data={hybridData.moTaMegaStory}
-          onMoreClick={() => navigate("/megastory")}
-        />
+        <div className="w-full md:hidden">
+          <div className="flex items-start justify-between gap-4">
+            <h2 className="typo-section-title text-[#1D1D1F]">
+              {megaStoryTitle}
+            </h2>
+            <button
+              type="button"
+              onClick={() => navigate("/megastory")}
+              className="text-red-500 font-semibold underline decoration-red-500 underline-offset-2 whitespace-nowrap"
+            >
+              Tìm hiểu thêm
+            </button>
+          </div>
+        </div>
+
+        <div className="hidden md:block w-full">
+          <HybridBanner
+            data={{ ...hybridData.moTaMegaStory, title: megaStoryTitle }}
+            onMoreClick={() => navigate("/megastory")}
+          />
+        </div>
       </div>
 
       {/* Mega Story list */}
-      <div
-        className="
-        
-        "
-      >
+      <div className="mt-[24px] md:mt-6">
         <div className="flex flex-col gap-3 pl-0 ">
           {loading && (
             <p className="text-[16px] text-[#667085]">Đang tải Mega Story...</p>
@@ -81,7 +95,7 @@ export default function MeGaStory() {
         </div>
 
         {hasStories && (
-          <div className="flex gap-4 overflow-x-auto pl-0 xl:pl-[80px]">
+          <div className="flex gap-[16px] overflow-x-auto pl-0 xl:pl-[80px]">
             {stories.map((item, index) => (
               <MegaStoryCard
                 key={item?.id ?? index}

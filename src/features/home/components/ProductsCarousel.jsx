@@ -98,6 +98,13 @@ export default function ProductsCarousel({
 
   /* ===== Mouse drag ===== */
   const onMouseDown = (e) => {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
+      return;
+    }
+
     isDown.current = true;
     containerRef.current.classList.add("cursor-grabbing");
     startX.current = e.pageX - containerRef.current.offsetLeft;
@@ -228,7 +235,7 @@ export default function ProductsCarousel({
 
       {/* dots mobile */}
       {!loading && products.length > 0 && (
-        <div className="flex justify-center gap-2 mt-3 md:hidden">
+        <div className="flex justify-center gap-2 mt-[24px] md:hidden">
           {products.map((_, i) => (
             <div
               key={i}

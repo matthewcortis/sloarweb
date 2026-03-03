@@ -57,6 +57,8 @@ export default function HuaweiHeroSection({ data }) {
                 <img
                   src={item.imageSrc || fallbackDeviceSvg}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[123.5px] md:h-[227.5px] object-contain pb-[16px] md:pb-0"
                 />
               </div>

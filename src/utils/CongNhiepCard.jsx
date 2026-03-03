@@ -44,6 +44,8 @@ export default function CongNghiepCard({
           <img
             src={image}
             alt={alt}
+            loading="lazy"
+            decoding="async"
             className={[
               "object-cover rounded-[12px]",
               isResponsive ? "w-full h-[248px] md:h-[291px]" : "w-[290px] h-[291px]",
@@ -75,6 +77,7 @@ export default function CongNghiepCard({
             <img
               src={image}
               alt={alt}
+              decoding="async"
               className="max-w-[96vw] max-h-[90vh] w-auto h-auto object-contain rounded-[12px] shadow-[0px_12px_30px_rgba(0,0,0,0.35)]"
             />
           </div>

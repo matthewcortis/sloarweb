@@ -146,7 +146,7 @@ export default function VatTuKhac({
         </span>
       </div>
 
-      <div className="mt-4 w-full overflow-hidden rounded-[12px] border border-[#ECEEF0]">
+      <div className="mt-6 w-full overflow-hidden rounded-[12px] border border-[#ECEEF0]">
         <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] md:grid-cols-[minmax(0,1fr)_271px_67px] gap-4 md:gap-0 bg-[#F6F6F6] px-[16px] py-[10px] text-[16px] text-[#6B7280]">
           <span className="text-left">Tên hệ</span>
           <span className="text-left md:text-center">Bảo hành</span>

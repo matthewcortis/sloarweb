@@ -18,7 +18,7 @@ export default function OngridProducts3Pha() {
   });
 
   return (
-    <div className="px-0 xl:px-[80px] pb-[30px]">
+    <div className="px-0 xl:px-[80px] pb-0 lg:pb-[30px]">
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <MoTa
           data={hybridData.moTaOngrid3Pha}
@@ -34,6 +34,7 @@ export default function OngridProducts3Pha() {
       </div>
       <div
         className="
+          mt-[24px] md:mt-6
           relative
           -mr-[16px] xl:-mr-[80px]
           w-[calc(100%+16px)] xl:w-[calc(100%+80px)]

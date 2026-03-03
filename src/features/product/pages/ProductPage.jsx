@@ -68,31 +68,35 @@ export default function ProductPage({ preset }) {
   });
 
   return (
-    <main className="px-[16px] xl:px-[80px]">
+    <main className="px-[16px] xl:px-[80px] pt-[39px] lg:pt-[80px] pb-[39px] lg:pb-[80px]">
       {show1Pha && (
-        <>
+        <section>
           <HybridBanner data={bannerData1Pha} />
 
-          <ProductsCarousel
-            products={products1Pha}
-            loading={loading1Pha}
-            viewMode="grid"
-            hideDetailsOnMobile
-          />
-        </>
+          <div className="mt-[24px]">
+            <ProductsCarousel
+              products={products1Pha}
+              loading={loading1Pha}
+              viewMode="grid"
+              hideDetailsOnMobile
+            />
+          </div>
+        </section>
       )}
 
       {show3Pha && (
-        <div className={show1Pha ? "mt-10" : undefined}>
+        <section className={show1Pha ? "mt-[39px] lg:mt-[80px]" : undefined}>
           <HybridBanner data={bannerData3Pha} />
 
-          <ProductsCarousel
-            products={products3Pha}
-            loading={loading3Pha}
-            viewMode="grid"
-            hideDetailsOnMobile
-          />
-        </div>
+          <div className="mt-[24px]">
+            <ProductsCarousel
+              products={products3Pha}
+              loading={loading3Pha}
+              viewMode="grid"
+              hideDetailsOnMobile
+            />
+          </div>
+        </section>
       )}
     </main>
   );

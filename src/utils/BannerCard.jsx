@@ -18,6 +18,8 @@ export default function BannerCard({ image, onClick }) {
         <img
           src={image}
           alt="banner"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover opacity-100 rotate-0"
         />
       </div>

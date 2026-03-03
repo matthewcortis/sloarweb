@@ -39,6 +39,7 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
             {/* CAROUSEL – TRÁI THEO PX, PHẢI FULL */}
             <div
                 className="
+	          mt-[24px] md:mt-6
 	          relative
 	          w-[calc(100%+2rem)]
 	          xl:mx-0 xl:-mr-[80px]

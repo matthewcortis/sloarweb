@@ -63,6 +63,13 @@ export default function HybridProducts1Pha() {
 
   /* ================= DRAG ================= */
   const onMouseDown = (e) => {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
+      return;
+    }
+
     const slider = sliderRef.current;
     if (!slider) return;
 
@@ -148,7 +155,7 @@ export default function HybridProducts1Pha() {
   }, [cards.length]);
 
   return (
-    <div Triangle className="px-0 xl:px-[80px] pt-[20px]">
+    <div Triangle className="px-0 xl:px-[80px] pt-0 lg:pt-[20px]">
       {/* MÔ TẢ */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <MoTa data={hybridData.moTaCongNghiep}  />
@@ -158,6 +165,7 @@ export default function HybridProducts1Pha() {
       <div
         ref={sliderRef}
         className="
+                  mt-[24px] md:mt-6
                   relative
                   -mr-[16px] xl:-mr-[80px]
                   w-[calc(100%+16px)] xl:w-[calc(100%+80px)]
@@ -165,7 +173,6 @@ export default function HybridProducts1Pha() {
                   select-none cursor-grab
                   snap-x snap-mandatory
                   no-scrollbar
-                  touch-pan-x
                 "
         onMouseDown={onMouseDown}
         onMouseEnter={stopAutoScroll}

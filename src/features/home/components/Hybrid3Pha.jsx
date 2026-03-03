@@ -20,7 +20,7 @@ export default function HybridProductsSection() {
   });
 
   return (
-    <div className="px-0 xl:px-[80px] pb-[80px]">
+    <div className="px-0 xl:px-[80px] pb-0 lg:pb-[80px]">
      
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
         <MoTa
@@ -37,7 +37,7 @@ export default function HybridProductsSection() {
             )
           }
         />
-        <div className="mb-6 w-full">
+        <div className="mt-[24px] md:mt-6 mb-0 md:mb-0 w-full">
           <SoSanh3Pha />
         </div>
 
@@ -45,7 +45,7 @@ export default function HybridProductsSection() {
 
       <div
         className="
-          mt-6
+          mt-[24px] md:mt-6
           relative
           -mr-[16px] xl:-mr-[80px]
           w-[calc(100%+16px)] xl:w-[calc(100%+80px)]

@@ -18,7 +18,7 @@
   "size": 100
 }
 
-
+section là 39 và giữa các text là 24 
 https://v2.slmglobal.vn/api/basic-api/tron-goi/filter
 
 {

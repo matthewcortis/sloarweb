@@ -75,6 +75,8 @@ export default function SolarCard({
           <img
             src={data.image}
             alt="product"
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover"
             onError={(event) => {
               event.currentTarget.onerror = null;

@@ -336,7 +336,7 @@ export default function BienPhapThiCong({
         {title}
       </h2>
 
-      <div className="mt-4 flex flex-col gap-6">
+      <div className="mt-6 flex flex-col gap-6">
         {resolvedCategories.map((category) => {
           const descriptionLines = Array.isArray(category.description)
             ? category.description

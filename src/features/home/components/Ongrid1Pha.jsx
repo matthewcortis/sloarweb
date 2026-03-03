@@ -37,6 +37,7 @@ export default function OngridProducts1Pha() {
             {/* CAROUSEL – TRÁI THEO PX, PHẢI FULL */}
             <div
                 className="
+          mt-[24px] md:mt-6
           relative
           -mr-[16px] xl:-mr-[80px]
           w-[calc(100%+16px)] xl:w-[calc(100%+80px)]

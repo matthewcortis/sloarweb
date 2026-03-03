@@ -51,11 +51,11 @@ export default function Footer({ variant = "light" }) {
   const subTextClassName = isDark ? "text-gray-300" : "text-gray-700";
 
   return (
-    <footer className={`${footerClassName} py-12 px-6`}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer className={`${footerClassName} px-4 py-6 md:px-6 md:py-12`}>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 md:gap-10">
 
         {/* CỘT 1 — COMPANY */}
-        <div className="space-y-4">
+        <div className="flex flex-col gap-6">
           <img
             src={footer.company.logo}
             alt="Logo"
@@ -63,42 +63,48 @@ export default function Footer({ variant = "light" }) {
           />
           <p className="font-semibold">{footer.company.name}</p>
 
-          {footer.company.offices.map((office) => (
-            <div key={office.title}>
-              <p className="font-semibold">{office.title}</p>
-              <p className={`text-base ${subTextClassName} leading-5`}>{office.address}</p>
-            </div>
-          ))}
+          <div className="flex flex-col gap-4">
+            {footer.company.offices.map((office) => (
+              <div key={office.title} className="flex flex-col gap-1">
+                <p className="font-semibold">{office.title}</p>
+                <p className={`text-base ${subTextClassName} leading-5`}>{office.address}</p>
+              </div>
+            ))}
+          </div>
 
-          <p className="text-base">
-            <span className="font-bold uppercase">A:</span>{" "}
-            <span className="font-normal normal-case">{footer.company.offices[0].address}</span>
-          </p>
-          <p className="text-base">
-            <span className="font-bold uppercase">P:</span>{" "}
-            <span className="font-normal normal-case">{footer.company.contact.phone}</span>
-          </p>
-          <p className="text-base">
-            <span className="font-bold uppercase">M:</span>{" "}
-            <span className="font-normal normal-case">{footer.company.contact.email}</span>
-          </p>
+          <div className="flex flex-col gap-4">
+            <p className="text-base">
+              <span className="font-bold uppercase">A:</span>{" "}
+              <span className="font-normal normal-case">{footer.company.offices[0].address}</span>
+            </p>
+            <p className="text-base">
+              <span className="font-bold uppercase">P:</span>{" "}
+              <span className="font-normal normal-case">{footer.company.contact.phone}</span>
+            </p>
+            <p className="text-base">
+              <span className="font-bold uppercase">M:</span>{" "}
+              <span className="font-normal normal-case">{footer.company.contact.email}</span>
+            </p>
+          </div>
         </div>
 
         {/* CỘT 2 — WAREHOUSE */}
-        <div className="space-y-4">
+        <div className="flex flex-col gap-6">
           <p className="font-semibold">Văn phòng kho</p>
-          {footer.warehouses.map((item) => (
-            <div key={item.title}>
-              <p className="font-semibold">{item.title}</p>
-              <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
-            </div>
-          ))}
+          <div className="flex flex-col gap-4">
+            {footer.warehouses.map((item) => (
+              <div key={item.title} className="flex flex-col gap-1">
+                <p className="font-semibold">{item.title}</p>
+                <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* CỘT 3 — OTHER */}
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-0">
           {footer.others.map((item) => (
-            <div key={item.title}>
+            <div key={item.title} className="flex flex-col gap-1">
               <p className="font-semibold">{item.title}</p>
               <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
             </div>

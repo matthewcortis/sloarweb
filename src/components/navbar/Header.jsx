@@ -6,10 +6,12 @@ import youtube from '../../assets/youtube.png';
 import { useEffect, useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header({ variant = "light", autoHideOnMobile = false }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showOnMobile, setShowOnMobile] = useState(!autoHideOnMobile)
+  const locationState = useLocation();
   const [location, setLocation] = useState(() => {
     if (typeof window === "undefined") return "HN"
     const storedLocation = window.localStorage.getItem("solarmax-location")
@@ -69,6 +71,20 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
     }
   }, [autoHideOnMobile])
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+  }, [locationState.pathname, locationState.search, locationState.hash]);
+
+  useEffect(() => {
+    if (mobileMenuOpen || typeof document === "undefined") return;
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+  }, [mobileMenuOpen]);
+
   const autoHideClassName = autoHideOnMobile
     ? `fixed left-0 right-0 top-0 z-40 transition-all duration-300 ease-out lg:static lg:translate-y-0 lg:opacity-100 lg:pointer-events-auto ${
         showOnMobile
@@ -82,21 +98,21 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
       <nav className="mx-auto flex h-12 w-full max-w-7xl items-center justify-between px-3 lg:h-auto lg:p-4 lg:px-8">
 
         {/* LOGO */}
-        <a href="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src={Logo}
             alt="Logo"
             className="h-[19.078125px] w-[110px] sm:h-8 sm:w-auto"
           />
-        </a>
+        </Link>
 
         {/* DESKTOP MENU */}
         <div className={`hidden lg:flex gap-10 text-base normal-case ${menuTextClassName}`}>
-          <a href="/combo-on-grid">Combo On-Grid</a>
-          <a href="/combo-hy-brid">Combo Hy-Brid</a>
-          <a href="/device">Thiết bị</a>
-          <a href="/megastory">Dự án</a>
-          <a href="/q&a">Hỏi đáp</a>
+          <Link to="/combo-on-grid">Combo On-Grid</Link>
+          <Link to="/combo-hy-brid">Combo Hy-Brid</Link>
+          <Link to="/device">Thiết bị</Link>
+          <Link to="/megastory">Dự án</Link>
+          <Link to="/q&a">Hỏi đáp</Link>
         </div>
 
         {/* DESKTOP SOCIAL ICONS */}
@@ -138,24 +154,24 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
 
         <DialogPanel className={`fixed inset-y-0 right-0 w-full p-6 overflow-y-auto ${panelClassName}`}>
           <div className="flex items-center justify-between mb-8">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
               <img
                 src={Logo}
                 alt="Logo"
                 className="h-[19.078125px] w-[110px] sm:h-4 sm:w-auto"
               />
-            </a>
+            </Link>
             <button onClick={() => setMobileMenuOpen(false)} className={closeButtonClassName}>
               <XMarkIcon className="h-6 w-6" />
             </button>
           </div>
 
           <nav className={`flex flex-col gap-4 text-lg normal-case ${panelTextClassName}`}>
-            <a href="/combo-on-grid">Combo On-Grid</a>
-            <a href="/combo-hy-brid">Combo Hy-Brid</a>
-            <a href="/device">Thiết bị</a>
-            <a href="/megastory">Dự án</a>
-            <a href="/q&a">Hỏi đáp</a>
+            <Link to="/combo-on-grid" onClick={() => setMobileMenuOpen(false)}>Combo On-Grid</Link>
+            <Link to="/combo-hy-brid" onClick={() => setMobileMenuOpen(false)}>Combo Hy-Brid</Link>
+            <Link to="/device" onClick={() => setMobileMenuOpen(false)}>Thiết bị</Link>
+            <Link to="/megastory" onClick={() => setMobileMenuOpen(false)}>Dự án</Link>
+            <Link to="/q&a" onClick={() => setMobileMenuOpen(false)}>Hỏi đáp</Link>
           </nav>
 
           <div className="mt-6">

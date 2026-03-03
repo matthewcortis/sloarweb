@@ -313,16 +313,16 @@ export default function ProductDetail() {
   } = product;
 
   const specs = [
-    { key: "pv", label: product.pvLabel || "", value: pv },
-    { key: "inverter", label: product.inverterLabel || "", value: inverter },
-    { key: "battery", label: product.batteryLabel || "", value: battery },
+    { key: "pv", label: "Công suất PV: " || "", value: pv },
+    { key: "inverter", label: "Biến tần solis: " || "", value: inverter },
+    { key: "battery", label: "Lưu trữ Dyness: " || "", value: battery },
     { key: "production", label: "Sản lượng:", value: production },
     { key: "roi", label: "Hoàn vốn:", value: roi },
     { key: "area", label: "Diện tích:", value: area },
   ];
 
   return (
-    <main className="w-full min-h-screen lg:px-[173px] lg:pb-[39px] lg:pt-[40px]">
+    <main className="w-full min-h-screen pb-[39px] lg:px-[173px] lg:pt-[40px] lg:pb-[80px]">
       <div className="bg-white lg:flex lg:flex-col lg:rounded-[12px] lg:shadow-[0px_8px_16px_0px_#E7EAED66]">
         <ProductInfo
           image={image}
@@ -332,14 +332,14 @@ export default function ProductDetail() {
           specs={specs}
         />
 
-        <div className="w-full mt-[40px] px-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] px-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BannerCard
             image={tronGoiBannerImage}
             onClick={() => (window.location.href = bannerData.banner3.link)}
           />
         </div>
 
-        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <DeviceCategorySection
             products={deviceProducts}
             badgeText={`${deviceProducts.length} thiết bị`}
@@ -347,15 +347,15 @@ export default function ProductDetail() {
           />
         </div>
 
-        <div className="w-full mt-[40px] px-4 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] px-4 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <VatTuKhac items={otherMaterials} badgeText={`7 vật tư`} />
         </div>
 
-        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong />
         </div>
 
-        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong
             title="Hệ số PV out"
             categories={pvOutCategories}
@@ -387,7 +387,7 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong
             title="Biểu đồ điện"
             categories={bieuDoDienCategories}
@@ -402,7 +402,7 @@ export default function ProductDetail() {
           />
         </div>
 
-        <div className="w-full mt-[40px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <MegaStorySection />
         </div>
       </div>

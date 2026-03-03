@@ -138,7 +138,7 @@ export default function Home() {
         <div className="mt-[39px] lg:mt-[80px]">
           <HybridProducts3Pha />
         </div>
-        <div className="-mx-4  lg:mt-[80px]">
+        <div className="-mx-4 mt-[39px] lg:mt-[80px]">
           <Banner
             image={homeBanner1Image}
             onClick={() => window.location.href = bannerData.banner1.link}
@@ -159,14 +159,17 @@ export default function Home() {
             onClick={() => window.location.href = bannerData.banner2.link}
           />
         </div>
-        <div className="w-[calc(100%+2rem)] -mx-4 bg-[#1D1D1F] px-4 pt-[39px] pb-[40px] lg:pt-[80px] xl:w-full xl:mx-0 xl:px-0">
+        <div className="w-[calc(100%+2rem)] -mx-4 bg-[#1D1D1F] px-4 pt-[39px] pb-0 lg:pt-[80px] lg:pb-[40px] xl:w-full xl:mx-0 xl:px-0">
           <Huawei />
         </div>
-        <CongNghiep />
-        <div className="-mx-4 mt-[39px] lg:mt-[100px]">
+        <div className="mt-[39px] lg:mt-[30px]">
+               <CongNghiep />
+          </div>
+   
+        <div className="-mx-4 mt-[39px] lg:mt-[80px]">
           <BannerSaleSupport />
         </div>
-        <div className=" mt-[39px] lg:mt-[0px]">
+        <div className=" mt-[39px] lg:mt-[30px]">
           <MeGaStory />
         </div>
           <div className=" mt-[39px] lg:mt-[80px]">

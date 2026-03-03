@@ -25,6 +25,7 @@ export default function HoiDapSection() {
   const [contents, setContents] = useState({}); // 🔥 lưu HTML theo id
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const hoiDapTitle = "Hỏi đáp";
 
   useEffect(() => {
     let isMounted = true;
@@ -85,17 +86,34 @@ export default function HoiDapSection() {
     <div className="px-0 xl:px-[80px] pb-[80px]">
       {/* Banner */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
-        <HybridBanner
-          data={hybridData.moTaHoiDap}
-          onMoreClick={() =>
-            navigate(hybridData.moTaHoiDap.link || "/hoi-dap")
-          }
-        />
+        <div className="w-full md:hidden">
+          <div className="flex items-start justify-between gap-4">
+            <h2 className="typo-section-title text-[#1D1D1F]">
+              {hoiDapTitle}
+            </h2>
+            <button
+              type="button"
+              onClick={() => navigate(hybridData.moTaHoiDap.link || "/hoi-dap")}
+              className="text-red-500 font-semibold underline decoration-red-500 underline-offset-2 whitespace-nowrap"
+            >
+              Tìm hiểu thêm
+            </button>
+          </div>
+        </div>
+
+        <div className="hidden md:block w-full">
+          <HybridBanner
+            data={{ ...hybridData.moTaHoiDap, title: hoiDapTitle }}
+            onMoreClick={() =>
+              navigate(hybridData.moTaHoiDap.link || "/hoi-dap")
+            }
+          />
+        </div>
       </div>
 
       {/* Q&A list */}
-      <div className="relative -mr-[16px] xl:-mr-[80px] w-[calc(100%+16px)] xl:w-[calc(100%+80px)]">
-        <div className="flex flex-col items-center gap-4 mt-6">
+      <div className="relative w-full xl:-mr-[80px] xl:w-[calc(100%+80px)]">
+        <div className="flex flex-col items-center gap-[12px] md:gap-4 mt-[24px] md:mt-6">
           {loading && (
             <p className="text-[16px] text-[#667085]">
               Đang tải hỏi đáp...

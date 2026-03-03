@@ -58,7 +58,7 @@ export default function MegaStorySection({
         {title}
       </h2>
 
-      <div className="mt-4">
+      <div className="mt-6">
         {loading && (
           <p className="text-[16px] text-[#667085]">Đang tải Mega Story...</p>
         )}

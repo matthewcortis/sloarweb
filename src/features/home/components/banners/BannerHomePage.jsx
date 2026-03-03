@@ -9,6 +9,8 @@ export default function Banner({ image, onClick }) {
       <img
         src={image}
         alt="banner"
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover"
       />
     </div>
