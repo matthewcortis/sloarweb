@@ -17,10 +17,10 @@ export default function BannerSaleSupport() {
       <div className="flex justify-center pt-[40px] xl:px-[80px] ">
         <div
           className="
-            w-full
-            bg-white
-            rounded-[12px]
-            xl:pb-[40px]
+             w-full
+    xl:bg-white
+    xl:rounded-[12px]
+    xl:pb-[40px]
           "
         >
           <div className="flex px-4 flex-col items-center mx-auto max-w-[1280px]">

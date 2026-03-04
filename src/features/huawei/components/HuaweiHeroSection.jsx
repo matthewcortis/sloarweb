@@ -25,16 +25,25 @@ export default function HuaweiHeroSection({ data }) {
       ">
 
       <div className="w-full max-w-[1280px] h-[118px] md:h-[90px] flex flex-col items-center justify-center gap-[24px]">
-        <div className="w-full  flex items-center justify-center gap-[15px]">
-          <img src={SolarMaxLogo} alt="SolarMax" className="h-[28px] w-auto" />
-          <img src={Huawei} alt="Huawei" className="h-[28px] w-auto" />
+        <div className="flex items-center justify-center gap-[15px] w-[230px] h-[28px] md:w-[231px] md:h-[28px]">
+          <img
+            src={SolarMaxLogo}
+            alt="SolarMax"
+            className="object-contain w-[110px] h-[19.078px] md:w-[111px]"
+          />
+
+          <img
+            src={Huawei}
+            alt="Huawei"
+            className="object-contain w-[105px] h-[28px]"
+          />
         </div>
 
-        <h1 className="typo-page-title text-center text-white">
+        <h1 className="typo-page-title leading-[140%] text-center text-white">
           {title}
         </h1>
       </div>
- 
+
       <div className="w-full h-[197px] md:h-[740px]">
         <img
           src={heroSrc}

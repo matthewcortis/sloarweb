@@ -59,7 +59,7 @@ export default function SoSanhHyOn() {
     <section className="w-full flex justify-center">
       <div className="w-full max-w-[846px] rounded-none md:rounded-l-[12px] px-[13px] md:px-6 pt-8 pb-4 md:py-10 flex flex-col gap-4 md:gap-6 text-[#2B2B2B]">
         <div className="flex flex-col gap-4 md:gap-5">
-          <h3 className="typo-page-title md:text-[32px] text-left md:text-center max-w-[700px] md:mx-auto">
+          <h3 className="typo-page-title md:text-[32px] leading-[120%]  text-left md:text-center max-w-[700px] md:mx-auto">
             So sánh điện mặt trời Hy-Brid và điện mặt trời On-Grid
           </h3>
 

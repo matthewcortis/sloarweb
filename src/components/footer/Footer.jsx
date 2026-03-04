@@ -52,7 +52,7 @@ export default function Footer({ variant = "light" }) {
 
   return (
     <footer className={`${footerClassName} px-4 py-6 md:px-6 md:py-12`}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 md:gap-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
 
         {/* CỘT 1 — COMPANY */}
         <div className="flex flex-col gap-6">
@@ -102,7 +102,7 @@ export default function Footer({ variant = "light" }) {
         </div>
 
         {/* CỘT 3 — OTHER */}
-        <div className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-0">
+        <div className="flex flex-col gap-4 md:gap-6">
           {footer.others.map((item) => (
             <div key={item.title} className="flex flex-col gap-1">
               <p className="font-semibold">{item.title}</p>

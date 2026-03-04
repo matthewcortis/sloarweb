@@ -122,8 +122,8 @@ export default function ThietBi_ThuongHieuPage() {
         <div className="flex flex-col gap-[32px]">
           {selectedBrand ? (
             <section key={selectedBrand.id} className="w-full">
-              <div className="flex flex-col gap-[2px]">
-                <h1 className="typo-display text-[#111111]">
+              <div className="flex flex-col gap-[24px]">
+                <h1 className="text-[#111111] font-semibold text-[21px] leading-[120%] tracking-[0%] font-['SF_Pro_Display']">
                   {selectedBrand.title}
                 </h1>
                 <div className="flex flex-col gap-3">
@@ -190,11 +190,10 @@ export default function ThietBi_ThuongHieuPage() {
                     {Array.from({ length: dots }).map((_, index) => (
                       <span
                         key={`device-dot-${index}`}
-                        className={`h-[8px] w-[8px] rounded-full ${
-                          index === activeDot
+                        className={`h-[8px] w-[8px] rounded-full ${index === activeDot
                             ? "bg-[#111111]"
                             : "bg-[#D1D5DB]"
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>

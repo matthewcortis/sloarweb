@@ -43,9 +43,10 @@ export default function BannerSale({ data }) {
         className="
           sm:hidden
           flex items-center justify-center
-          gap-[17px]
+          gap-3
           h-[253px]
           px-4 py-6
+          overflow-hidden
           bg-cover bg-center
         "
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -62,7 +63,7 @@ export default function BannerSale({ data }) {
         {/* Nội dung */}
         <div
           className="
-            w-[207px] h-[205px]
+            flex-1 min-w-0 max-w-[207px] h-[205px]
             flex flex-col justify-center
             gap-4
             text-white

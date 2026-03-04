@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
 import solarmaxFallback from "../../../assets/solarmax.jpg";
 
-export default function MegaStoryCard({ image, title, onClick, className = "" }) {
-  const [imgSrc, setImgSrc] = useState(image || solarmaxFallback);
+export default function MegaStoryCard({
+  image,
+  title,
+  onClick,
+  className = "",
+  variant = "compact",
+}) {
+  const isPageMobileVariant = variant === "pageMobile";
 
-  useEffect(() => {
-    setImgSrc(image || solarmaxFallback);
-  }, [image]);
-
-  const handleImageError = () => {
-    setImgSrc(solarmaxFallback);
+  const handleImageError = (event) => {
+    event.currentTarget.onerror = null;
+    event.currentTarget.src = solarmaxFallback;
   };
 
   return (
@@ -17,22 +19,31 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
       onClick={onClick}
       className={`
         flex-shrink-0
-        h-auto
-        bg-white
-        rounded-[6px] sm:rounded-[12px]
+        ${isPageMobileVariant
+          ? "h-[282.5px] w-full sm:w-[290px] sm:h-[280px]"
+          : "h-[253px] w-[252px] sm:w-[290px] sm:h-[280px]"}
+        bg-[#F2F2F2]
+        rounded-[12px]
         shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)]
         flex flex-col
-        overflow-hidden
+        gap-2
+        pb-2
         cursor-pointer
-        scroll-snap-align-start
+        snap-start
         ${className}
-        w-full max-w-[361px] sm:w-[290px] sm:max-w-none
       `}
     >
-      
-      <div className="relative w-full flex-none h-[180px] sm:h-auto sm:aspect-[2/1] overflow-hidden rounded-[6px] sm:rounded-[12px]">
+      <div
+        className={`
+          relative flex-none
+          ${isPageMobileVariant
+            ? "w-full h-[180.5px] sm:h-[145px]"
+            : "w-[252px] h-[126px] sm:w-full sm:h-[145px]"}
+          overflow-hidden rounded-[6px]
+        `}
+      >
         <img
-          src={imgSrc}
+          src={image || solarmaxFallback}
           alt={title || "Solarmax"}
           onError={handleImageError}
           className="
@@ -40,22 +51,38 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
             object-cover
           "
         />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-[6px]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0) 56.19%, rgba(0, 0, 0, 0.8) 88.55%)",
+          }}
+        />
       </div>
 
-      {/* Content */}
-      <div className="px-3 py-2 flex flex-1 flex-col gap-2">
+      <div
+        className={`px-2 flex flex-col gap-[10px] ${
+          isPageMobileVariant ? "h-[86px]" : "h-[111px]"
+        } sm:h-auto sm:flex-1`}
+      >
         <h3
-          className="
+          className={`
+            font-['SF_Pro_Display']
             font-semibold
-            text-[18px] sm:text-[20px]
-            leading-[22px] sm:leading-[25px]
-            h-[44px] sm:h-[50px]
+            text-[21px]
+            leading-[100%]
+            tracking-[0px]
             text-[#242425]
             overflow-hidden
             [display:-webkit-box]
-            [-webkit-line-clamp:2]
+            ${
+              isPageMobileVariant
+                ? "[-webkit-line-clamp:2]"
+                : "[-webkit-line-clamp:3]"
+            }
             [-webkit-box-orient:vertical]
-          "
+          `}
         >
           {title}
         </h3>
@@ -63,13 +90,14 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
         <button
           type="button"
           className="
-         
             mt-auto
             bg-transparent
             p-0
+            font-['SF_Pro_Display']
             text-[16px]
             font-semibold
-            leading-[16px]
+            leading-[100%]
+            tracking-[0px]
             text-[#737477]
             underline
             decoration-solid
@@ -77,6 +105,8 @@ export default function MegaStoryCard({ image, title, onClick, className = "" })
             underline-offset-0
             inline-flex
             items-center
+            whitespace-nowrap
+            text-left
           "
         >
           Đọc thêm

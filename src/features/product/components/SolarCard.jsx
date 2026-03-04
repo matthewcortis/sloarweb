@@ -149,14 +149,30 @@ export default function SolarCard({
             style={{ backgroundColor: mainColor }}
           >
             Xem chi tiết
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
+              <path
+                d="M10 8L14 12L10 16"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
 
           <button
             type="button"
             onClick={handleContactCall}
-            className={`w-[103px] h-[48px] rounded-[12px] border text-[16px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${
-              hideDetailsOnMobile ? "hidden md:flex" : ""
-            }`}
+            className={`w-[103px] h-[48px] rounded-[12px] border text-[16px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${hideDetailsOnMobile ? "hidden md:flex" : ""
+              }`}
             style={{ borderColor: mainColor, color: mainColor }}
           >
             Liên hệ

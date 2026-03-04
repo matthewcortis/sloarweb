@@ -259,7 +259,7 @@ export default function ThietBiDetail() {
   return (
     <main className="w-full min-h-screen px-[16px] lg:px-[173px] py-[24px] lg:py-[39px]">
       <div className="w-full bg-white rounded-[12px] shadow-[0px_8px_16px_0px_#E7EAED66] p-[10px] lg:p-[20px]">
-        <div className="flex flex-col items-center lg:items-start lg:flex-row lg:gap-6">
+        <div className="flex flex-col items-center gap-[39px] lg:items-start lg:flex-row lg:gap-[80px]">
           {/* IMAGE */}
           <div className="w-full lg:w-[519px] lg:h-[519px] flex flex-col items-center">
             <div className="w-full max-w-[393px] h-[393px] lg:max-w-none lg:w-[519px] lg:h-[519px] bg-white rounded-[6px] lg:rounded-[12px] p-[10px] lg:p-0 flex items-center justify-center">
@@ -269,19 +269,43 @@ export default function ThietBiDetail() {
                 className="w-full h-full object-contain"
               />
             </div>
-            
+
           </div>
 
           {/* INFO */}
-          <div className="w-full max-w-[393px] lg:max-w-none lg:w-[519px] lg:h-[519px] mt-4 lg:mt-0 mx-auto lg:mx-0 flex flex-col gap-3 lg:gap-4">
+          <div className="w-full max-w-[393px] lg:max-w-none lg:w-[519px] lg:h-[519px] mx-auto lg:mx-0 flex flex-col gap-[24px]">
             {/* TITLE + PRICE */}
-            <div className="w-full h-[145px] lg:h-[120px]">
-              <h1 className="text-[16px] lg:text-[18px] font-semibold text-[#111111] line-clamp-2">
-                {device.name}
-              </h1>
-              <div className="mt-3">
-                <div className="text-[16px] text-gray-500">GIÁ NIÊM YẾT</div>
-                <div className="text-[20px] lg:text-[22px] font-bold text-[#FF4D4F]">
+            <div className="w-full max-w-[393px] h-[145px] lg:max-w-none flex flex-col lg:h-[80px] lg:bg-transparent">
+              <div className="w-full h-[74px] px-[16px] py-[12px] flex flex-col gap-[10px] lg:h-auto lg:px-0 lg:py-0 lg:gap-0">
+                <h1 className="text-[16px] lg:text-[18px] font-semibold text-[#111111] line-clamp-2">
+                  {device.name}
+                </h1>
+              </div>
+
+              <div className="w-full h-[71px] px-[16px] py-[12px] flex flex-col items-center justify-center gap-[8px] lg:h-auto lg:px-0 lg:py-0 lg:items-start lg:justify-start">
+                <div
+                  className="uppercase text-center lg:text-left"
+                  style={{
+                    fontFamily: "SF Pro Display",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "19px",
+                    color: "#242425",
+                  }}
+                >
+                  GIÁ NIÊM YẾT
+                </div>
+
+                <div
+                  className="text-center lg:text-left"
+                  style={{
+                    fontFamily: "SF Pro Display",
+                    fontWeight: 600,
+                    fontSize: "28px",
+                    lineHeight: "20px",
+                    color: "#EE4037",
+                  }}
+                >
                   {device.price}
                 </div>
               </div>

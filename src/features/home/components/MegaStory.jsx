@@ -15,7 +15,7 @@ export default function MeGaStory() {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const megaStoryTitle = "Mega story";
+  const megaStoryTitle = "Tản mạn SolarMax";
 
   useEffect(() => {
     let isMounted = true;
@@ -95,7 +95,7 @@ export default function MeGaStory() {
         </div>
 
         {hasStories && (
-          <div className="flex gap-[16px] overflow-x-auto pl-0 xl:pl-[80px]">
+          <div className="flex gap-[16px] overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory pb-2 pl-0 xl:pl-[80px]">
             {stories.map((item, index) => (
               <MegaStoryCard
                 key={item?.id ?? index}

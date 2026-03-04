@@ -72,7 +72,7 @@ const defaultCategories = [
     id: "mai-bang",
     title: "Giải pháp cho mái bằng",
     description: [
-      "100% là thiết kế 3D trước khi thi công giúp: Thứ nhất, tối ưu chi phí vật tư thép. ",
+      "100% là thiết kế 3D trước khi thi công giúp: \n Thứ nhất, tối ưu chi phí vật tư thép. ",
       "Thứ hai, ưu tiên thiết kế hành lang hỗ trợ bảo trì tấm Pin",
     ],
     items: defaultCards,
@@ -357,7 +357,7 @@ export default function BienPhapThiCong({
                     </h3>
                   ) : null}
                   {descriptionLines.length > 0 ? (
-                    <div className="typo-body-base text-[#4B5563] flex flex-col gap-1">
+                    <div className="typo-body-base text-[#4B5563] flex flex-col gap-1 whitespace-pre-line md:whitespace-normal">
                       {descriptionLines.map((line, index) => (
                         <p key={`${category.id}-desc-${index}`}>{line}</p>
                       ))}

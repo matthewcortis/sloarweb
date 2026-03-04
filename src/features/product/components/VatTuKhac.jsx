@@ -104,7 +104,7 @@ function BrandBadge({ brand }) {
 }
 
 export default function VatTuKhac({
-  title = "Vật tư khác",
+  title = "Bản kê chi tiết vật tư",
   badgeText,
   items = defaultItems,
 }) {

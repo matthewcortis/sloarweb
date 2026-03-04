@@ -17,7 +17,7 @@ export default function DeviceCard({ ThietBiCard }) {
     size,
     weight,
     price,
-  } =   ThietBiCard;
+  } = ThietBiCard;
 
   return (
     <div
@@ -31,7 +31,7 @@ export default function DeviceCard({ ThietBiCard }) {
       }}
       className="w-[252px] md:w-[290px] flex-shrink-0 bg-white rounded-[12px] shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)] p-[12px_8px] flex flex-col gap-4 cursor-pointer"
     >
-      
+
       {/* PHẦN 1: IMAGE + TAG + BẢO HÀNH */}
       <div className="flex flex-col gap-3">
         <div className="w-full h-[236px] md:h-[274px] rounded-[6px] overflow-hidden relative">
@@ -96,7 +96,23 @@ export default function DeviceCard({ ThietBiCard }) {
         className="w-full h-[49px] bg-green-600 hover:bg-green-700 text-white rounded-[12px] px-[10px] flex items-center justify-center gap-2 transition mt-auto"
       >
         Xem chi tiết
-        <span className="text-lg">→</span>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
+          <path
+            d="M10 8L14 12L10 16"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </button>
     </div>
   );

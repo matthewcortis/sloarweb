@@ -72,7 +72,7 @@ export default function MegaStoryPage() {
   );
 
   return (
-    <div className="px-[9px] xl:px-[80px] pb-[80px] pt-[24px]">
+    <div className="px-4 xl:px-[80px] pt-[39px] pb-[39px] sm:pt-[24px] sm:pb-[80px]">
       <div className="max-w-[1280px] mx-auto">
         <h1 className="typo-list-title text-[#1D1D1F] text-left md:text-center">
           Dự án điển hình (Megastory)
@@ -93,13 +93,13 @@ export default function MegaStoryPage() {
         </div>
 
         {hasStories && (
-          <div className="mt-6 grid grid-cols-1 justify-items-center gap-4 sm:justify-items-start sm:gap-6 sm:grid-cols-[repeat(auto-fit,290px)] sm:justify-center">
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-[repeat(auto-fit,290px)] sm:justify-center sm:justify-items-start">
             {stories.map((item, index) => (
               <MegaStoryCard
                 key={item?.id ?? index}
                 image={resolveStoryCardImage(item)}
                 title={resolveStoryTitle(item)}
-                className="sm:h-[280px]"
+                variant="pageMobile"
                 onClick={() => {
                   if (item?.id) {
                     navigate(`/megastory/${item.id}`);

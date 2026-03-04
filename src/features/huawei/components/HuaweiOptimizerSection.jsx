@@ -9,7 +9,7 @@ const roofItems = [
     image: houseImage1,
   },
   {
-    title: "Mái nhà có Optimizer",
+    title: "Mái nhà có \n Optimizer",
     specs: [
       "Các tấm pin PV có thể được lắp đặt ở những khu vực có bóng râm mà không ảnh hướng đến hiệu suất năng lượng do bất tương hợp",
     
@@ -48,7 +48,7 @@ export default function HuaweiOptimizerSection() {
           className="hidden md:block absolute inset-0 h-full w-full object-cover"
         />
 
-        <h2 className="relative z-10 text-white text-center text-[21px] md:text-[28px] font-semibold leading-[1] max-w-[361px] md:max-w-[760px]">
+        <h2 className="relative z-10 text-white text-center text-[21px] md:text-[28px] font-semibold leading-[1.3] max-w-[361px] md:max-w-[760px]">
           Công suất lắp đặt tấm quang điện có thể lên gấp 2 - 3 lần để tăng doanh thu
         </h2>
 
@@ -58,7 +58,7 @@ export default function HuaweiOptimizerSection() {
               key={item.title}
               className="flex flex-col items-center text-center gap-[8px] md:h-full md:justify-between"
             >
-              <div className="text-white text-[16px] md:text-[18px] font-semibold leading-[1.2]">
+              <div className="text-white text-[16px] md:text-[18px] font-semibold leading-[1.2] whitespace-pre-line md:whitespace-normal">
                 {item.title}
               </div>
               <div className="text-white/80 text-[16px] md:text-[16px] leading-[1.4]">

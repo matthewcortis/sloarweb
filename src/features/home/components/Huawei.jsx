@@ -41,9 +41,8 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
                 className="
 	          mt-[24px] md:mt-6
 	          relative
-	          w-[calc(100%+2rem)]
-	          xl:mx-0 xl:-mr-[80px]
-	          xl:w-[calc(100%+80px)]
+	          -mr-[16px] xl:-mr-[80px]
+	          w-[calc(100%+16px)] xl:w-[calc(100%+80px)]
 	        "
             >
                 <ProductsCarousel

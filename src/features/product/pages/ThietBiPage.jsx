@@ -107,7 +107,7 @@ export default function ThietBiPage() {
                 </h2>
                 <button
                   type="button"
-                  className="text-[16px] font-medium text-[#E53935]"
+                  className="text-[16px] font-medium text-[#E53935] underline"
                   onClick={() =>
                     navigate(`/device/thuong-hieu?group=${section.code}`)
                   }
@@ -120,7 +120,7 @@ export default function ThietBiPage() {
                 <div className="mt-4 flex flex-col gap-8">
                   {section.brandGroups.map((group) => (
                     <div key={group.key} className="flex flex-col gap-6">
-                      <div className="w-full rounded-[12px] bg-[#F6F6F6] px-[16px] md:px-[39px] py-[16px] md:py-0 md:min-h-[122px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[66px] xl:gap-[107px]">
+                      <div className="w-full rounded-[12px] px-[16px] md:px-[39px] py-[16px] md:py-0 md:min-h-[122px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[66px] xl:gap-[107px]">
                         {group.logo ? (
                           <img
                             src={group.logo}
@@ -133,7 +133,17 @@ export default function ThietBiPage() {
                           </span>
                         )}
 
-                        <p className="typo-body text-[#242425]">
+                        <p
+                          className="text-[#000000]"
+                          style={{
+                            fontFamily: "SF Pro Display",
+                            fontWeight: 400,
+                            fontStyle: "normal",
+                            fontSize: "16px",
+                            lineHeight: "100%",
+                            letterSpacing: "0%",
+                          }}
+                        >
                           {group.description}
                         </p>
                       </div>
