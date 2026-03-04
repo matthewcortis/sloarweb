@@ -12,7 +12,20 @@ export const buildTronGoiFilterPayload = ({
   sortField = "tongGia",
   sortDirection = "ASC",
 } = {}) => {
-  const filters = [];
+  const filters = [
+    {
+      fieldName: "trangThai",
+      operation: "EQUALS",
+      value: 1,
+      logicType: "AND",
+    },
+    {
+      fieldName: "nhomTronGoi.trangThai",
+      operation: "EQUALS",
+      value: 1,
+      logicType: "AND",
+    },
+  ];
 
   if (location) {
     filters.push({
@@ -81,6 +94,18 @@ export const fetchTronGoiById = async (id) => {
   if (!id) return null;
   const payload = {
     filters: [
+      {
+        fieldName: "trangThai",
+        operation: "EQUALS",
+        value: "1",
+        logicType: "AND",
+      },
+      {
+        fieldName: "nhomTronGoi.trangThai",
+        operation: "EQUALS",
+        value: "1",
+        logicType: "AND",
+      },
       {
         fieldName: "id",
         operation: "EQUALS",

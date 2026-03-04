@@ -257,12 +257,12 @@ export default function ThietBiDetail() {
   }
 
   return (
-    <main className="w-full min-h-screen px-[16px] lg:px-[173px] py-[24px] lg:py-[39px]">
-      <div className="w-full bg-white rounded-[12px] shadow-[0px_8px_16px_0px_#E7EAED66] p-[10px] lg:p-[20px]">
-        <div className="flex flex-col items-center gap-[39px] lg:items-start lg:flex-row lg:gap-[80px]">
+    <main className="w-full min-h-screen px-0 lg:px-[173px] py-[24px] lg:py-[39px]">
+      <div className="w-full bg-white p-0 lg:rounded-[12px] lg:shadow-[0px_8px_16px_0px_#E7EAED66] lg:p-[20px]">
+        <div className="flex flex-col items-stretch gap-[16px] lg:flex-row lg:items-start lg:gap-[24px]">
           {/* IMAGE */}
           <div className="w-full lg:w-[519px] lg:h-[519px] flex flex-col items-center">
-            <div className="w-full max-w-[393px] h-[393px] lg:max-w-none lg:w-[519px] lg:h-[519px] bg-white rounded-[6px] lg:rounded-[12px] p-[10px] lg:p-0 flex items-center justify-center">
+            <div className="w-full max-w-[393px] h-[393px] lg:max-w-none lg:w-[519px] lg:h-[519px] bg-white rounded-[6px] lg:rounded-[12px] lg:p-0 flex items-center justify-center">
               <img
                 src={device.image}
                 alt={device.name}
@@ -273,16 +273,16 @@ export default function ThietBiDetail() {
           </div>
 
           {/* INFO */}
-          <div className="w-full max-w-[393px] lg:max-w-none lg:w-[519px] lg:h-[519px] mx-auto lg:mx-0 flex flex-col gap-[24px]">
+          <div className="w-full lg:w-[519px] lg:h-[519px] lg:mx-0 flex flex-col gap-[16px] lg:gap-[24px] bg-[#F3F4F6] lg:bg-transparent">
             {/* TITLE + PRICE */}
-            <div className="w-full max-w-[393px] h-[145px] lg:max-w-none flex flex-col lg:h-[80px] lg:bg-transparent">
-              <div className="w-full h-[74px] px-[16px] py-[12px] flex flex-col gap-[10px] lg:h-auto lg:px-0 lg:py-0 lg:gap-0">
-                <h1 className="text-[16px] lg:text-[18px] font-semibold text-[#111111] line-clamp-2">
+            <div className="w-full flex flex-col gap-[16px] lg:gap-[24px] bg-white lg:bg-transparent">
+              <div className="w-full px-[16px] py-[12px] flex flex-col gap-[10px] lg:px-0 lg:py-0 lg:gap-0">
+                <h1 className="text-[21px] lg:text-[21px] font-semibold text-[#111111] line-clamp-2">
                   {device.name}
                 </h1>
               </div>
 
-              <div className="w-full h-[71px] px-[16px] py-[12px] flex flex-col items-center justify-center gap-[8px] lg:h-auto lg:px-0 lg:py-0 lg:items-start lg:justify-start">
+              <div className="w-full px-[16px] py-[12px] flex flex-col items-center justify-center gap-[8px] lg:px-0 lg:py-0 lg:items-start lg:justify-start">
                 <div
                   className="uppercase text-center lg:text-left"
                   style={{
@@ -312,7 +312,7 @@ export default function ThietBiDetail() {
             </div>
 
             {/* DETAILS */}
-            <div className="w-full h-[124px] bg-white rounded-[12px] px-[16px] py-[12px] flex flex-col justify-between lg:gap-[7px] lg:justify-start">
+            <div className="w-full h-[124px] bg-white rounded-none px-[16px] py-[12px] flex flex-col justify-between lg:gap-[7px] lg:justify-start">
               {detailRows.map((row) => (
                 <div
                   key={row.label}
@@ -325,7 +325,7 @@ export default function ThietBiDetail() {
             </div>
 
             {/* CTA 1 */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4 bg-white px-[16px] py-[12px] lg:bg-transparent lg:px-0 lg:py-0">
               <div className="text-[16px] font-semibold text-[#1A1A1A]">
                 Thông tin chi tiết
               </div>
@@ -352,7 +352,7 @@ export default function ThietBiDetail() {
             </div>
 
             {/* CTA 2 */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4 bg-white px-[16px] py-[12px] lg:bg-transparent lg:px-0 lg:py-0">
               <div className="text-[16px] font-semibold text-[#1A1A1A]">
                 Danh mục pin lithium tương thích
               </div>

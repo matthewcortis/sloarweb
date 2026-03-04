@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import banner from "../../../../assets/baner.png";
+import banner from "../../../../assets/anhbiabanner.jpg";
 import SoSanhHyOn from "../SoSanhHyOn";
 import { fetchQuangCaoImageUrlByViTri } from "../../api/quangCaoApi";
 

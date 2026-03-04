@@ -57,12 +57,17 @@ const compareRows = [
 export default function SoSanhHyOn() {
   return (
     <section className="w-full flex justify-center">
-      <div className="w-full max-w-[846px] rounded-none md:rounded-l-[12px] px-[13px] md:px-6 pt-8 pb-4 md:py-10 flex flex-col gap-4 md:gap-6 text-[#2B2B2B]">
+      <div className="w-full max-w-[846px] rounded-none md:rounded-l-[12px] px-[13px] md:px-6 pt-8 pb-4 md:py-10 flex flex-col md:gap-6 text-[#2B2B2B]">
         <div className="flex flex-col gap-4 md:gap-5">
-          <h3 className="typo-page-title md:text-[32px] leading-[120%]  text-left md:text-center max-w-[700px] md:mx-auto">
+          <h2
+            className="
+            text-[21px] leading-[100%] tracking-[0] font-semibold text-left
+            md:text-center
+            max-w-[700px] md:mx-auto"
+            style={{ fontFamily: "SF Pro Display", fontStyle: "normal" }}
+          >
             So sánh điện mặt trời Hy-Brid và điện mặt trời On-Grid
-          </h3>
-
+          </h2>
           <div className="typo-title grid grid-cols-2 text-center">
             <div className="flex flex-col gap-1">
               <span>Hy-Brid</span>
@@ -79,7 +84,7 @@ export default function SoSanhHyOn() {
           </div>
         </div>
 
-        <div className="typo-body flex flex-col border-t border-[#D1D5DB] divide-y divide-[#D1D5DB] md:divide-y-0 text-[#4B4B4B]">
+        <div className="mt-[10px] typo-body flex flex-col border-t border-[#D1D5DB] divide-y divide-[#D1D5DB] md:divide-y-0 text-[#4B4B4B]">
           {commonRows.map(({ iconSrc, text }) => (
             <div
               key={text}

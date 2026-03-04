@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
+import ContactFab from "../components/ContactFab";
 const MainLayout = lazy(() => import("../layouts/MainLayout"));
 const HomePage = lazy(() => import("../features/home/pages/HomePage"));
 const ProductPage = lazy(() => import("../features/product/pages/ProductPage"));
@@ -55,6 +56,7 @@ export default function AppRouter() {
                     </Route>
                 </Routes>
             </Suspense>
+            <ContactFab />
         </BrowserRouter>
     );
 }

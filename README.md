@@ -17,7 +17,9 @@
   "page": 0,
   "size": 100
 }
-
+ https://www.facebook.com/solarmax87
+https://www.tiktok.com/@solarmax87
+https://www.youtube.com/@solarmax87
 section là 39 và giữa các text là 24 
 https://v2.slmglobal.vn/api/basic-api/tron-goi/filter
 

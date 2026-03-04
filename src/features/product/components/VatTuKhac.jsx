@@ -146,7 +146,7 @@ export default function VatTuKhac({
         </span>
       </div>
 
-      <div className="mt-6 w-full overflow-hidden rounded-[12px] border border-[#ECEEF0]">
+      <div className="mt-6 -mx-4 w-[calc(100%+32px)] overflow-hidden rounded-none border border-[#ECEEF0] lg:mx-0 lg:w-full lg:rounded-[12px]">
         <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] md:grid-cols-[minmax(0,1fr)_271px_67px] gap-4 md:gap-0 bg-[#F6F6F6] px-[16px] py-[10px] text-[16px] text-[#6B7280]">
           <span className="text-left">Tên hệ</span>
           <span className="text-left md:text-center">Bảo hành</span>
@@ -157,19 +157,19 @@ export default function VatTuKhac({
           {summaryRows.map((row) => (
             <div
               key={row.key}
-              className="grid grid-cols-[minmax(0,1fr)_auto_auto] md:grid-cols-[minmax(0,1fr)_271px_67px] gap-4 md:gap-0 border-b border-[#ECEEF0] px-[16px] py-[12px] md:h-[72px] md:items-center last:border-b-0"
+              className="grid items-center grid-cols-[minmax(0,1fr)_auto_auto] md:grid-cols-[minmax(0,1fr)_271px_67px] gap-4 md:gap-0 border-b border-[#ECEEF0] px-[16px] py-[12px] md:h-[72px] last:border-b-0"
             >
-              <div className="flex flex-col gap-2">
+              <div className="flex min-h-[27px] items-center">
                 <p className="typo-body leading-none text-[#1F2933]">
                   {row.label}
                 </p>
               </div>
 
-              <div className="flex h-[27px] items-center text-[16px] text-[#1F2933] md:justify-center md:w-[271px]">
+              <div className="flex min-h-[27px] items-center text-[16px] text-[#1F2933] md:justify-center md:w-[271px]">
                 {row.warranty}
               </div>
 
-              <div className="flex justify-end md:justify-center">
+              <div className="flex min-h-[27px] items-center justify-end md:justify-center">
                 <span className="inline-flex h-[27px] w-[67px] items-center justify-center rounded-[6px] bg-[#E6E7E9] text-[16px] font-medium text-[#2A2A2A]">
                   {row.quantity}
                 </span>

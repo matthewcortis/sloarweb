@@ -75,7 +75,7 @@ export default function MegaStoryPage() {
     <div className="px-4 xl:px-[80px] pt-[39px] pb-[39px] sm:pt-[24px] sm:pb-[80px]">
       <div className="max-w-[1280px] mx-auto">
         <h1 className="typo-list-title text-[#1D1D1F] text-left md:text-center">
-          Dự án điển hình (Megastory)
+          Tản mạn SolarMax
         </h1>
 
         <div className="mt-6 flex flex-col gap-3">

@@ -8,6 +8,24 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useLocation } from "react-router-dom";
 
+const SOCIAL_LINKS = [
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/solarmax87",
+    icon: facebook,
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@solarmax87",
+    icon: tiktok,
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@solarmax87",
+    icon: youtube,
+  },
+]
+
 export default function Header({ variant = "light", autoHideOnMobile = false }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showOnMobile, setShowOnMobile] = useState(!autoHideOnMobile)
@@ -20,7 +38,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
   const isDark = variant === "dark"
   const headerClassName = isDark ? "bg-[#1D1D1F]" : "bg-white shadow-sm"
   const menuTextClassName = isDark ? "text-white" : "text-gray-900"
-  const iconButtonClassName = isDark ? "p-2 text-white" : "p-2 text-gray-700"
+  const iconButtonClassName = isDark ? "text-white" : "text-gray-700"
   const panelClassName = isDark ? "bg-[#1D1D1F] text-white" : "bg-white"
   const panelTextClassName = isDark ? "text-white" : "text-gray-900"
   const closeButtonClassName = isDark ? "p-2 text-white" : "p-2 text-black"
@@ -126,21 +144,46 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
             <option value="HN">HN</option>
             <option value="HCM">HCM</option>
           </select>
-          <img src={facebook} className="h-5 w-5" alt="Facebook" />
-          <img src={tiktok} className="h-5 w-5" alt="TikTok" />
-          <img src={youtube} className="h-5 w-5" alt="YouTube" />
+          {SOCIAL_LINKS.map((social) => (
+            <a
+              key={social.name}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.name}
+            >
+              <img src={social.icon} className="h-5 w-5" alt={social.name} />
+            </a>
+          ))}
         </div>
 
-        {/* MOBILE MENU BUTTON */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            className={iconButtonClassName}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon aria-hidden="true" className="h-6 w-6" />
-          </button>
+        <div className="flex items-center gap-[30px] lg:hidden">
+          {/* MOBILE SOCIAL ICONS */}
+          <div className="flex h-6 w-[136px] shrink-0 items-center gap-6">
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.name}
+              >
+                <img src={social.icon} className="h-6 w-6" alt={social.name} />
+              </a>
+            ))}
+          </div>
+
+          {/* MOBILE MENU BUTTON */}
+          <div className="flex items-center">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className={`flex h-6 w-6 items-center justify-center ${iconButtonClassName}`}
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -188,9 +231,17 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
           </div>
 
           <div className="flex items-center gap-4 mt-10">
-            <img src={facebook} className="h-6 w-6" alt="Facebook" />
-            <img src={tiktok} className="h-6 w-6" alt="TikTok" />
-            <img src={youtube} className="h-6 w-6" alt="YouTube" />
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.name}
+              >
+                <img src={social.icon} className="h-6 w-6" alt={social.name} />
+              </a>
+            ))}
           </div>
         </DialogPanel>
       </Dialog>

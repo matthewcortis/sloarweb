@@ -134,13 +134,13 @@ export default function ThietBiPage() {
                         )}
 
                         <p
-                          className="text-[#000000]"
+                          className="text-[#000000]  "
                           style={{
                             fontFamily: "SF Pro Display",
                             fontWeight: 400,
                             fontStyle: "normal",
                             fontSize: "16px",
-                            lineHeight: "100%",
+                            lineHeight: "140%",
                             letterSpacing: "0%",
                           }}
                         >

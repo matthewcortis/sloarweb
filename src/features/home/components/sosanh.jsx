@@ -5,11 +5,13 @@ export default function SoSanh3Pha() {
       {/* MOBILE */}
       <div className="w-full pb-5 md:hidden">
         <div className="mx-auto max-w-[846px]">
-          <h3 className="text-left font-[600] text-[23px] leading-[29px] text-[#2B2B2B]">
+          <h2
+            className="typo-section-title max-w-[842px] mx-auto leading-[150%] md:text-[32px] md:leading-[140%] md:px-[140px] text-left text-[#2B2B2B]"
+          >
             So sánh điện mặt trời 3 pha
             <br />
             áp thấp - áp cao
-          </h3>
+          </h2>
 
           <div className="mt-5 grid grid-cols-2 text-left text-[16px] leading-[24px] text-[#4B4B4B]">
             <div>
@@ -53,14 +55,12 @@ export default function SoSanh3Pha() {
       {/* DESKTOP - GIU NGUYEN */}
       <div className="hidden w-full flex-col md:flex">
         <div className="max-w-[846px] mx-auto flex flex-col gap-6">
-          <h3
-            className="
-              text-center font-[600] text-[18px] md:text-[21px] leading-[100%]
-              text-black
-            "
+          <h2
+            className="max-w-[842px] mx-auto text-center text-[#2B2B2B] text-[21px] leading-[100%] tracking-[0] font-semibold"
+            style={{ fontFamily: "SF Pro Display", fontStyle: "normal" }}
           >
             So sánh điện mặt trời 3 pha áp thấp - áp cao
-          </h3>
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:justify-items-center text-black text-[16px] md:text-[16px]">
             <div className="flex flex-col gap-4 items-center text-center bg-white rounded-[12px] p-6 w-full md:w-[411px] md:h-[274px] leading-[24px]">

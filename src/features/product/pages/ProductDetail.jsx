@@ -355,6 +355,21 @@ export default function ProductDetail() {
           <BienPhapThiCong />
         </div>
 
+         <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+          <BienPhapThiCong
+            title="Thi công thiết bị"
+            categories={thiCongThietBiCategories}
+            renderItem={(item) => (
+              <CongNghiepCard
+                key={item.id}
+                image={item.image}
+                variant="responsive"
+                alt="Thi công thiết bị"
+              />
+            )}
+          />
+        </div>
+
         <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong
             title="Hệ số PV out"
@@ -374,11 +389,11 @@ export default function ProductDetail() {
         <div className="w-full h-[152px] px-4 pt-[20px] pb-[10px] lg:px-[10px] lg:pt-[20px] lg:pb-[10px]">
           <div className="text-left text-[#4A4A4A] text-[16px] leading-[100%] tracking-[0]">
             <p className="font-normal">Công thức sản lượng điện mặt trời:</p>
-            <p className="mt-[2px] font-semibold">
+            <p className="mt-[2px] leading-[140%] font-semibold">
               Sản lượng điện mặt trời = Hệ số PV out × Tổng công suất tấm quang
               năng
             </p>
-            <p className="mt-[20px] font-normal">
+            <p className="mt-[20px] leading-[140%] font-normal">
               Ví dụ: Hệ thống có tổng công suất 6 kW (10 tấm quang năng JA Solar
               600 W), sẽ có sản lượng điện mặt trời tại TP. Hồ Chí Minh vào
               tháng 1 là:{" "}

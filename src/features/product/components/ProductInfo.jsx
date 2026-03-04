@@ -53,11 +53,11 @@ export default function ProductInfo({
         </div>
 
         {/* SPECS */}
-        <div className="text-base text-gray-700 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 lg:gap-x-8 lg:gap-y-2 lg:flex-1">
+        <div className="w-full text-base text-gray-700 grid grid-cols-[max-content_minmax(0,1fr)] gap-x-4 gap-y-1 lg:gap-x-8 lg:gap-y-2 lg:flex-1">
           {specs.map((item) => (
             <span key={item.key ?? item.label} className="contents">
               <span>{item.label}</span>
-              <span>{item.value}</span>
+              <span className="justify-self-end text-right">{item.value}</span>
             </span>
           ))}
         </div>

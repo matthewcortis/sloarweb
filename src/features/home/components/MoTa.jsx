@@ -1,12 +1,12 @@
 import React from "react";
 
-  const HybridBanner = ({
-    data,
-    titleColor,
-    desColor,
-    showMore = true,
-    onMoreClick,
-  }) => {
+const HybridBanner = ({
+  data,
+  titleColor,
+  desColor,
+  showMore = true,
+  onMoreClick,
+}) => {
   const renderDescription = () => {
     const description = data?.description;
     if (!description) return null;
@@ -42,12 +42,14 @@ import React from "react";
       >
         <div className="relative">
           <h2
-            className="typo-section-title max-w-[842px] mx-auto md:text-[32px] md:leading-snug md:px-[140px]"
+            className="typo-section-title max-w-[842px] mx-auto 
+            text-[21px]
+            leading-[150%]
+            md:text-[32px] md:leading-[140%] md:px-[140px]"
             style={{ color: titleColor }}
           >
             {data.title}
           </h2>
-
           {/* DESKTOP BUTTON */}
           {showMore && onMoreClick && (
             <div className="hidden md:block absolute right-6 top-[22px] -translate-y-1/2">

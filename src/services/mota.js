@@ -19,11 +19,14 @@ export const hybridData = {
   moTaOngrid1Pha: {
     title: "Điện mặt trời On-Grid (Không Pin lưu trữ) cho nguồn điện 1 pha",
     description: `Hệ thống điện mặt trời On-Grid, là hệ thống vận hành kết hợp giữa nguồn điện mặt trời, và nguồn điện lưới, không bao gồm Pin lưu trữ Lithium. Giải pháp phù hợp với hóa đơn tiền điện trên 1.5 triệu/tháng. Biến tần mặt trời On-Grid 1 pha bao gồm: 5 kW, 10 kW`,
+    highlight: "Giải pháp phù hợp với hóa đơn tiền điện trên 1.5 triệu/tháng",
     link: "/lithium"
   },
   moTaOngrid3Pha: {
     title: "Điện mặt trời On-Grid (Không Pin lưu trữ) cho nguồn điện 3 pha",
     description: `Hệ thống điện mặt trời On-Grid 3 pha là hệ thống vận hành kết hợp giữa nguồn điện mặt trời và nguồn điện lưới, không bao gồm Pin lithium. Do vậy khi mất điện lưới hệ thống sẽ không sử dụng được. Phù hợp với hộ gia đình, văn phòng, nhà xưởng, nhà hàng chủ yếu dùng điện ban ngày và có hóa đơn trên 5 triệu/tháng. Biến tần mặt trời - On-Grid 3 pha bao gồm: 10 kW, 15 kW, 20 kW, 30 kW, 40 kW, 50 kW, 60 kW, 75 kW, 80 kW, 100 kW, 110 kW.`,
+    highlight:
+      "Phù hợp với hộ gia đình, văn phòng, nhà xưởng, nhà hàng chủ yếu dùng điện ban ngày và có hóa đơn trên 5 triệu/tháng.",
     link: "/hybrid-business"
   },
   moTaHuawei: {
@@ -39,7 +42,7 @@ export const hybridData = {
     description: "Với **hơn 10 năm kinh nghiệm** trong lĩnh vực năng lượng tái tạo tại thị trường Việt Nam, SolarMax đã ghi dấu ấn qua nhiều **dự án trọng điểm** như **Điện mặt trời Easup 600 MW**, **Phong Phú 50 MW** và **Trúc Sơn 50 MW**. Từ năm 2021, SolarMax chính thức gia nhập thị trường điện mặt trời áp mái dân dụng và đến nay đã triển khai thành công **hơn 1.000 dự án** với công suất từ **5 kW đến 500 kW**. Ngay từ những ngày đầu thành lập, SolarMax luôn hướng đến giải pháp đảm bảo **chất lượng sản phẩm vượt trội** và **dịch vụ thi công theo tiêu chuẩn châu Âu**, với cam kết hệ thống **bền bỉ – vận hành ổn định – 10 năm không cần bảo trì**.",
     link: "/gioi-thieu"
   }, moTaMegaStory: {
-    title: "Dự án điển hình (Megastory)",
+    title: "Tản mạn SolarMax",
     description: "",
     link: "/gioi-thieu"
   }, moTaHoiDap: {

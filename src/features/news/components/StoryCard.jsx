@@ -51,14 +51,7 @@ export default function MegaStoryCard({
             object-cover
           "
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-[6px]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0) 56.19%, rgba(0, 0, 0, 0.8) 88.55%)",
-          }}
-        />
+       
       </div>
 
       <div
@@ -71,7 +64,7 @@ export default function MegaStoryCard({
             font-['SF_Pro_Display']
             font-semibold
             text-[21px]
-            leading-[100%]
+            leading-[130%]
             tracking-[0px]
             text-[#242425]
             overflow-hidden
