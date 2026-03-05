@@ -357,7 +357,7 @@ export default function BienPhapThiCong({
                     </h3>
                   ) : null}
                   {descriptionLines.length > 0 ? (
-                    <div className="typo-body-base text-[#4B5563] flex flex-col gap-1 whitespace-pre-line md:whitespace-normal">
+                    <div className="typo-body-base text-[#4B5563] flex flex-col whitespace-pre-line md:whitespace-normal">
                       {descriptionLines.map((line, index) => (
                         <p key={`${category.id}-desc-${index}`}>{line}</p>
                       ))}

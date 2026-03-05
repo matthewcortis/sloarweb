@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
 
 const NHOM_TRON_GOI_TEN = "HUAWEI";
-const BAN_CHAY = false;
+//const BAN_CHAY = false;
 
 export default function Huawei({ hideDescriptionAndButton = false }) {
     const navigate = useNavigate();
     const { products, loading } = useTronGoiProducts({
         nhomTronGoiTen: NHOM_TRON_GOI_TEN,
-        banChay: BAN_CHAY,
+        //banChay: BAN_CHAY,
         sortDirection: "DESC",
     });
     const huaweiBannerData = hideDescriptionAndButton

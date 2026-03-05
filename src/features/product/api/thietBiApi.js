@@ -41,6 +41,12 @@ export const fetchThietBiByGroup = async (groupCode) => {
         value: true,
         logicType: "AND",
       },
+      {
+        fieldName: "thuongHieu.ten",
+        operation: "NOT_ILIKE",
+        value: "Huawei",
+        logicType: "AND",
+      },
     ],
     sorts: [{ fieldName: "taoLuc", direction: "ASC" }],
     page: 0,

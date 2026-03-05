@@ -22,6 +22,7 @@ import {
   mapTronGoiDeviceProducts,
   mapTronGoiOtherMaterials,
 } from "../../home/services/tronGoiProductMapper";
+import { useSalePhone } from "../../../hooks/useSalePhone";
 
 const TRON_GOI_BANNER_POSITION = "WEB_BANNER_TRON_GOI_1";
 const THI_CONG_THIET_BI_POSITION = "WEB_BIEN_PHAP_THI_CONG_THIET_BI";
@@ -89,6 +90,7 @@ const pvOutCategories = [
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const { salePhoneTel } = useSalePhone();
 
   const [product, setProduct] = useState(null);
   const [tronGoi, setTronGoi] = useState(null);
@@ -264,10 +266,22 @@ export default function ProductDetail() {
         if (diff !== 0) return diff;
         return a.__index - b.__index;
       })
-      .map(({ __index: _index, ...item }) => item);
+      .map((item) => {
+        const nextItem = { ...item };
+        delete nextItem.__index;
+        return nextItem;
+      });
   }, [tronGoi]);
   const otherMaterials = useMemo(
     () => mapTronGoiOtherMaterials(tronGoi),
+    [tronGoi]
+  );
+  const mainDevices = useMemo(
+    () =>
+      (tronGoi?.vatTuTronGois ?? []).filter(
+        (item) =>
+          item?.vatTu?.nhomVatTu?.vatTuChinh === true && item?.duocXem !== false
+      ),
     [tronGoi]
   );
 
@@ -313,13 +327,18 @@ export default function ProductDetail() {
   } = product;
 
   const specs = [
-    { key: "pv", label: "Công suất PV: " || "", value: pv },
-    { key: "inverter", label: "Biến tần solis: " || "", value: inverter },
-    { key: "battery", label: "Lưu trữ Dyness: " || "", value: battery },
+    { key: "pv", label: "Công suất PV: ", value: pv },
+    { key: "inverter", label: "Biến tần solis: ", value: inverter },
+    { key: "battery", label: "Lưu trữ Dyness: ", value: battery },
     { key: "production", label: "Sản lượng:", value: production },
     { key: "roi", label: "Hoàn vốn:", value: roi },
     { key: "area", label: "Diện tích:", value: area },
   ];
+
+  const handleContactNow = () => {
+    if (!salePhoneTel) return;
+    window.location.href = `tel:${salePhoneTel}`;
+  };
 
   return (
     <main className="w-full min-h-screen pb-[39px] lg:px-[173px] lg:pt-[40px] lg:pb-[80px]">
@@ -330,6 +349,7 @@ export default function ProductDetail() {
           save={save}
           price={price}
           specs={specs}
+          onContactNow={handleContactNow}
         />
 
         <div className="w-full mt-[39px] lg:mt-[80px] px-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
@@ -348,14 +368,18 @@ export default function ProductDetail() {
         </div>
 
         <div className="w-full mt-[39px] lg:mt-[80px] px-4 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
-          <VatTuKhac items={otherMaterials} badgeText={`7 vật tư`} />
+          <VatTuKhac
+            items={otherMaterials}
+            mainDevices={mainDevices}
+            badgeText={`7 vật tư`}
+          />
         </div>
 
         <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong />
         </div>
 
-         <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong
             title="Thi công thiết bị"
             categories={thiCongThietBiCategories}

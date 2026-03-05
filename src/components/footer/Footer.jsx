@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from '../../assets/Group.png';
+import { useSalePhone } from "../../hooks/useSalePhone";
 const footer = {
   company: {
     logo: Logo,
@@ -15,7 +16,6 @@ const footer = {
       },
     ],
     contact: {
-      phone: "+84 (96) 492-0242",
       email: "sales@smsolar.com",
     },
   },
@@ -46,6 +46,7 @@ const footer = {
 };
 
 export default function Footer({ variant = "light" }) {
+  const { salePhoneLabel, salePhoneTel } = useSalePhone();
   const isDark = variant === "dark";
   const footerClassName = isDark ? "bg-[#1D1D1F] text-white" : "bg-[#E5E7EB]";
   const subTextClassName = isDark ? "text-gray-300" : "text-gray-700";
@@ -79,7 +80,12 @@ export default function Footer({ variant = "light" }) {
             </p>
             <p className="text-base">
               <span className="font-bold uppercase">P:</span>{" "}
-              <span className="font-normal normal-case">{footer.company.contact.phone}</span>
+              <a
+                href={`tel:${salePhoneTel}`}
+                className="font-normal normal-case hover:underline"
+              >
+                {salePhoneLabel}
+              </a>
             </p>
             <p className="text-base">
               <span className="font-bold uppercase">M:</span>{" "}

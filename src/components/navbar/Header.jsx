@@ -129,7 +129,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
           <Link to="/combo-on-grid">Combo On-Grid</Link>
           <Link to="/combo-hy-brid">Combo Hy-Brid</Link>
           <Link to="/device">Thiết bị</Link>
-          <Link to="/megastory">Dự án</Link>
+          <Link to="/megastory">Tản mạn SolarMax</Link>
           <Link to="/q&a">Hỏi đáp</Link>
         </div>
 
@@ -213,7 +213,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
             <Link to="/combo-on-grid" onClick={() => setMobileMenuOpen(false)}>Combo On-Grid</Link>
             <Link to="/combo-hy-brid" onClick={() => setMobileMenuOpen(false)}>Combo Hy-Brid</Link>
             <Link to="/device" onClick={() => setMobileMenuOpen(false)}>Thiết bị</Link>
-            <Link to="/megastory" onClick={() => setMobileMenuOpen(false)}>Dự án</Link>
+            <Link to="/megastory" onClick={() => setMobileMenuOpen(false)}>Tản mạn SolarMax</Link>
             <Link to="/q&a" onClick={() => setMobileMenuOpen(false)}>Hỏi đáp</Link>
           </nav>
 

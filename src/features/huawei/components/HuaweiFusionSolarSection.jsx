@@ -59,7 +59,7 @@ export default function HuaweiFusionSolarSection() {
         </div>
       </div>
 
-      <h2 className="typo-section-title md:text-[32px] text-white text-center w-full max-w-[361px] md:max-w-none">
+      <h2 className="typo-section-title md:text-[32px] text-white text-center w-full max-w-[361px] leading-[130%] md:max-w-none">
         An toàn nâng cao 5 lớp, bảo vệ gia đình bạn mỗi ngày
       </h2>
 

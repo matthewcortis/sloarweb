@@ -7,6 +7,7 @@ export default function ProductInfo({
   save,
   price,
   specs,
+  onContactNow,
 }) {
   return (
     <div
@@ -63,6 +64,8 @@ export default function ProductInfo({
         </div>
 
         <button
+          type="button"
+          onClick={onContactNow}
           className="w-full h-[45px] rounded-[10px] bg-[#059549] text-white font-semibold lg:w-[310px] lg:h-[49px] lg:rounded-[12px]"
         >
           Liên hệ ngay

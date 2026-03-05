@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ProductCard from "../../product/components/SolarCard.jsx";
 import SolarCardShimmer from "../../product/components/SolarCardShimmer.jsx";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { useSalePhone } from "../../../hooks/useSalePhone";
 
 export default function ProductsCarousel({
   products = [],
@@ -14,6 +15,7 @@ export default function ProductsCarousel({
   hideDetailsOnMobile = false,
   scrollContainerClassName = "",
 }) {
+  const { salePhoneTel } = useSalePhone();
   const containerRef = useRef(null);
   const [current, setCurrent] = useState(0);
 
@@ -21,62 +23,6 @@ export default function ProductsCarousel({
   const isDown = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-
-  /* =======================
-     GRID MODE
-  ======================= */
-  if (viewMode === "grid") {
-    return (
-      <div className="w-full flex justify-center">
-        <div
-          className="
-            w-full
-            max-w-[1280px]
-            grid
-            grid-cols-2
-            md:grid-cols-3
-            xl:grid-cols-4
-            auto-rows-fr
-            items-stretch
-
-            gap-x-4
-            gap-y-4
-            md:gap-y-6
-          "
-        >
-          {loading
-            ? Array.from({ length: 8 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-full"
-                >
-                  <SolarCardShimmer />
-                </div>
-              ))
-            : products.map((item) => (
-                <div
-                  key={item.id}
-                  className={hideDetailsOnMobile ? "w-full" : "w-full flex justify-center"}
-                >
-                  <ProductCard
-                    data={item}
-                    cardBgColor={cardBgColor}
-                    mainColor={mainColor}
-                    textColor={textColor}
-                    saveColor={saveColor}
-                    hideDetailsOnMobile={hideDetailsOnMobile}
-                    className={hideDetailsOnMobile ? "w-full max-w-none md:w-[302px]" : ""}
-                  />
-                </div>
-              ))}
-        </div>
-      </div>
-    );
-  }
-
-  /* =======================
-     CAROUSEL MODE
-  ======================= */
 
   /* ===== Intersection Observer ===== */
   useEffect(() => {
@@ -102,6 +48,62 @@ export default function ProductsCarousel({
     items.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, [products, loading, viewMode]);
+
+  /* =======================
+     GRID MODE
+  ======================= */
+  if (viewMode === "grid") {
+    return (
+      <div className="w-full flex justify-center">
+        <div
+          className="
+            w-full
+            max-w-[1280px]
+            grid
+            grid-cols-2
+            lg:grid-cols-4
+            auto-rows-fr
+            items-stretch
+
+            gap-x-4
+            gap-y-4
+            md:gap-y-6
+          "
+        >
+          {loading
+            ? Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-full"
+                >
+                  <SolarCardShimmer />
+                </div>
+              ))
+            : products.map((item) => (
+                <div
+                  key={item.id}
+                  className={hideDetailsOnMobile ? "w-full min-w-0" : "w-full flex justify-center"}
+                >
+                  <ProductCard
+                    data={item}
+                    cardBgColor={cardBgColor}
+                    mainColor={mainColor}
+                    textColor={textColor}
+                    saveColor={saveColor}
+                    contactPhoneTel={salePhoneTel}
+                    hideDetailsOnMobile={hideDetailsOnMobile}
+                    className={hideDetailsOnMobile ? "w-full max-w-none min-w-0" : ""}
+                  />
+                </div>
+              ))}
+        </div>
+      </div>
+    );
+  }
+
+  /* =======================
+     CAROUSEL MODE
+  ======================= */
 
   /* ===== Mouse drag ===== */
   const onMouseDown = (e) => {
@@ -208,8 +210,8 @@ export default function ProductsCarousel({
                   carousel-item
                   snap-center
                   shrink-0
-                  min-w-[260px]
-                  md:min-w-[300px]
+                  w-[clamp(232px,84vw,302px)]
+                  md:w-[clamp(260px,32vw,302px)]
                 "
               >
                 <SolarCardShimmer />
@@ -223,8 +225,8 @@ export default function ProductsCarousel({
                   carousel-item
                   snap-center
                   shrink-0
-                  min-w-[260px]
-                  md:min-w-[300px]
+                  w-[clamp(232px,84vw,302px)]
+                  md:w-[clamp(260px,32vw,302px)]
                 "
               >
                 <ProductCard
@@ -233,8 +235,9 @@ export default function ProductsCarousel({
                   mainColor={mainColor}
                   textColor={textColor}
                   saveColor={saveColor}
+                  contactPhoneTel={salePhoneTel}
                   hideDetailsOnMobile={hideDetailsOnMobile}
-                  className="w-[312px] sm:w-[302px]"
+                  className="w-full max-w-none"
                 />
               </div>
             ))}

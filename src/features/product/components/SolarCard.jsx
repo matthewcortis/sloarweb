@@ -9,6 +9,7 @@ export default function SolarCard({
   mainColor = "#00A859",
   textColor = "#000000ff",
   saveColor = "#E6F4ED",
+  contactPhoneTel = "",
   hideDetailsOnMobile = false,
   className = "",
 }) {
@@ -27,13 +28,17 @@ export default function SolarCard({
 
   const handleContactCall = (event) => {
     event.stopPropagation();
-    window.location.href = "tel:0964920242";
+    const normalizedContactPhone = `${contactPhoneTel}`.trim();
+    if (!normalizedContactPhone) return;
+    window.location.href = `tel:${normalizedContactPhone}`;
   };
 
   return (
     <div
       className={`
-        w-[302px]
+        w-full
+        max-w-[302px]
+        min-w-0
         rounded-[12px]
         shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)]
         bg-[var(--card-bg)]
@@ -41,7 +46,7 @@ export default function SolarCard({
         overflow-hidden
         hover:shadow-lg transition-shadow
         cursor-pointer
-        ${hideDetailsOnMobile ? "w-full md:w-[302px] rounded-none md:rounded-[12px] shadow-none md:shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)] bg-transparent md:bg-[var(--card-bg)] overflow-visible md:overflow-hidden" : ""}
+        ${hideDetailsOnMobile ? "max-w-none rounded-none md:rounded-[12px] shadow-none md:shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)] bg-transparent md:bg-[var(--card-bg)] overflow-visible md:overflow-hidden" : ""}
         ${className}
       `}
       role="button"
@@ -144,10 +149,10 @@ export default function SolarCard({
         </div>
 
         {/* Buttons luôn dính đáy */}
-        <div className="mt-auto flex gap-2 pt-2">
+        <div className="mt-auto flex gap-2 pt-2 min-w-0">
           <button
             onClick={() => navigate(`/products/${data.id}`)}
-            className={`h-[48px] rounded-[12px] text-white text-[16px] font-medium flex items-center justify-center gap-2 px-[10px] leading-none ${hideDetailsOnMobile ? "w-full md:w-[163px]" : "w-[163px]"}`}
+            className={`h-[48px] rounded-[12px] text-white text-[16px] font-medium flex items-center justify-center gap-2 px-[10px] leading-none ${hideDetailsOnMobile ? "w-full md:flex-1 md:min-w-0 md:text-[14px] lg:text-[16px]" : "flex-1 min-w-0"}`}
             style={{ backgroundColor: mainColor }}
           >
             Xem chi tiết
@@ -158,6 +163,7 @@ export default function SolarCard({
               height="20"
               viewBox="0 0 24 24"
               fill="none"
+              className={hideDetailsOnMobile ? "hidden lg:block" : ""}
             >
               <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
               <path
@@ -173,8 +179,7 @@ export default function SolarCard({
           <button
             type="button"
             onClick={handleContactCall}
-            className={`w-[103px] h-[48px] rounded-[12px] border text-[16px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${hideDetailsOnMobile ? "hidden md:flex" : ""
-              }`}
+            className={`h-[48px] rounded-[12px] border text-[16px] font-medium flex items-center justify-center gap-[10px] px-[10px] leading-none ${hideDetailsOnMobile ? "hidden md:flex md:w-[96px] lg:w-[103px] md:shrink-0 md:text-[14px] lg:text-[16px]" : "w-[96px] sm:w-[103px] shrink-0"}`}
             style={{ borderColor: mainColor, color: mainColor }}
           >
             Liên hệ

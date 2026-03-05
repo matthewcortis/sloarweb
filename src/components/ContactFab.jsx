@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
+import { useSalePhone } from "../hooks/useSalePhone";
 
-const CONTACT_PHONE = "+84 (95) 492-0242";
-const CONTACT_PHONE_TEL = "+84954920242";
 const SHOW_AFTER_SCROLL_PX = 240;
 
 export default function ContactFab() {
   const location = useLocation();
+  const { salePhoneLabel, salePhoneTel } = useSalePhone();
   const [showContact, setShowContact] = useState(false);
   const [fabViewportOffset, setFabViewportOffset] = useState(0);
 
@@ -76,8 +76,8 @@ export default function ContactFab() {
       } motion-reduce:transition-none`}
     >
       <a
-        href={`tel:${CONTACT_PHONE_TEL}`}
-        aria-label={`Liên hệ tư vấn trực tiếp: ${CONTACT_PHONE}`}
+        href={`tel:${salePhoneTel}`}
+        aria-label={`Liên hệ tư vấn trực tiếp: ${salePhoneLabel}`}
         className="contact-fab"
       >
         <span className="contact-fab__label">Liên hệ tư vấn trực tiếp</span>

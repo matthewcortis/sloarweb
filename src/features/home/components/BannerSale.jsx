@@ -1,5 +1,5 @@
 import { bannerSaleData } from "../../../services/banner.js";
-import BannerSale from "./banners/BannerSale.jsx";
+import BannerSaleHero from "./banners/BannerSale.jsx";
 import HybridBanner from "./MoTa.jsx";
 import { hybridData, moTaGioiThieu } from "../../../services/mota.js";
 import InfoCard from "../../../utils/GioiThieuCard.jsx";
@@ -14,20 +14,20 @@ export default function BannerSaleSupport() {
 
   return (
     <section className="w-full">
-      <div className="px-0 xl:px-[80px]">
-        <BannerSale data={bannerSaleData} />
+      <div className="px-0 sm:px-4 lg:px-8 xl:px-[80px]">
+        <BannerSaleHero data={bannerSaleData} />
       </div>
 
-      <div className="flex justify-center pt-[40px] xl:px-[80px] ">
+      <div className="flex justify-center pt-[32px] sm:pt-[40px] px-4 sm:px-6 lg:px-8 xl:px-[80px]">
         <div
           className="
-             w-full
-    xl:bg-white
-    xl:rounded-[12px]
-    xl:pb-[40px]
+            w-full
+            xl:bg-white
+            xl:rounded-[12px]
+            xl:pb-[40px]
           "
         >
-          <div className="flex px-4 flex-col items-center mx-auto max-w-[1280px]">
+          <div className="flex px-0 sm:px-2 lg:px-4 flex-col items-center mx-auto max-w-[1280px]">
             <div className="block md:hidden w-full">
               <div className="w-full">
                 <div className="flex items-start justify-between gap-4">
@@ -112,7 +112,7 @@ export default function BannerSaleSupport() {
             </div>
           </div>
 
-          <div className="mt-[24px] grid grid-cols-2 gap-x-[20px] gap-y-[24px] px-4 md:hidden">
+          <div className="mt-[24px] grid grid-cols-2 gap-x-[14px] sm:gap-x-[20px] gap-y-[20px] sm:gap-y-[24px] px-0 md:hidden">
             {mobileCards.map((item) => {
               const isLogoOnly = !item.text;
 

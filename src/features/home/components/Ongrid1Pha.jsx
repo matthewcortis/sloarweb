@@ -7,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 const HE_THONG = "On-Grid";
 const LOAI_PHA = "1 pha";
-const BAN_CHAY = false;
+//const BAN_CHAY = false;
 
 export default function OngridProducts1Pha() {
     const navigate = useNavigate();
     const { products, loading } = useTronGoiProducts({
         loaiHeThong: HE_THONG,
         loaiPha: LOAI_PHA,
-        banChay: BAN_CHAY,
+        //banChay: BAN_CHAY,
+        sortDirection: "ASC",
     });
 
     return (

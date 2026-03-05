@@ -60,18 +60,79 @@ const GROUP_LABELS = {
   OTHER: "Khác",
 };
 
+const getGroupCode = (item, fallbackGroupKey = "OTHER") => {
+  const rawGroupCode = item?.groupCode ?? item?.vatTu?.nhomVatTu?.ma;
+  if (!rawGroupCode) return fallbackGroupKey;
+  return rawGroupCode === "HE_TU_DIEN" ? "TU_DIEN" : rawGroupCode;
+};
+
+const getItemName = (item) =>
+  item?.name || item?.vatTu?.ten || item?.vatTu?.ma || "";
+
+const isPrimaryItem = (item) => {
+  if (typeof item?.isPrimary === "boolean") return item.isPrimary;
+  return item?.vatTu?.nhomVatTu?.vatTuChinh === true;
+};
+
+const getWarrantyValue = (item) => {
+  const rawWarranty =
+    item?.warranty ?? item?.thoiGianBaoHanh ?? item?.vatTu?.thoiGianBaoHanh;
+  if (!rawWarranty) return "--";
+  if (typeof rawWarranty === "object") {
+    return rawWarranty?.physical || rawWarranty?.performance || "--";
+  }
+  return rawWarranty;
+};
+
+const parseWarrantyMonths = (value) => {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string") {
+    const match = value.match(/-?\d+(?:[.,]\d+)?/);
+    if (!match) return null;
+    const parsed = Number(match[0].replace(",", "."));
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+};
+
+const formatYearsFromMonths = (months) => {
+  if (!Number.isFinite(months) || months <= 0) return "--";
+  const years = months / 12;
+  const normalizedYears = Number.isInteger(years)
+    ? years.toString()
+    : Number(years.toFixed(1)).toLocaleString("vi-VN", {
+        maximumFractionDigits: 1,
+      });
+  return `${normalizedYears} năm`;
+};
+
+const getPrimaryWarranty = (groupItems) => {
+  if (!groupItems?.length) return "--";
+  const foundItem =
+    groupItems.find((item) =>
+      Number.isFinite(
+        parseWarrantyMonths(item?.thoiGianBaoHanh ?? item?.vatTu?.thoiGianBaoHanh)
+      )
+    ) ?? groupItems[0];
+  const months = parseWarrantyMonths(
+    foundItem?.thoiGianBaoHanh ?? foundItem?.vatTu?.thoiGianBaoHanh
+  );
+  return formatYearsFromMonths(months);
+};
+
 const getFirstWarranty = (groupItems) => {
   if (!groupItems?.length) return "--";
   const found = groupItems.find(
-    (item) => item?.warranty && item.warranty !== "--"
+    (item) => getWarrantyValue(item) !== "--"
   );
-  return found?.warranty || groupItems[0]?.warranty || "--";
+  return getWarrantyValue(found || groupItems[0]);
 };
 
 const getTotalQuantity = (groupItems) => {
   if (!groupItems?.length) return 0;
   return groupItems.reduce((total, item) => {
-    const value = Number(item?.quantity ?? 0);
+    const value = Number(item?.quantity ?? item?.soLuong ?? 0);
     return total + (Number.isFinite(value) ? value : 0);
   }, 0);
 };
@@ -79,12 +140,14 @@ const getTotalQuantity = (groupItems) => {
 const getPrimaryName = (groupItems) => {
   if (!groupItems?.length) return "";
   const foundPrimary = groupItems.find(
-    (item) => item?.isPrimary && item?.name && item.name !== "--"
+    (item) => isPrimaryItem(item) && getItemName(item) && getItemName(item) !== "--"
   );
-  if (foundPrimary?.name) return foundPrimary.name;
+  if (foundPrimary) return getItemName(foundPrimary);
 
-  const found = groupItems.find((item) => item?.name && item.name !== "--");
-  return found?.name || groupItems[0]?.name || "";
+  const found = groupItems.find(
+    (item) => getItemName(item) && getItemName(item) !== "--"
+  );
+  return getItemName(found || groupItems[0]);
 };
 
 function BrandBadge({ brand }) {
@@ -107,26 +170,33 @@ export default function VatTuKhac({
   title = "Bản kê chi tiết vật tư",
   badgeText,
   items = defaultItems,
+  mainDevices = [],
 }) {
   const fallbackGroupKey = "OTHER";
   const summaryRows = GROUP_ORDER.map((groupKey) => {
-    const groupItems = items.filter(
-      (item) => (item?.groupCode || fallbackGroupKey) === groupKey
+    const isRequiredGroup = REQUIRED_GROUPS.includes(groupKey);
+    const sourceItems = isRequiredGroup ? mainDevices : items;
+    const groupItems = sourceItems.filter(
+      (item) => getGroupCode(item, fallbackGroupKey) === groupKey
     );
-    if (groupItems.length === 0 && !REQUIRED_GROUPS.includes(groupKey)) {
+    if (groupItems.length === 0 && !isRequiredGroup) {
       return null;
     }
 
     const firstItem = groupItems[0];
     const groupLabel =
-      firstItem?.groupName || GROUP_LABELS[groupKey] || groupKey;
-    const isRequiredGroup = REQUIRED_GROUPS.includes(groupKey);
+      firstItem?.groupName ||
+      firstItem?.vatTu?.nhomVatTu?.ten ||
+      GROUP_LABELS[groupKey] ||
+      groupKey;
     const primaryName = isRequiredGroup ? getPrimaryName(groupItems) : "";
 
     return {
       key: groupKey,
       label: primaryName || groupLabel,
-      warranty: getFirstWarranty(groupItems),
+      warranty: isRequiredGroup
+        ? getPrimaryWarranty(groupItems)
+        : getFirstWarranty(groupItems),
       quantity: isRequiredGroup ? getTotalQuantity(groupItems) : 1,
     };
   }).filter(Boolean);
