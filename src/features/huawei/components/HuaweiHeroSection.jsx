@@ -53,11 +53,11 @@ export default function HuaweiHeroSection({ data }) {
       </div>
 
       <div className="w-full flex justify-center">
-        <div className="w-full max-w-[1280px] flex flex-wrap justify-center gap-6 md:gap-6">
+        <div className="w-full max-w-[1280px] grid grid-cols-2 gap-3 md:flex md:flex-wrap md:justify-center md:gap-6">
           {devices.map((item) => (
             <div
               key={item.id}
-              className="w-[176.5px] h-[176.5px] md:w-[300.5px] md:h-[300.5px] bg-black rounded-[12px] p-4 md:p-6 flex flex-col items-start gap-[10px]"
+              className="w-full max-w-[176.5px] justify-self-center aspect-square md:w-[300.5px] md:h-[300.5px] md:max-w-none bg-black rounded-[12px] p-4 md:p-6 flex flex-col items-start gap-[10px]"
             >
               <div className="text-white text-base md:text-base font-semibold">
                 {item.title}

@@ -59,7 +59,7 @@ export default function Home() {
     <>
       <main className="w-full px-4 xl:px-0 lg:mt-10">
         <SolarComparison />
-
+    
         <div className="mt-[39px] lg:mt-[80px]">
           <HybridProducts1Pha />
         </div>
@@ -87,7 +87,7 @@ export default function Home() {
             onClick={() => window.location.href = bannerData.banner2.link}
           />
         </div>
-        <div className="-mx-4 bg-[#1D1D1F] px-4 pt-[39px] pb-0 lg:pt-[80px] lg:pb-[40px] xl:mx-0 xl:px-0">
+        <div className="-mx-4 bg-[#1D1D1F] px-4 pt-[39px] pb-[40px] lg:pt-[80px] lg:pb-[40px] xl:mx-0 xl:px-0">
           <Huawei />
         </div>
         <div className="mt-[39px] lg:mt-[30px]">

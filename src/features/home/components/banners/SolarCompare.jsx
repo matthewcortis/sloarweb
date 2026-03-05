@@ -36,7 +36,7 @@ export default function SolarCompare() {
   return (
     <section className="w-full mt-0 sm:mt-[16px] xl:px-[80px]">
       <div className="w-[calc(100%+2rem)] -mx-4 max-w-none sm:mx-auto sm:w-full sm:max-w-[1280px]">
-        <div className="flex flex-col-reverse lg:flex-row items-stretch sm:rounded-[14px] sm:overflow-hidden shadow-[0_30px_70px_-50px_rgba(0,0,0,0.35)]">
+        <div className="flex flex-col-reverse lg:flex-row items-stretch sm:rounded-[14px] sm:overflow-hidden shadow-none sm:shadow-[0_30px_70px_-50px_rgba(0,0,0,0.35)]">
           {/* Khối bên trái */}
           <div className="flex-1">
             <SoSanhHyOn />

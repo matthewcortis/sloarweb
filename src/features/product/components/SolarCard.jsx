@@ -32,16 +32,18 @@ export default function SolarCard({
 
   return (
     <div
-      className="
+      className={`
         w-[302px]
         rounded-[12px]
         shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)]
+        bg-[var(--card-bg)]
         flex flex-col
         overflow-hidden
         hover:shadow-lg transition-shadow
         cursor-pointer
+        ${hideDetailsOnMobile ? "w-full md:w-[302px] rounded-none md:rounded-[12px] shadow-none md:shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)] bg-transparent md:bg-[var(--card-bg)] overflow-visible md:overflow-hidden" : ""}
         ${className}
-      "
+      `}
       role="button"
       tabIndex={0}
       onClick={handleNavigate}
@@ -51,10 +53,10 @@ export default function SolarCard({
           handleNavigate();
         }
       }}
-      style={{ backgroundColor: cardBgColor }}
+      style={{ "--card-bg": cardBgColor }}
     >
       {/* ===== Tên + Ảnh ===== */}
-      <div className="p-3 flex flex-col gap-2">
+      <div className={`${hideDetailsOnMobile ? "p-0 md:p-3 gap-[10px] md:gap-2" : "p-3 gap-2"} flex flex-col`}>
         <div className="min-h-[44px] flex items-center">
           <h2
             className="text-[18px] font-semibold leading-[22px]"
@@ -71,13 +73,13 @@ export default function SolarCard({
         </div>
 
         {/* Giữ tỉ lệ ảnh */}
-        <div className="aspect-square rounded-[12px] overflow-hidden bg-[#F5F8FA] flex items-center justify-center">
+        <div className={`w-full aspect-square overflow-hidden bg-[#F5F8FA] flex items-center justify-center ${hideDetailsOnMobile ? "rounded-[6px] md:rounded-[12px]" : "rounded-[12px]"}`}>
           <img
             src={data.image}
             alt="product"
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover"
+            className={`h-full w-full ${hideDetailsOnMobile ? "object-contain" : "object-cover"}`}
             onError={(event) => {
               event.currentTarget.onerror = null;
               event.currentTarget.src = fallbackImage;
@@ -94,7 +96,7 @@ export default function SolarCard({
         >
           <img src={checkicon} alt="check" className="w-[18px] h-[18px]" />
           <p
-            className="text-[16px] font-normal leading-[19px] tracking-[0] truncate"
+            className={`text-[16px] font-normal tracking-[0] ${hideDetailsOnMobile ? "leading-[22px] whitespace-normal" : "leading-[19px] truncate"}`}
             style={{ color: textColor }}
           >
             {data.save}
@@ -145,7 +147,7 @@ export default function SolarCard({
         <div className="mt-auto flex gap-2 pt-2">
           <button
             onClick={() => navigate(`/products/${data.id}`)}
-            className="w-[163px] h-[48px] rounded-[12px] text-white text-[16px] font-medium flex items-center justify-center gap-2 px-[10px] leading-none"
+            className={`h-[48px] rounded-[12px] text-white text-[16px] font-medium flex items-center justify-center gap-2 px-[10px] leading-none ${hideDetailsOnMobile ? "w-full md:w-[163px]" : "w-[163px]"}`}
             style={{ backgroundColor: mainColor }}
           >
             Xem chi tiết

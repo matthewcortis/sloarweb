@@ -61,7 +61,7 @@ export default function SoSanhHyOn() {
         <div className="flex flex-col gap-4 md:gap-5">
           <h2
             className="
-            text-[21px] leading-[100%] tracking-[0] font-semibold text-left
+            text-[21px] leading-[130%] tracking-[0] font-semibold text-left
             md:text-center
             max-w-[700px] md:mx-auto"
             style={{ fontFamily: "SF Pro Display", fontStyle: "normal" }}

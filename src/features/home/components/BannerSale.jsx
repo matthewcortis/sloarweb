@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 export default function BannerSaleSupport() {
   const navigate = useNavigate();
   const introLink = hybridData?.moTaGioiThieu?.link || "/gioi-thieu";
+  const mobileCardOrder = [1, 2, 3, 5, 4, 6];
+  const mobileCards = mobileCardOrder
+    .map((id) => moTaGioiThieu.find((item) => item.id === id))
+    .filter(Boolean);
 
   return (
     <section className="w-full">
@@ -108,14 +112,57 @@ export default function BannerSaleSupport() {
             </div>
           </div>
 
-          {/* Grid InfoCard */}
+          <div className="mt-[24px] grid grid-cols-2 gap-x-[20px] gap-y-[24px] px-4 md:hidden">
+            {mobileCards.map((item) => {
+              const isLogoOnly = !item.text;
+
+              return (
+                <div
+                  key={item.id}
+                  className={`min-h-[140px] flex flex-col gap-3 ${
+                    isLogoOnly
+                      ? "items-center justify-center"
+                      : "items-start justify-start"
+                  }`}
+                >
+                  <img
+                    src={item.image}
+                    alt=""
+                    className={
+                      isLogoOnly
+                        ? "w-full max-w-[130px] h-[72px] object-contain"
+                        : "w-[40px] h-[40px] object-contain shrink-0"
+                    }
+                  />
+
+                  {item.text && (
+                    <p
+                      className="
+                        text-[#48484D]
+                        text-[16px]
+                        font-semibold
+                        leading-[24px]
+                        tracking-[0]
+                        text-left
+                        whitespace-pre-line
+                        break-words
+                      "
+                    >
+                      {item.text}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Grid InfoCard - desktop/tablet */}
           <div
             className="
                 mt-[24px] md:mt-10
-                grid
-                grid-cols-2        /* 👈 mobile: 2 card */
-                sm:grid-cols-2     /* tablet: 2 card */
-                lg:grid-cols-3     /* desktop: giữ nguyên 3 card */
+                hidden md:grid
+                sm:grid-cols-2
+                lg:grid-cols-3
                 gap-[16px]
                 md:gap-[24px]
                 auto-rows-auto
@@ -124,7 +171,6 @@ export default function BannerSaleSupport() {
                 mx-auto
             "
           >
-
             {moTaGioiThieu.map((item) => (
               <InfoCard
                 key={item.id}

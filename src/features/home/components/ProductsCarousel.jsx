@@ -40,17 +40,23 @@ export default function ProductsCarousel({
             items-stretch
 
             gap-x-4
-            gap-y-6
+            gap-y-4
+            md:gap-y-6
           "
         >
           {loading
             ? Array.from({ length: 8 }).map((_, i) => (
-                <SolarCardShimmer key={i} />
+                <div
+                  key={i}
+                  className="w-full"
+                >
+                  <SolarCardShimmer />
+                </div>
               ))
             : products.map((item) => (
                 <div
                   key={item.id}
-                  className="w-full flex justify-center"
+                  className={hideDetailsOnMobile ? "w-full" : "w-full flex justify-center"}
                 >
                   <ProductCard
                     data={item}
@@ -59,6 +65,7 @@ export default function ProductsCarousel({
                     textColor={textColor}
                     saveColor={saveColor}
                     hideDetailsOnMobile={hideDetailsOnMobile}
+                    className={hideDetailsOnMobile ? "w-full max-w-none md:w-[302px]" : ""}
                   />
                 </div>
               ))}

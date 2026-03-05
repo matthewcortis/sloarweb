@@ -1,6 +1,6 @@
 export default function SolarCardShimmer() {
   return (
-    <div className="w-[302px] h-[699px] rounded-[12px] bg-white shadow overflow-hidden">
+    <div className="w-full md:w-[302px] h-[699px] rounded-[12px] bg-white shadow overflow-hidden">
       {/* shimmer overlay */}
       <div className="relative w-full h-full overflow-hidden">
         <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200" />
