@@ -114,7 +114,7 @@ export default function BannerSale({ data }) {
         <div
           className={`
             absolute left-1/2 top-1/2 z-20 w-full max-w-[1320px] px-[clamp(14px,2.8vw,40px)]
-            -translate-x-1/2 flex items-center gap-[clamp(8px,1.5vw,24px)]
+            -translate-x-1/2 flex items-center justify-center gap-[clamp(8px,1.5vw,24px)]
             transition-all duration-700 ease-out
             ${show ? "-translate-y-[55%] opacity-100" : "-translate-y-[45%] opacity-0"}
           `}
@@ -131,7 +131,7 @@ export default function BannerSale({ data }) {
           {/* Nội dung */}
           <div
             className={`
-              max-w-[920px] flex-1 flex flex-col gap-[clamp(8px,1.4vw,14px)] text-white
+              max-w-[920px] w-[min(58vw,920px)] flex flex-col gap-[clamp(8px,1.4vw,14px)] text-white
               transition-all duration-700 ease-out delay-100
               ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
             `}

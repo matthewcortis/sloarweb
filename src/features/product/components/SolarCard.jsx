@@ -33,6 +33,10 @@ export default function SolarCard({
     window.location.href = `tel:${normalizedContactPhone}`;
   };
 
+  const pvInfoLabel = `${data?.pvLabel ?? ""}`.trim() || "Công suất PV";
+  const inverterInfoLabel = `${data?.inverterLabel ?? ""}`.trim() || "Biến tần solis";
+  const batteryInfoLabel = `${data?.batteryLabel ?? ""}`.trim() || "Lưu trữ Dyness";
+
   return (
     <div
       className={`
@@ -132,14 +136,14 @@ export default function SolarCard({
               : "flex flex-col gap-2"
           }
         >
-          <Info label={"Công suất PV: "} value={data.pv} color={textColor} />
+          <Info label={`${pvInfoLabel}:`} value={data.pv} color={textColor} />
           <Info
-            label={"Biến tần solis:"}
+            label={`Biến tần ${inverterInfoLabel}:`}
             value={data.inverter}
             color={textColor}
           />
           <Info
-            label={"Lưu trữ Dyness: "}
+            label={`Lưu trữ ${batteryInfoLabel}:`}
             value={data.battery}
             color={textColor}
           />

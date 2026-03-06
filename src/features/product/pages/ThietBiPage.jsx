@@ -74,6 +74,17 @@ function BrandProductRow({ groupKey, products }) {
 export default function ThietBiPage() {
   const { sections, loading, error } = useThietBiSections();
   const navigate = useNavigate();
+  const handleNavigateToBrand = (groupCode, brandName) => {
+    const params = new URLSearchParams({
+      group: groupCode,
+    });
+
+    if (brandName) {
+      params.set("brand", brandName);
+    }
+
+    navigate(`/device/thuong-hieu?${params.toString()}`);
+  };
 
   if (loading) {
     return (
@@ -101,40 +112,31 @@ export default function ThietBiPage() {
         {sections.map((section) => (
           <section key={section.code} className="w-full">
             <div className="w-full max-w-[1232px] mx-auto">
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
                 <h2 className="typo-page-title text-[#111111]">
                   {section.title}
                 </h2>
-                <button
-                  type="button"
-                  className="text-[16px] font-medium text-[#E53935] underline"
-                  onClick={() =>
-                    navigate(`/device/thuong-hieu?group=${section.code}`)
-                  }
-                >
-                  Tìm hiểu thêm
-                </button>
               </div>
 
               {section.brandGroups.length > 0 ? (
                 <div className="mt-4 flex flex-col gap-8">
                   {section.brandGroups.map((group) => (
                     <div key={group.key} className="flex flex-col gap-6">
-                      <div className="w-full rounded-[12px] px-[16px] md:px-[39px] py-[16px] md:py-0 md:min-h-[122px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[66px] xl:gap-[107px]">
+                      <div className="w-full rounded-[12px] bg-[#F3F3F3] px-[16px] md:px-[39px] py-[16px] md:min-h-[122px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[24px]">
                         {group.logo ? (
                           <img
                             src={group.logo}
                             alt={group.name}
-                            className="w-[127px] h-[39px] object-contain"
+                            className="w-[127px] h-[39px] object-contain shrink-0"
                           />
                         ) : (
-                          <span className="typo-title text-[#111111]">
+                          <span className="typo-title text-[#111111] shrink-0">
                             {group.name}
                           </span>
                         )}
 
                         <p
-                          className="text-[#000000]  "
+                          className="flex-1 text-[#000000]"
                           style={{
                             fontFamily: "SF Pro Display",
                             fontWeight: 400,
@@ -146,6 +148,15 @@ export default function ThietBiPage() {
                         >
                           {group.description}
                         </p>
+                        <button
+                          type="button"
+                          className="self-start md:self-center text-[16px] font-medium text-[#E53935] underline whitespace-nowrap"
+                          onClick={() =>
+                            handleNavigateToBrand(section.code, group.name)
+                          }
+                        >
+                          Tìm hiểu thêm
+                        </button>
                       </div>
 
                       <BrandProductRow

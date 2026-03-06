@@ -2,13 +2,17 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { thietBiThuongHieuData } from "../../../assets/data/thietbi";
 import DeviceCard from "../components/ThietBiCard.jsx";
-import { fetchThietBiByGroup } from "../api/thietBiApi";
+import {
+  fetchThietBiByGroup,
+  fetchThietBiByGroupAndBrand,
+} from "../api/thietBiApi";
 import { DEVICE_SECTIONS } from "../hooks/useThietBiSections";
 import { mapVatTuToDevice } from "../utils/thietBiMapper";
 
 export default function ThietBi_ThuongHieuPage() {
   const [searchParams] = useSearchParams();
   const groupParam = searchParams.get("group") || "";
+  const brandParam = (searchParams.get("brand") || "").trim();
   const selectedGroup = useMemo(() => {
     if (groupParam) return groupParam;
     return DEVICE_SECTIONS[0]?.code || "";
@@ -20,11 +24,28 @@ export default function ThietBi_ThuongHieuPage() {
     return found?.title || "";
   }, [selectedGroup]);
   const selectedBrand = useMemo(() => {
-    const found = thietBiThuongHieuData.find(
+    const sameGroup = thietBiThuongHieuData.filter(
       (item) => item.groupCode === selectedGroup
     );
-    return found || thietBiThuongHieuData[0] || null;
-  }, [selectedGroup]);
+    if (sameGroup.length === 0) {
+      return thietBiThuongHieuData[0] || null;
+    }
+
+    if (!brandParam) {
+      return sameGroup[0];
+    }
+
+    const normalizedBrand = brandParam.toLowerCase();
+    const matchedByContent = sameGroup.find((item) => {
+      const descriptionText = Array.isArray(item.description)
+        ? item.description.join(" ")
+        : `${item.description || ""}`;
+      const haystack = `${item.title || ""} ${descriptionText}`.toLowerCase();
+      return haystack.includes(normalizedBrand);
+    });
+
+    return matchedByContent || sameGroup[0];
+  }, [selectedGroup, brandParam]);
   const descriptionBlocks = useMemo(() => {
     if (!selectedBrand) return [];
     const raw = selectedBrand.description;
@@ -71,7 +92,9 @@ export default function ThietBi_ThuongHieuPage() {
           return;
         }
 
-        const results = await fetchThietBiByGroup(selectedGroup);
+        const results = brandParam
+          ? await fetchThietBiByGroupAndBrand(selectedGroup, brandParam)
+          : await fetchThietBiByGroup(selectedGroup);
         if (!isMounted) return;
 
         const mapped = Array.isArray(results)
@@ -96,7 +119,7 @@ export default function ThietBi_ThuongHieuPage() {
     return () => {
       isMounted = false;
     };
-  }, [selectedGroup]);
+  }, [selectedGroup, brandParam]);
 
   useEffect(() => {
     updateDots();
@@ -161,7 +184,9 @@ export default function ThietBi_ThuongHieuPage() {
         <div className="px-[16px] lg:px-[80px] py-[24px] lg:py-[40px]">
           <div className="w-full max-w-[1232px] mx-auto">
             <h2 className="typo-section-title text-[#111111]">
-              Danh mục thiết bị{selectedTitle ? `: ${selectedTitle}` : ""}
+              Danh mục thiết bị
+              {selectedTitle ? `: ${selectedTitle}` : ""}
+              {brandParam ? ` - ${brandParam}` : ""}
             </h2>
 
             {loadingDevices ? (

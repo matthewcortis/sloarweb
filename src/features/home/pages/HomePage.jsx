@@ -97,7 +97,7 @@ export default function Home() {
         <div className="-mx-4 mt-[39px] lg:mt-[80px]">
           <BannerSaleSupport />
         </div>
-        <div className=" mt-[39px] lg:mt-[30px]">
+        <div className="-mx-4 mt-[39px] px-4 lg:mx-0 lg:mt-[80px] lg:px-0">
           <MeGaStory />
         </div>
           <div className=" mt-[39px] lg:mt-[80px]">

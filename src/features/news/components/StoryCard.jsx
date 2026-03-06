@@ -8,6 +8,12 @@ export default function MegaStoryCard({
   variant = "compact",
 }) {
   const isPageMobileVariant = variant === "pageMobile";
+  const cardSizeClass = isPageMobileVariant
+    ? "w-full sm:w-[290px]"
+    : "w-[78vw] min-w-[220px] max-w-[290px] sm:w-[290px]";
+  const contentMinHeightClass = isPageMobileVariant
+    ? "min-h-[86px] sm:min-h-[91px]"
+    : "min-h-[91px]";
 
   const handleImageError = (event) => {
     event.currentTarget.onerror = null;
@@ -19,9 +25,7 @@ export default function MegaStoryCard({
       onClick={onClick}
       className={`
         flex-shrink-0
-        ${isPageMobileVariant
-          ? "h-[282.5px] w-full sm:w-[290px] sm:h-[280px]"
-          : "h-[253px] w-[252px] sm:w-[290px] sm:h-[280px]"}
+        ${cardSizeClass}
         bg-[#F2F2F2]
         rounded-[12px]
         shadow-[0px_8px_16px_0px_rgba(231,234,237,0.4)]
@@ -36,9 +40,7 @@ export default function MegaStoryCard({
       <div
         className={`
           relative flex-none
-          ${isPageMobileVariant
-            ? "w-full h-[180.5px] sm:h-[145px]"
-            : "w-[252px] h-[126px] sm:w-full sm:h-[145px]"}
+          w-full aspect-[2/1]
           overflow-hidden rounded-[6px]
         `}
       >
@@ -55,25 +57,18 @@ export default function MegaStoryCard({
       </div>
 
       <div
-        className={`px-2 flex flex-col gap-[10px] ${
-          isPageMobileVariant ? "h-[86px]" : "h-[111px]"
-        } sm:h-auto sm:flex-1`}
+        className={`px-2 flex flex-col gap-2 ${contentMinHeightClass} flex-1`}
       >
         <h3
           className={`
             font-['SF_Pro_Display']
             font-semibold
-            text-[21px]
+            text-[clamp(16px,18px)]
             leading-[130%]
             tracking-[0px]
-            text-[#242425]
             overflow-hidden
             [display:-webkit-box]
-            ${
-              isPageMobileVariant
-                ? "[-webkit-line-clamp:2]"
-                : "[-webkit-line-clamp:3]"
-            }
+            [-webkit-line-clamp:2]
             [-webkit-box-orient:vertical]
           `}
         >
@@ -83,11 +78,10 @@ export default function MegaStoryCard({
         <button
           type="button"
           className="
-            mt-auto
             bg-transparent
             p-0
             font-['SF_Pro_Display']
-            text-[16px]
+            text-[15px] sm:text-[16px]
             font-semibold
             leading-[100%]
             tracking-[0px]

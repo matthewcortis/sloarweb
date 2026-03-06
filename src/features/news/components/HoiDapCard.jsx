@@ -3,6 +3,8 @@ import { useState } from "react";
 export default function QAItem({ title, content }) {
   const [open, setOpen] = useState(false);
 
+   
+          
   return (
     <div className="w-full  md:max-w-[845px] bg-white rounded-[12px]">
       {/* Header */}
@@ -12,7 +14,7 @@ export default function QAItem({ title, content }) {
                    h-[48px] px-4 py-3 gap-2
                    cursor-pointer"
       >
-        <h3 className="text-[16px] font-semibold leading-[24px] text-[#242425]">
+        <h3 className="text-[clamp(16px,18px)] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] font-semibold font-['SF_Pro_Display'] leading-[24px] text-[#242425]  tracking-[0px] overflow-hidden [display:-webkit-box]">
           {title}
         </h3>
 
@@ -40,11 +42,11 @@ export default function QAItem({ title, content }) {
       >
         <div className="px-4 pb-3">
           <div
-            className="text-[16px] leading-[20px] text-[#48484D] font-normal"
+            className="typo-longform mt-[24px] text-[#4A4A4A] leading-[25px]  font-normal"
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </div>
       </div>
-    </div>
+    </div> 
   );
 }

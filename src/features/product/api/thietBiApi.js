@@ -63,3 +63,51 @@ export const fetchThietBiByGroup = async (groupCode) => {
 
   return Array.isArray(content) ? content : [];
 };
+
+export const fetchThietBiByGroupAndBrand = async (groupCode, brandName) => {
+  const normalizedGroup = `${groupCode ?? ""}`.trim();
+  const normalizedBrand = `${brandName ?? ""}`.trim();
+  if (!normalizedGroup || !normalizedBrand) return [];
+
+  const payload = {
+    filters: [
+      {
+        fieldName: "nhomVatTu.ma",
+        operation: "EQUALS",
+        value: normalizedGroup,
+        logicType: "AND",
+      },
+      {
+        fieldName: "trangThai",
+        operation: "EQUALS",
+        value: 1,
+        logicType: "AND",
+      },
+      {
+        fieldName: "vatTuChinh",
+        operation: "EQUALS",
+        value: true,
+        logicType: "AND",
+      },
+      {
+        fieldName: "thuongHieu.ten",
+        operation: "EQUALS",
+        value: normalizedBrand,
+        logicType: "AND",
+      },
+    ],
+    sorts: [{ fieldName: "taoLuc", direction: "ASC" }],
+    page: 0,
+    size: 1000,
+  };
+
+  const response = await post("basic-api/vat-tu/filter", payload);
+  const resolved = response?.data ?? response;
+  const content =
+    resolved?.content ??
+    resolved?.data?.content ??
+    resolved?.data ??
+    resolved;
+
+  return Array.isArray(content) ? content : [];
+};

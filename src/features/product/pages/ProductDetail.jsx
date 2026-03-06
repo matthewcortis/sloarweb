@@ -27,6 +27,8 @@ import { useSalePhone } from "../../../hooks/useSalePhone";
 const TRON_GOI_BANNER_POSITION = "WEB_BANNER_TRON_GOI_1";
 const THI_CONG_THIET_BI_POSITION = "WEB_BIEN_PHAP_THI_CONG_THIET_BI";
 const BIEU_DO_DIEN_POSITION = "WEB_BIEU_DO_DIEN";
+const PVOUT_HN_POSITION = "WEB_PVOUT_HN";
+const PVOUT_HCM_POSITION = "WEB_PVOUT_HCM";
 
 const defaultThiCongThietBiCards = [
   {
@@ -66,26 +68,15 @@ const mapQuangCaoToCards = (items = []) =>
       items: [],
     }));
 
-const defaultBieuDoDienItems = [
+const defaultPvOutItems = [
   {
-    id: "pv-out-1",
-    image: pvhcm,
-  },
-  {
-    id: "pv-out-2",
+    id: "pv-out-hn",
     image: pvhn,
-  }
-];
-
-const pvOutCategories = [
-  {
-    id: "pv-out",
-    description:
-      "Tập đoàn Điện lực Việt Nam công bố Hệ số PVout năm 2025 phục vụ tính toán sản lượng điện mặt trời mái nhà tự sản xuất, tự tiêu thụ.",
-    items: defaultBieuDoDienItems,
-    listClassName: "h-[252px] md:h-[291px]",
-    gapClassName: "gap-4",
   },
+  {
+    id: "pv-out-hcm",
+    image: pvhcm,
+  }
 ];
 
 export default function ProductDetail() {
@@ -96,7 +87,8 @@ export default function ProductDetail() {
   const [tronGoi, setTronGoi] = useState(null);
   const [tronGoiBannerImage, setTronGoiBannerImage] = useState(bannerData.banner3.image);
   const [thiCongThietBiCards, setThiCongThietBiCards] = useState(defaultThiCongThietBiCards);
-  const [bieuDoDienItems, setBieuDoDienItems] = useState(defaultBieuDoDienItems);
+  const [pvOutItems, setPvOutItems] = useState(defaultPvOutItems);
+  const [bieuDoDienItems, setBieuDoDienItems] = useState(defaultPvOutItems);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -165,6 +157,51 @@ export default function ProductDetail() {
     };
 
     loadTronGoiBanner();
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const loadPvOutItems = async () => {
+      try {
+        const [pvOutHnImageUrl, pvOutHcmImageUrl] = await Promise.all([
+          fetchQuangCaoImageUrlByViTri({
+            viTri: PVOUT_HN_POSITION,
+            page: 0,
+            size: 20,
+          }),
+          fetchQuangCaoImageUrlByViTri({
+            viTri: PVOUT_HCM_POSITION,
+            page: 0,
+            size: 20,
+          }),
+        ]);
+
+        if (isActive) {
+          setPvOutItems([
+            {
+              id: "pv-out-hn",
+              image: pvOutHnImageUrl || pvhn,
+            },
+            {
+              id: "pv-out-hcm",
+              image: pvOutHcmImageUrl || pvhcm,
+            },
+          ]);
+        }
+      } catch (fetchError) {
+        console.error(
+          "Khong tai duoc danh sach WEB_PVOUT_HN / WEB_PVOUT_HCM",
+          fetchError
+        );
+      }
+    };
+
+    loadPvOutItems();
 
     return () => {
       isActive = false;
@@ -249,6 +286,20 @@ export default function ProductDetail() {
       },
     ],
     [bieuDoDienItems]
+  );
+
+  const pvOutCategories = useMemo(
+    () => [
+      {
+        id: "pv-out",
+        description:
+          "Tập đoàn Điện lực Việt Nam công bố Hệ số PVout năm 2025 phục vụ tính toán sản lượng điện mặt trời mái nhà tự sản xuất, tự tiêu thụ.",
+        items: pvOutItems,
+        listClassName: "h-[252px] md:h-[291px]",
+        gapClassName: "gap-4",
+      },
+    ],
+    [pvOutItems]
   );
 
   const deviceProducts = useMemo(() => {
@@ -410,7 +461,7 @@ export default function ProductDetail() {
         </div>
 
         {/* công thức sản lượng điện */}
-        <div className="w-full h-[152px] px-4 pt-[20px] pb-[10px] lg:px-[10px] lg:pt-[20px] lg:pb-[10px]">
+        <div className="w-full h-auto min-h-[152px] px-4 pt-[20px] pb-[10px] lg:min-h-[152px] lg:px-[10px] lg:pt-[20px] lg:pb-[10px]">
           <div className="text-left text-[#4A4A4A] text-[16px] leading-[100%] tracking-[0]">
             <p className="font-normal">Công thức sản lượng điện mặt trời:</p>
             <p className="mt-[2px] leading-[140%] font-semibold">
@@ -426,7 +477,7 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="w-full mt-[39px] lg:mt-[80px] pl-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
+        <div className="w-full mt-[39px] lg:mt-[20px] px-4 pr-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BienPhapThiCong
             title="Biểu đồ điện"
             categories={bieuDoDienCategories}
