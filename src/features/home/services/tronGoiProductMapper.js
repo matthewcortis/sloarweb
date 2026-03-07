@@ -274,6 +274,7 @@ export const mapTronGoiToProduct = (tronGoi) => ({
   id: tronGoi.id,
   title: tronGoi.ten || "Hệ thống Hy-Brid",
   image: tronGoi?.tepTin?.duongDan || productFallbackImage,
+  nhomTronGoiTen: tronGoi?.nhomTronGoi?.ten || "",
   save: tronGoi?.nhomTronGoi?.ten || tronGoi?.moTa || "",
   price: formatCurrency(tronGoi?.tongGia),
   pvLabel: getBrandLabel(tronGoi?.nhomTronGoi?.thuongHieuTamPin),

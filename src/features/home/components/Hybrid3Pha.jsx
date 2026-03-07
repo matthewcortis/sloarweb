@@ -5,18 +5,25 @@ import SoSanh3Pha from "./sosanh.jsx";
 import { hybridData } from "../../../services/mota.js";
 import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
 import { useNavigate } from "react-router-dom";
+import {
+  filterProductsByNhomTronGoiTen,
+  getNhomTronGoiTenFromProducts,
+} from "../services/nhomTronGoiTenFilter.js";
 
 const HE_THONG = "Hy-Brid";
 const LOAI_PHA = "3 pha";
-const NHOM_TRON_GOI_TEN = "JA Solar - Solis - Dyness";
 export default function HybridProductsSection() {
   const navigate = useNavigate();
   const { products, loading } = useTronGoiProducts({
     loaiHeThong: HE_THONG,
     loaiPha: LOAI_PHA,
-    nhomTronGoiTen: NHOM_TRON_GOI_TEN,
     sortDirection: "ASC",
   });
+  const nhomTronGoiTen = getNhomTronGoiTenFromProducts(products);
+  const filteredProducts = filterProductsByNhomTronGoiTen(
+    products,
+    nhomTronGoiTen
+  );
 
   return (
     <div className="px-0 xl:px-[80px] pb-0 lg:pb-[80px]">
@@ -50,7 +57,7 @@ export default function HybridProductsSection() {
           w-[calc(100%+16px)] xl:w-[calc(100%+80px)]
         "
       >
-        <ProductsCarousel products={products} loading={loading} />
+        <ProductsCarousel products={filteredProducts} loading={loading} />
       </div>
     </div>
   );

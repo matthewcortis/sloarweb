@@ -4,8 +4,10 @@ import ProductsCarousel from "../../home/components/ProductsCarousel.jsx";
 import { useTronGoiProducts } from "../../home/controllers/useTronGoiProducts";
 import { BAN_CHAY, PRESETS, PRESET_BY_PATH } from "../hooks/productPresets.js";
 import { hybridData } from "../../../services/mota.js";
-
-const NHOM_TRON_GOI_TEN = "JA Solar - Solis - Dyness";
+import {
+  filterProductsByNhomTronGoiTen,
+  getNhomTronGoiTenFromProducts,
+} from "../../home/services/nhomTronGoiTenFilter.js";
 
 const resolveBannerData = ({ loaiHeThong, loaiPha }) => {
   if (loaiHeThong === "Hy-Brid") {
@@ -40,8 +42,6 @@ export default function ProductPage({ preset }) {
   const queryConfig = {
     loaiHeThong,
     banChay: BAN_CHAY ? true : undefined,
-    nhomTronGoiTen: NHOM_TRON_GOI_TEN,
-    nhomTronGoiTenOperation: "ILIKE",
     page: activePreset ? activePreset.page : undefined,
     size: activePreset ? activePreset.size : undefined,
     sortField: activePreset ? activePreset.sortField : undefined,
@@ -66,6 +66,16 @@ export default function ProductPage({ preset }) {
     ...queryConfig,
     loaiPha: "3 pha",
   });
+  const nhomTronGoiTen1Pha = getNhomTronGoiTenFromProducts(products1Pha);
+  const filteredProducts1Pha = filterProductsByNhomTronGoiTen(
+    products1Pha,
+    nhomTronGoiTen1Pha
+  );
+  const nhomTronGoiTen3Pha = getNhomTronGoiTenFromProducts(products3Pha);
+  const filteredProducts3Pha = filterProductsByNhomTronGoiTen(
+    products3Pha,
+    nhomTronGoiTen3Pha
+  );
 
   return (
     <main className="px-[16px] xl:px-[80px] pt-[39px] lg:pt-[80px] pb-[39px] lg:pb-[80px]">
@@ -75,7 +85,7 @@ export default function ProductPage({ preset }) {
 
           <div className="mt-[24px]">
             <ProductsCarousel
-              products={products1Pha}
+              products={filteredProducts1Pha}
               loading={loading1Pha}
               viewMode="grid"
               hideDetailsOnMobile
@@ -90,7 +100,7 @@ export default function ProductPage({ preset }) {
 
           <div className="mt-[24px]">
             <ProductsCarousel
-              products={products3Pha}
+              products={filteredProducts3Pha}
               loading={loading3Pha}
               viewMode="grid"
               hideDetailsOnMobile

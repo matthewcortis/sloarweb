@@ -4,19 +4,26 @@ import ProductsCarousel from "./ProductsCarousel.jsx";
 import { hybridData } from "../../../services/mota.js";
 import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
 import { useNavigate } from "react-router-dom";
+import {
+  filterProductsByNhomTronGoiTen,
+  getNhomTronGoiTenFromProducts,
+} from "../services/nhomTronGoiTenFilter.js";
 
 const HE_THONG = "On-Grid";
 const LOAI_PHA = "3 pha";
-//const BAN_CHAY = false;
 
 export default function OngridProducts3Pha() {
   const navigate = useNavigate();
   const { products, loading } = useTronGoiProducts({
     loaiHeThong: HE_THONG,
     loaiPha: LOAI_PHA,
-    //banChay: BAN_CHAY,
     sortDirection: "ASC",
   });
+  const nhomTronGoiTen = getNhomTronGoiTenFromProducts(products);
+  const filteredProducts = filterProductsByNhomTronGoiTen(
+    products,
+    nhomTronGoiTen
+  );
 
   return (
     <div className="px-0 xl:px-[80px] pb-0 lg:pb-[30px]">
@@ -42,7 +49,7 @@ export default function OngridProducts3Pha() {
         "
       >
         <ProductsCarousel
-          products={products}
+          products={filteredProducts}
           loading={loading}
           cardBgColor="#FFFFFF"
           mainColor="#EE4037"

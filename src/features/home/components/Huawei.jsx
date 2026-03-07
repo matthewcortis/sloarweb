@@ -4,17 +4,24 @@ import { hybridData } from "../../../services/mota.js";
 import ProductsCarousel from "./ProductsCarousel.jsx";
 import { useNavigate } from "react-router-dom";
 import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
+import {
+    filterProductsByNhomTronGoiTen,
+    getNhomTronGoiTenFromProducts,
+} from "../services/nhomTronGoiTenFilter.js";
 
-const NHOM_TRON_GOI_TEN = "HUAWEI";
 //const BAN_CHAY = false;
 
 export default function Huawei({ hideDescriptionAndButton = false }) {
     const navigate = useNavigate();
     const { products, loading } = useTronGoiProducts({
-        nhomTronGoiTen: NHOM_TRON_GOI_TEN,
         //banChay: BAN_CHAY,
         sortDirection: "DESC",
     });
+    const nhomTronGoiTen = getNhomTronGoiTenFromProducts(products);
+    const filteredProducts = filterProductsByNhomTronGoiTen(
+        products,
+        nhomTronGoiTen
+    );
     const huaweiBannerData = hideDescriptionAndButton
         ? { ...hybridData.moTaHuawei, description: "" }
         : hybridData.moTaHuawei;
@@ -46,7 +53,7 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
 	        "
             >
                 <ProductsCarousel
-                    products={products}
+                    products={filteredProducts}
                     loading={loading}
                     cardBgColor="#000000"
                     mainColor="#EE4037"

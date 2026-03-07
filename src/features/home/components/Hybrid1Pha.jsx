@@ -3,19 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { hybridData } from "../../../services/mota.js";
 import Hybrid1PhaView from "./Hybrid1PhaView.jsx";
 import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
+import {
+  filterProductsByNhomTronGoiTen,
+  getNhomTronGoiTenFromProducts,
+} from "../services/nhomTronGoiTenFilter.js";
 
 const HE_THONG = "Hy-Brid";
 const LOAI_PHA = "1 pha";
-const NHOM_TRON_GOI_TEN = "JA Solar - Solis - Dyness";
 
 export default function HybridProducts1Pha() {
   const navigate = useNavigate();
   const { products, loading } = useTronGoiProducts({
     loaiHeThong: HE_THONG,
     loaiPha: LOAI_PHA,
-    nhomTronGoiTen: NHOM_TRON_GOI_TEN,
     sortDirection: "ASC",
   });
+  const nhomTronGoiTen = getNhomTronGoiTenFromProducts(products);
+  const filteredProducts = filterProductsByNhomTronGoiTen(
+    products,
+    nhomTronGoiTen
+  );
 
   return (
     <Hybrid1PhaView
@@ -28,7 +35,7 @@ export default function HybridProducts1Pha() {
           }).toString()}`
         )
       }
-      products={products}
+      products={filteredProducts}
       loading={loading}
     />
   );
