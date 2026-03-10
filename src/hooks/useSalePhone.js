@@ -1,21 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { fetchCoSoByMa } from "../services/coSoApi";
+import { fetchMienByTenMien } from "../services/mienApi";
 
-const DEFAULT_LOCATION = "HN";
-const VALID_LOCATIONS = new Set(["HN", "HCM"]);
 const DEFAULT_SALE_PHONE = "0964920242";
 
 const salePhoneCache = new Map();
 const salePhoneRequestCache = new Map();
-
-const normalizeLocation = (location) =>
-  VALID_LOCATIONS.has(location) ? location : DEFAULT_LOCATION;
-
-const getStoredLocation = () => {
-  if (typeof window === "undefined") return DEFAULT_LOCATION;
-  const storedLocation = window.localStorage.getItem("solarmax-location");
-  return normalizeLocation(storedLocation);
-};
 
 const toTelPhone = (phone = "") => {
   const trimmed = `${phone}`.trim();
@@ -42,76 +31,126 @@ const toPhoneLabel = (phone = "") => {
 const resolveFallbackPhone = (fallbackPhone) =>
   toTelPhone(fallbackPhone) || DEFAULT_SALE_PHONE;
 
-const fetchSalePhoneByLocation = async (location) => {
-  const normalizedLocation = normalizeLocation(location);
+const normalizeDomain = (domain = "") => {
+  const trimmedDomain = `${domain}`.trim();
+  if (!trimmedDomain) return "";
 
-  if (salePhoneCache.has(normalizedLocation)) {
-    return salePhoneCache.get(normalizedLocation);
+  let candidateDomain = trimmedDomain;
+  if (!/^https?:\/\//i.test(candidateDomain)) {
+    candidateDomain = `https://${candidateDomain}`;
   }
 
-  if (salePhoneRequestCache.has(normalizedLocation)) {
-    return salePhoneRequestCache.get(normalizedLocation);
+  try {
+    const parsedUrl = new URL(candidateDomain);
+    parsedUrl.hash = "";
+    parsedUrl.search = "";
+    parsedUrl.pathname = "/";
+    return parsedUrl.toString();
+  } catch {
+    return "";
   }
+};
 
-  const request = fetchCoSoByMa(normalizedLocation)
-    .then((coSo) => {
-      const salePhone = `${coSo?.sdt ?? ""}`.trim();
-      if (!salePhone) {
-        throw new Error(`Co so ${normalizedLocation} khong co so dien thoai`);
+const buildDomainCandidates = (domain = "") => {
+  const normalizedDomain = normalizeDomain(domain);
+  if (!normalizedDomain) return [];
+
+  const candidates = new Set([normalizedDomain]);
+
+  try {
+    const parsedUrl = new URL(normalizedDomain);
+    const normalizedHost = parsedUrl.hostname.toLowerCase();
+
+    if (normalizedHost.includes(".")) {
+      if (normalizedHost.startsWith("www.")) {
+        parsedUrl.hostname = normalizedHost.replace(/^www\./, "");
+      } else {
+        parsedUrl.hostname = `www.${normalizedHost}`;
       }
+      candidates.add(parsedUrl.toString());
+    }
+  } catch {
+    // no-op
+  }
 
+  return Array.from(candidates);
+};
+
+const getCurrentDomain = () => {
+  if (typeof window === "undefined") return "";
+  return normalizeDomain(window.location.origin);
+};
+
+const fetchSalePhoneByDomain = async (domain) => {
+  const normalizedDomain = normalizeDomain(domain);
+  if (!normalizedDomain) {
+    throw new Error("Khong xac dinh duoc ten mien hien tai");
+  }
+
+  if (salePhoneCache.has(normalizedDomain)) {
+    return salePhoneCache.get(normalizedDomain);
+  }
+
+  if (salePhoneRequestCache.has(normalizedDomain)) {
+    return salePhoneRequestCache.get(normalizedDomain);
+  }
+
+  const request = (async () => {
+    const domainCandidates = buildDomainCandidates(normalizedDomain);
+
+    for (const domainCandidate of domainCandidates) {
+      const mien = await fetchMienByTenMien({
+        tenMien: domainCandidate,
+        page: 0,
+        size: 6,
+      });
+      const salePhone = `${mien?.coSo?.sdt ?? ""}`.trim();
       const normalizedPhone = toTelPhone(salePhone);
-      salePhoneCache.set(normalizedLocation, normalizedPhone);
-      salePhoneRequestCache.delete(normalizedLocation);
-      return normalizedPhone;
-    })
-    .catch((error) => {
-      salePhoneRequestCache.delete(normalizedLocation);
-      throw error;
-    });
 
-  salePhoneRequestCache.set(normalizedLocation, request);
+      if (normalizedPhone) {
+        salePhoneCache.set(normalizedDomain, normalizedPhone);
+        return normalizedPhone;
+      }
+    }
+
+    throw new Error(`Ten mien ${normalizedDomain} khong co so dien thoai`);
+  })().finally(() => {
+    salePhoneRequestCache.delete(normalizedDomain);
+  });
+
+  salePhoneRequestCache.set(normalizedDomain, request);
   return request;
 };
 
 export const useSalePhone = ({ fallbackPhone } = {}) => {
-  const [location, setLocation] = useState(getStoredLocation);
   const fallbackPhoneValue = useMemo(
     () => resolveFallbackPhone(fallbackPhone),
     [fallbackPhone]
   );
+  const domain = useMemo(() => getCurrentDomain(), []);
   const [salePhoneTel, setSalePhoneTel] = useState(() => {
-    const cachedPhone = salePhoneCache.get(getStoredLocation());
+    const cachedPhone = salePhoneCache.get(getCurrentDomain());
     return cachedPhone || fallbackPhoneValue;
   });
-
-  useEffect(() => {
-    if (typeof window === "undefined") return undefined;
-
-    const handleLocationChange = () => {
-      setLocation(getStoredLocation());
-    };
-
-    window.addEventListener("storage", handleLocationChange);
-    window.addEventListener("solarmax-location-change", handleLocationChange);
-
-    return () => {
-      window.removeEventListener("storage", handleLocationChange);
-      window.removeEventListener("solarmax-location-change", handleLocationChange);
-    };
-  }, []);
 
   useEffect(() => {
     let isActive = true;
 
     const loadSalePhone = async () => {
+      if (!domain) {
+        if (isActive) {
+          setSalePhoneTel(fallbackPhoneValue);
+        }
+        return;
+      }
+
       try {
-        const resolvedPhone = await fetchSalePhoneByLocation(location);
+        const resolvedPhone = await fetchSalePhoneByDomain(domain);
         if (isActive) {
           setSalePhoneTel(resolvedPhone || fallbackPhoneValue);
         }
       } catch (error) {
-        console.error("Khong tai duoc so dien thoai sale theo co so", error);
+        console.error("Khong tai duoc so dien thoai sale theo ten mien", error);
         if (isActive) {
           setSalePhoneTel(fallbackPhoneValue);
         }
@@ -123,7 +162,7 @@ export const useSalePhone = ({ fallbackPhone } = {}) => {
     return () => {
       isActive = false;
     };
-  }, [location, fallbackPhoneValue]);
+  }, [domain, fallbackPhoneValue]);
 
   const salePhoneLabel = useMemo(
     () => toPhoneLabel(salePhoneTel),
@@ -131,9 +170,8 @@ export const useSalePhone = ({ fallbackPhone } = {}) => {
   );
 
   return {
-    location,
+    domain,
     salePhoneTel,
     salePhoneLabel,
   };
 };
-

@@ -22,7 +22,7 @@ const footer = {
   warehouses: [
     {
       title: "Kho Hà Nội",
-      address: "Đường Hoàng Sa, Đông Anh, TP Hà Nội",
+      address: "Đường Vân Nội, Đông Anh, Hà Nội ",
     },
     {
       title: "Kho Bắc Giang",
@@ -94,27 +94,34 @@ export default function Footer({ variant = "light" }) {
           </div>
         </div>
 
-        {/* CỘT 2 — WAREHOUSE */}
-        <div className="flex flex-col gap-6">
-          <p className="font-semibold">Văn phòng kho</p>
-          <div className="flex flex-col gap-4">
-            {footer.warehouses.map((item) => (
-              <div key={item.title} className="flex flex-col gap-1">
-                <p className="font-semibold">{item.title}</p>
-                <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* CỘT 2 + 3 — WAREHOUSE */}
+        <div className="md:col-span-2 flex flex-col gap-6 md:gap-8">
+          <p
+            className="text-[16px] font-semibold uppercase leading-[100%] tracking-[0] text-[#737477]"
+            style={{ fontFamily: "SF Pro Display" }}
+          >
+            Văn phòng kho
+          </p>
 
-        {/* CỘT 3 — OTHER */}
-        <div className="flex flex-col gap-4 md:gap-6">
-          {footer.others.map((item) => (
-            <div key={item.title} className="flex flex-col gap-1">
-              <p className="font-semibold">{item.title}</p>
-              <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
+            <div className="flex flex-col gap-4 md:gap-6">
+              {footer.warehouses.map((item) => (
+                <div key={item.title} className="flex flex-col gap-1">
+                  <p className="font-semibold">{item.title}</p>
+                  <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
+                </div>
+              ))}
             </div>
-          ))}
+
+            <div className="flex flex-col gap-4 md:gap-6">
+              {footer.others.map((item) => (
+                <div key={item.title} className="flex flex-col gap-1">
+                  <p className="font-semibold">{item.title}</p>
+                  <p className={`text-base ${subTextClassName} leading-5`}>{item.address}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </footer>

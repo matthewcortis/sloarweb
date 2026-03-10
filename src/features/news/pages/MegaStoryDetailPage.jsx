@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchBaiVietById } from "../../home/api/baiVietApi";
 import {
   resolveStoryContentSource,
@@ -17,7 +17,6 @@ const isUrlLike = (value) =>
     value.startsWith("/"));
 
 export default function MegaStoryDetailPage() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [story, setStory] = useState(null);
   const [content, setContent] = useState("");
@@ -105,14 +104,6 @@ export default function MegaStoryDetailPage() {
   return (
     <div className="px-[16px] xl:px-[80px] pb-[80px] pt-[24px]">
       <div className="max-w-[960px] mx-auto">
-        <button
-          type="button"
-          onClick={() => navigate("/megastory")}
-          className="text-[16px] text-[#667085] mb-4"
-        >
-          ← Quay lại Mega Story
-        </button>
-
         {loading && (
           <p className="text-[16px] text-[#667085]">Đang tải nội dung...</p>
         )}
@@ -138,11 +129,11 @@ export default function MegaStoryDetailPage() {
             )}
 
             {image && (
-              <div className="mt-6 w-full overflow-hidden rounded-[12px] sm:mx-auto sm:max-w-[420px] sm:aspect-[1/1]">
+              <div className="mt-6 w-full overflow-hidden rounded-[12px] sm:aspect-[1/1]">
                 <img
                   src={image}
                   alt={title}
-                  className="w-full h-auto sm:h-full object-cover"
+                  className="w-full h-auto sm:h-full object-contain rounded-[12px]"
                 />
               </div>
             )}

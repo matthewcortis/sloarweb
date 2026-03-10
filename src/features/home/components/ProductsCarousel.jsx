@@ -3,21 +3,28 @@ import ProductCard from "../../product/components/SolarCard.jsx";
 import SolarCardShimmer from "../../product/components/SolarCardShimmer.jsx";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useSalePhone } from "../../../hooks/useSalePhone";
+import { resolveProductsCarouselTheme } from "../../../theme/styles/productsCarouselThemes.js";
 
 export default function ProductsCarousel({
   products = [],
   loading = false,
   viewMode = "carousel", // "carousel" | "grid"
-  cardBgColor = "#FFFFFF",
-  mainColor = "#00A859",
-  textColor = "#000000ff",
-  saveColor = "#E6F4ED",
+  theme = "default",
+  cardBgColor,
+  mainColor,
+  textColor,
+  saveColor,
   hideDetailsOnMobile = false,
   scrollContainerClassName = "",
 }) {
   const { salePhoneTel } = useSalePhone();
   const containerRef = useRef(null);
   const [current, setCurrent] = useState(0);
+  const resolvedTheme = resolveProductsCarouselTheme(theme);
+  const resolvedCardBgColor = cardBgColor ?? resolvedTheme.cardBgColor;
+  const resolvedMainColor = mainColor ?? resolvedTheme.mainColor;
+  const resolvedTextColor = textColor ?? resolvedTheme.textColor;
+  const resolvedSaveColor = saveColor ?? resolvedTheme.saveColor;
 
   // drag state
   const isDown = useRef(false);
@@ -86,10 +93,10 @@ export default function ProductsCarousel({
                 >
                   <ProductCard
                     data={item}
-                    cardBgColor={cardBgColor}
-                    mainColor={mainColor}
-                    textColor={textColor}
-                    saveColor={saveColor}
+                    cardBgColor={resolvedCardBgColor}
+                    mainColor={resolvedMainColor}
+                    textColor={resolvedTextColor}
+                    saveColor={resolvedSaveColor}
                     contactPhoneTel={salePhoneTel}
                     hideDetailsOnMobile={hideDetailsOnMobile}
                     className={hideDetailsOnMobile ? "w-full max-w-none min-w-0" : ""}
@@ -231,10 +238,10 @@ export default function ProductsCarousel({
               >
                 <ProductCard
                   data={item}
-                  cardBgColor={cardBgColor}
-                  mainColor={mainColor}
-                  textColor={textColor}
-                  saveColor={saveColor}
+                  cardBgColor={resolvedCardBgColor}
+                  mainColor={resolvedMainColor}
+                  textColor={resolvedTextColor}
+                  saveColor={resolvedSaveColor}
                   contactPhoneTel={salePhoneTel}
                   hideDetailsOnMobile={hideDetailsOnMobile}
                   className="w-full max-w-none"

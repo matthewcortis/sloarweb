@@ -8,6 +8,7 @@ import {
   filterProductsByNhomTronGoiTen,
   getNhomTronGoiTenFromProducts,
 } from "../../home/services/nhomTronGoiTenFilter.js";
+import { PRODUCTS_CAROUSEL_THEME_KEYS } from "../../../theme/styles/productsCarouselThemes.js";
 
 const resolveBannerData = ({ loaiHeThong, loaiPha }) => {
   if (loaiHeThong === "Hy-Brid") {
@@ -47,6 +48,11 @@ export default function ProductPage({ preset }) {
     sortField: activePreset ? activePreset.sortField : undefined,
     sortDirection: activePreset ? activePreset.sortDirection : undefined,
   };
+
+  const productTheme =
+    loaiHeThong === "On-Grid"
+      ? PRODUCTS_CAROUSEL_THEME_KEYS.ONGRID
+      : PRODUCTS_CAROUSEL_THEME_KEYS.DEFAULT;
 
   const bannerData1Pha = resolveBannerData({ loaiHeThong, loaiPha: "1 pha" });
   const bannerData3Pha = resolveBannerData({ loaiHeThong, loaiPha: "3 pha" });
@@ -88,6 +94,7 @@ export default function ProductPage({ preset }) {
               products={filteredProducts1Pha}
               loading={loading1Pha}
               viewMode="grid"
+              theme={productTheme}
               hideDetailsOnMobile
             />
           </div>
@@ -103,6 +110,7 @@ export default function ProductPage({ preset }) {
               products={filteredProducts3Pha}
               loading={loading3Pha}
               viewMode="grid"
+              theme={productTheme}
               hideDetailsOnMobile
             />
           </div>

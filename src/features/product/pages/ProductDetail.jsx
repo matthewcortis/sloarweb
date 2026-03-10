@@ -369,18 +369,26 @@ export default function ProductDetail() {
     title,
     save,
     price,
+    pvLabel,
     pv,
+    inverterLabel,
     inverter,
+    batteryLabel,
     battery,
     production,
     roi,
     area,
   } = product;
 
+  const pvInfoLabel = `${pvLabel ?? ""}`.trim() || "Công suất ";
+  const inverterInfoLabel =
+    `Biến tần: ${inverterLabel ?? ""}`.trim() || "Biến tần ";
+  const batteryInfoLabel = `Lưu trữ: ${batteryLabel ?? ""}`.trim() || "Lưu trữ";
+ 
   const specs = [
-    { key: "pv", label: "Công suất PV: ", value: pv },
-    { key: "inverter", label: "Biến tần solis: ", value: inverter },
-    { key: "battery", label: "Lưu trữ Dyness: ", value: battery },
+    { key: "pv", label: `${pvInfoLabel}: `, value: pv },
+    { key: "inverter", label: `${inverterInfoLabel} `, value: inverter },
+    { key: "battery", label: `${batteryInfoLabel} `, value: battery },
     { key: "production", label: "Sản lượng:", value: production },
     { key: "roi", label: "Hoàn vốn:", value: roi },
     { key: "area", label: "Diện tích:", value: area },

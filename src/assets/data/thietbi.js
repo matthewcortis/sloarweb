@@ -75,4 +75,13 @@ export const thietBiThuongHieuData = [
       },
     ],
   },
+	   {
+	    id: "auxol",
+	    groupCode: "BIEN_TAN",
+	    title: "Thương hiệu Auxol",
+	    description: [
+	      "AUXSOL là thương hiệu năng lượng tái tạo thuộc AUX Group (thành lập năm 1986, top 500 doanh nghiệp Trung Quốc), chuyên nghiên cứu và sản xuất biến tần năng lượng mặt trời (On-grid, Hybrid) và hệ thống lưu trữ điện đạt chuẩn quốc tế. ",
+	      "Sản phẩm nổi bật với hiệu suất chuyển đổi tới 98,6%, chuẩn chống nước bụi IP66, công nghệ an toàn thông minh, cùng hệ thống giám sát từ xa, mang lại giải pháp năng lượng xanh hiệu quả và tối ưu chi phí cho hộ gia đình và doanh nghiệp.",
+    ]
+  },
 ];

@@ -33,9 +33,9 @@ export default function SolarCard({
     window.location.href = `tel:${normalizedContactPhone}`;
   };
 
-  const pvInfoLabel = `${data?.pvLabel ?? ""}`.trim() || "Công suất PV";
-  const inverterInfoLabel = `${data?.inverterLabel ?? ""}`.trim() || "Biến tần solis";
-  const batteryInfoLabel = `${data?.batteryLabel ?? ""}`.trim() || "Lưu trữ Dyness";
+  const pvInfoLabel = `${data?.pvLabel ?? ""}`.trim() || "Công suất";
+  const inverterInfoLabel = `Biến tần: ${data?.inverterLabel ?? ""}`.trim() || "Biến tần";
+  const batteryInfoLabel = `Lưu trữ: ${data?.batteryLabel ?? ""}`.trim() || "Lưu trữ";
 
   return (
     <div
@@ -138,12 +138,12 @@ export default function SolarCard({
         >
           <Info label={`${pvInfoLabel}:`} value={data.pv} color={textColor} />
           <Info
-            label={`Biến tần ${inverterInfoLabel}:`}
+            label={`${inverterInfoLabel}`}
             value={data.inverter}
             color={textColor}
           />
           <Info
-            label={`Lưu trữ ${batteryInfoLabel}:`}
+            label={`${batteryInfoLabel}`}
             value={data.battery}
             color={textColor}
           />

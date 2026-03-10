@@ -8,9 +8,12 @@ import {
     filterProductsByNhomTronGoiTen,
     getNhomTronGoiTenFromProducts,
 } from "../services/nhomTronGoiTenFilter.js";
+import { PRODUCTS_CAROUSEL_THEME_KEYS } from "../../../theme/styles/productsCarouselThemes.js";
+
 
 const HE_THONG = "On-Grid";
 const LOAI_PHA = "1 pha";
+
 //const BAN_CHAY = false;
 
 export default function OngridProducts1Pha() {
@@ -56,10 +59,7 @@ export default function OngridProducts1Pha() {
                 <ProductsCarousel
                     products={filteredProducts}
                     loading={loading}
-                    cardBgColor="#FFFFFF"
-                    mainColor="#EE4037"
-                    textColor="#000000"
-                    saveColor="#FDECEB"
+                    theme={PRODUCTS_CAROUSEL_THEME_KEYS.ONGRID}
                 />
             </div>
         </div>

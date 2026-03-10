@@ -8,6 +8,7 @@ import {
     filterProductsByNhomTronGoiTen,
     getNhomTronGoiTenFromProducts,
 } from "../services/nhomTronGoiTenFilter.js";
+import { PRODUCTS_CAROUSEL_THEME_KEYS } from "../../../theme/styles/productsCarouselThemes.js";
 
 //const BAN_CHAY = false;
 
@@ -55,10 +56,7 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
                 <ProductsCarousel
                     products={filteredProducts}
                     loading={loading}
-                    cardBgColor="#000000"
-                    mainColor="#EE4037"
-                    textColor="#FFFFFF"
-                    saveColor="#48484D"
+                    theme={PRODUCTS_CAROUSEL_THEME_KEYS.HUAWEI}
                     scrollContainerClassName="py-4"
 
 

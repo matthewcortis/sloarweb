@@ -111,12 +111,25 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
       }`
     : ""
 
+  const handleLogoClick = () => {
+    if (typeof window === "undefined") return
+
+    const prefersReducedMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    })
+  }
+
   return (
     <header className={`${headerClassName} ${autoHideClassName}`}>
       <nav className="mx-auto flex h-12 w-full max-w-7xl items-center justify-between px-3 lg:h-auto lg:p-4 lg:px-8">
 
         {/* LOGO */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center" onClick={handleLogoClick}>
           <img
             src={Logo}
             alt="Logo"
@@ -197,7 +210,14 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
 
         <DialogPanel className={`fixed inset-y-0 right-0 w-full p-6 overflow-y-auto ${panelClassName}`}>
           <div className="flex items-center justify-between mb-8">
-            <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
+            <Link
+              to="/"
+              className="flex items-center"
+              onClick={() => {
+                setMobileMenuOpen(false)
+                handleLogoClick()
+              }}
+            >
               <img
                 src={Logo}
                 alt="Logo"

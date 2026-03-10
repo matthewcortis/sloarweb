@@ -98,3 +98,9 @@ banner chi tiết combo tràn viền, thiếu mái bằng, thêm megastory
 story card bên ngoài home 
 
   
+
+  nhấn logo đẩy web lên đầu 
+  đổi màu combodetail
+  sửa trân trang 
+  sửa img 
+  

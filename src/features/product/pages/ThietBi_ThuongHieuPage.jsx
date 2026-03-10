@@ -46,6 +46,10 @@ export default function ThietBi_ThuongHieuPage() {
 
     return matchedByContent || sameGroup[0];
   }, [selectedGroup, brandParam]);
+  const selectedBrandImages = useMemo(() => {
+    if (!selectedBrand) return [];
+    return Array.isArray(selectedBrand.images) ? selectedBrand.images : [];
+  }, [selectedBrand]);
   const descriptionBlocks = useMemo(() => {
     if (!selectedBrand) return [];
     const raw = selectedBrand.description;
@@ -161,20 +165,22 @@ export default function ThietBi_ThuongHieuPage() {
                 </div>
               </div>
 
-              <div className="mt-[16px] flex flex-col gap-[16px]">
-                {selectedBrand.images.map((image) => (
-                  <div
-                    key={image.id}
-                    className="w-full h-[183.02px] lg:h-[424px] overflow-hidden rounded-[12px]"
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-contain bg-white"
-                    />
-                  </div>
-                ))}
-              </div>
+              {selectedBrandImages.length > 0 ? (
+                <div className="mt-[16px] flex flex-col gap-[16px]">
+                  {selectedBrandImages.map((image) => (
+                    <div
+                      key={image.id}
+                      className="w-full h-[183.02px] lg:h-[424px] overflow-hidden rounded-[12px]"
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-contain bg-white"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </section>
           ) : null}
         </div>
