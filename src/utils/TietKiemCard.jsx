@@ -1,6 +1,6 @@
 import React from "react";
 import check from "../assets/icons/check.svg";
-const SavingBadge = ({ value }) => {
+const SavingBadge = ({ value, bgColor = "#E6F4ED", textColor = "#059549" }) => {
   return (
     <div
       className="
@@ -8,9 +8,9 @@ const SavingBadge = ({ value }) => {
         gap-[11px]
         px-4 py-2
         rounded-[12px]
-        bg-[#E6F4ED]
         opacity-100
       "
+      style={{ backgroundColor: bgColor }}
     >
       {/* Icon */}
       <img
@@ -22,7 +22,6 @@ const SavingBadge = ({ value }) => {
       {/* Text */}
       <span
         className="
-          text-[#059549]
           font-normal
           text-[16px]
           leading-[19px]
@@ -31,6 +30,7 @@ const SavingBadge = ({ value }) => {
           h-[19px]
           font-['SF_Pro_Display']
         "
+        style={{ color: textColor }}
       >
         {value}
       </span>

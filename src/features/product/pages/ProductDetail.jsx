@@ -23,6 +23,10 @@ import {
   mapTronGoiOtherMaterials,
 } from "../../home/services/tronGoiProductMapper";
 import { useSalePhone } from "../../../hooks/useSalePhone";
+import {
+  PRODUCTS_CAROUSEL_THEME_KEYS,
+  resolveProductsCarouselTheme,
+} from "../../../theme/styles/productsCarouselThemes.js";
 
 const TRON_GOI_BANNER_POSITION = "WEB_BANNER_TRON_GOI_1";
 const THI_CONG_THIET_BI_POSITION = "WEB_BIEN_PHAP_THI_CONG_THIET_BI";
@@ -335,6 +339,38 @@ export default function ProductDetail() {
       ),
     [tronGoi]
   );
+  const isHuaweiCombo = useMemo(() => {
+    const huaweiSignals = [
+      product?.nhomTronGoiTen,
+      tronGoi?.nhomTronGoi?.ten,
+      tronGoi?.ten,
+    ];
+
+    return huaweiSignals.some((value) =>
+      `${value ?? ""}`.toLowerCase().includes("huawei")
+    );
+  }, [product?.nhomTronGoiTen, tronGoi?.nhomTronGoi?.ten, tronGoi?.ten]);
+  const detailThemeKey =
+    isHuaweiCombo
+      ? PRODUCTS_CAROUSEL_THEME_KEYS.HUAWEI
+      : tronGoi?.loaiHeThong === "On-Grid"
+      ? PRODUCTS_CAROUSEL_THEME_KEYS.ONGRID
+      : PRODUCTS_CAROUSEL_THEME_KEYS.DEFAULT;
+  const detailTheme = useMemo(
+    () => resolveProductsCarouselTheme(detailThemeKey),
+    [detailThemeKey]
+  );
+  const detailInfoTheme = useMemo(() => {
+    if (!isHuaweiCombo) return detailTheme;
+
+    return {
+      ...detailTheme,
+      priceColor: "#111111",
+      saveTextColor: "#FFFFFF",
+      buttonBgColor: "#111111",
+      buttonTextColor: "#FFFFFF",
+    };
+  }, [detailTheme, isHuaweiCombo]);
 
   if (loading) {
     return (
@@ -408,13 +444,14 @@ export default function ProductDetail() {
           save={save}
           price={price}
           specs={specs}
+          theme={detailInfoTheme}
           onContactNow={handleContactNow}
         />
 
         <div className="w-full mt-[39px] lg:mt-[80px] px-0 pt-0 pb-[10px] lg:p-[10px] lg:pt-0">
           <BannerCard
             image={tronGoiBannerImage}
-            onClick={() => (window.location.href = bannerData.banner3.link)}
+           
           />
         </div>
 

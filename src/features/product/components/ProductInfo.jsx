@@ -7,8 +7,20 @@ export default function ProductInfo({
   save,
   price,
   specs,
+  theme,
   onContactNow,
 }) {
+  const resolvedMainColor = `${theme?.mainColor ?? ""}`.trim() || "#059549";
+  const resolvedSaveColor = `${theme?.saveColor ?? ""}`.trim() || "#E6F4ED";
+  const resolvedSaveTextColor =
+    `${theme?.saveTextColor ?? ""}`.trim() || resolvedMainColor;
+  const resolvedPriceColor =
+    `${theme?.priceColor ?? ""}`.trim() || resolvedMainColor;
+  const resolvedButtonBgColor =
+    `${theme?.buttonBgColor ?? ""}`.trim() || resolvedMainColor;
+  const resolvedButtonTextColor =
+    `${theme?.buttonTextColor ?? ""}`.trim() || "#FFFFFF";
+
   return (
     <div
       className="w-full bg-white lg:flex lg:gap-6 lg:p-[10px] lg:pb-[39px]"
@@ -36,7 +48,11 @@ export default function ProductInfo({
           {title}
         </h1>
 
-        <SavingBadge value={save} />
+        <SavingBadge
+          value={save}
+          bgColor={resolvedSaveColor}
+          textColor={resolvedSaveTextColor}
+        />
 
         {/* PRICE */}
         <div className="w-full border-y border-gray-200 py-2 flex flex-col items-center text-center lg:items-start lg:text-left">
@@ -47,7 +63,8 @@ export default function ProductInfo({
           </span>
 
           <span
-            className="text-[22px] font-bold text-[#059549] lg:text-[24px]"
+            className="text-[22px] font-bold lg:text-[24px]"
+            style={{ color: resolvedPriceColor }}
           >
             {price}
           </span>
@@ -66,7 +83,11 @@ export default function ProductInfo({
         <button
           type="button"
           onClick={onContactNow}
-          className="w-full h-[45px] rounded-[10px] bg-[#059549] text-white font-semibold lg:w-[310px] lg:h-[49px] lg:rounded-[12px]"
+          className="w-full h-[45px] rounded-[10px] font-semibold lg:w-[310px] lg:h-[49px] lg:rounded-[12px]"
+          style={{
+            backgroundColor: resolvedButtonBgColor,
+            color: resolvedButtonTextColor,
+          }}
         >
           Liên hệ ngay
         </button>

@@ -31,72 +31,78 @@ const toPhoneLabel = (phone = "") => {
 const resolveFallbackPhone = (fallbackPhone) =>
   toTelPhone(fallbackPhone) || DEFAULT_SALE_PHONE;
 
-const normalizeDomain = (domain = "") => {
+const normalizeHost = (domain = "") => {
   const trimmedDomain = `${domain}`.trim();
   if (!trimmedDomain) return "";
 
   let candidateDomain = trimmedDomain;
-  if (!/^https?:\/\//i.test(candidateDomain)) {
+  if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(candidateDomain)) {
     candidateDomain = `https://${candidateDomain}`;
   }
 
   try {
     const parsedUrl = new URL(candidateDomain);
-    parsedUrl.hash = "";
-    parsedUrl.search = "";
-    parsedUrl.pathname = "/";
-    return parsedUrl.toString();
+    return parsedUrl.hostname.toLowerCase().replace(/\.$/, "");
   } catch {
     return "";
   }
 };
 
-const buildDomainCandidates = (domain = "") => {
-  const normalizedDomain = normalizeDomain(domain);
-  if (!normalizedDomain) return [];
+const buildHostVariants = (host = "") => {
+  if (!host) return [];
 
-  const candidates = new Set([normalizedDomain]);
-
-  try {
-    const parsedUrl = new URL(normalizedDomain);
-    const normalizedHost = parsedUrl.hostname.toLowerCase();
-
-    if (normalizedHost.includes(".")) {
-      if (normalizedHost.startsWith("www.")) {
-        parsedUrl.hostname = normalizedHost.replace(/^www\./, "");
-      } else {
-        parsedUrl.hostname = `www.${normalizedHost}`;
-      }
-      candidates.add(parsedUrl.toString());
+  const variants = new Set([host]);
+  if (host.includes(".")) {
+    if (host.startsWith("www.")) {
+      variants.add(host.replace(/^www\./, ""));
+    } else {
+      variants.add(`www.${host}`);
     }
-  } catch {
-    // no-op
   }
+
+  return Array.from(variants);
+};
+
+const buildDomainCandidates = (domain = "") => {
+  const host = normalizeHost(domain);
+  if (!host) return [];
+
+  const hostVariants = buildHostVariants(host);
+  const candidates = new Set();
+
+  hostVariants.forEach((hostVariant) => {
+    candidates.add(hostVariant);
+    candidates.add(`${hostVariant}/`);
+    candidates.add(`https://${hostVariant}`);
+    candidates.add(`https://${hostVariant}/`);
+    candidates.add(`http://${hostVariant}`);
+    candidates.add(`http://${hostVariant}/`);
+  });
 
   return Array.from(candidates);
 };
 
 const getCurrentDomain = () => {
   if (typeof window === "undefined") return "";
-  return normalizeDomain(window.location.origin);
+  return normalizeHost(window.location.hostname || window.location.origin);
 };
 
 const fetchSalePhoneByDomain = async (domain) => {
-  const normalizedDomain = normalizeDomain(domain);
-  if (!normalizedDomain) {
+  const normalizedHost = normalizeHost(domain);
+  if (!normalizedHost) {
     throw new Error("Khong xac dinh duoc ten mien hien tai");
   }
 
-  if (salePhoneCache.has(normalizedDomain)) {
-    return salePhoneCache.get(normalizedDomain);
+  if (salePhoneCache.has(normalizedHost)) {
+    return salePhoneCache.get(normalizedHost);
   }
 
-  if (salePhoneRequestCache.has(normalizedDomain)) {
-    return salePhoneRequestCache.get(normalizedDomain);
+  if (salePhoneRequestCache.has(normalizedHost)) {
+    return salePhoneRequestCache.get(normalizedHost);
   }
 
   const request = (async () => {
-    const domainCandidates = buildDomainCandidates(normalizedDomain);
+    const domainCandidates = buildDomainCandidates(normalizedHost);
 
     for (const domainCandidate of domainCandidates) {
       const mien = await fetchMienByTenMien({
@@ -108,17 +114,17 @@ const fetchSalePhoneByDomain = async (domain) => {
       const normalizedPhone = toTelPhone(salePhone);
 
       if (normalizedPhone) {
-        salePhoneCache.set(normalizedDomain, normalizedPhone);
+        salePhoneCache.set(normalizedHost, normalizedPhone);
         return normalizedPhone;
       }
     }
 
-    throw new Error(`Ten mien ${normalizedDomain} khong co so dien thoai`);
+    throw new Error(`Ten mien ${normalizedHost} khong co so dien thoai`);
   })().finally(() => {
-    salePhoneRequestCache.delete(normalizedDomain);
+    salePhoneRequestCache.delete(normalizedHost);
   });
 
-  salePhoneRequestCache.set(normalizedDomain, request);
+  salePhoneRequestCache.set(normalizedHost, request);
   return request;
 };
 
