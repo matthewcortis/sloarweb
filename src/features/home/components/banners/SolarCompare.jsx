@@ -1,9 +1,24 @@
 import { useEffect, useState } from "react";
 import banner from "../../../../assets/anhbiabanner.jpg";
 import SoSanhHyOn from "../SoSanhHyOn";
-import { fetchQuangCaoImageUrlByViTri } from "../../api/quangCaoApi";
+import { fetchMienByTenMien } from "../../../../services/mienApi";
+import {
+  getCurrentDomain,
+  resolveByDomainCandidates,
+} from "../../../../shared/utils/domain";
 
-const HOME_HEADER_AD_POSITION = "WEB_HOME_HEADER";
+const fetchDomainBanner = async (domain) => {
+  const imageUrl = await resolveByDomainCandidates(domain, async (domainCandidate) => {
+    const mien = await fetchMienByTenMien({
+      tenMien: domainCandidate,
+      page: 0,
+      size: 6,
+    });
+    return `${mien?.tepTin?.duongDan ?? ""}`.trim();
+  });
+
+  return imageUrl || "";
+};
 
 export default function SolarCompare() {
   const [bannerSrc, setBannerSrc] = useState(banner);
@@ -13,16 +28,15 @@ export default function SolarCompare() {
 
     const loadBanner = async () => {
       try {
-        const imageUrl = await fetchQuangCaoImageUrlByViTri({
-          viTri: HOME_HEADER_AD_POSITION,
-          page: 0,
-          size: 20,
-        });
+        const domain = getCurrentDomain();
+        if (!domain) return;
+
+        const imageUrl = await fetchDomainBanner(domain);
         if (isActive && imageUrl) {
           setBannerSrc(imageUrl);
         }
       } catch (error) {
-        console.error("Khong tai duoc banner WEB_HOME_HEADER", error);
+        console.error("Khong tai duoc anh banner theo ten mien", error);
       }
     };
 

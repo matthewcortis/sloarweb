@@ -1,7 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { fetchMienByTenMien } from "../services/mienApi";
+import {
+  getCurrentDomain,
+  normalizeHost,
+  resolveByDomainCandidates,
+} from "../shared/utils/domain";
 
-const DEFAULT_SALE_PHONE = "0964920242";
+const DEFAULT_SALE_PHONE = "0976666905";
 
 const salePhoneCache = new Map();
 const salePhoneRequestCache = new Map();
@@ -31,60 +36,32 @@ const toPhoneLabel = (phone = "") => {
 const resolveFallbackPhone = (fallbackPhone) =>
   toTelPhone(fallbackPhone) || DEFAULT_SALE_PHONE;
 
-const normalizeHost = (domain = "") => {
-  const trimmedDomain = `${domain}`.trim();
-  if (!trimmedDomain) return "";
+const pickPhoneFromThongTinTenMiens = (thongTinTenMiens = []) => {
+  if (!Array.isArray(thongTinTenMiens)) return "";
 
-  let candidateDomain = trimmedDomain;
-  if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(candidateDomain)) {
-    candidateDomain = `https://${candidateDomain}`;
-  }
+  const activeEntry = thongTinTenMiens.find((item) => {
+    const hasPhone = Boolean(toTelPhone(item?.sdt));
+    if (!hasPhone) return false;
 
-  try {
-    const parsedUrl = new URL(candidateDomain);
-    return parsedUrl.hostname.toLowerCase().replace(/\.$/, "");
-  } catch {
-    return "";
-  }
-};
+    const trangThai = item?.trangThai;
+    if (trangThai === undefined || trangThai === null) return true;
 
-const buildHostVariants = (host = "") => {
-  if (!host) return [];
-
-  const variants = new Set([host]);
-  if (host.includes(".")) {
-    if (host.startsWith("www.")) {
-      variants.add(host.replace(/^www\./, ""));
-    } else {
-      variants.add(`www.${host}`);
-    }
-  }
-
-  return Array.from(variants);
-};
-
-const buildDomainCandidates = (domain = "") => {
-  const host = normalizeHost(domain);
-  if (!host) return [];
-
-  const hostVariants = buildHostVariants(host);
-  const candidates = new Set();
-
-  hostVariants.forEach((hostVariant) => {
-    candidates.add(hostVariant);
-    candidates.add(`${hostVariant}/`);
-    candidates.add(`https://${hostVariant}`);
-    candidates.add(`https://${hostVariant}/`);
-    candidates.add(`http://${hostVariant}`);
-    candidates.add(`http://${hostVariant}/`);
+    return Number(trangThai) === 1;
   });
 
-  return Array.from(candidates);
+  if (activeEntry?.sdt) {
+    return `${activeEntry.sdt}`.trim();
+  }
+
+  const fallbackEntry = thongTinTenMiens.find((item) => Boolean(toTelPhone(item?.sdt)));
+  return `${fallbackEntry?.sdt ?? ""}`.trim();
 };
 
-const getCurrentDomain = () => {
-  if (typeof window === "undefined") return "";
-  return normalizeHost(window.location.hostname || window.location.origin);
+const resolveSalePhoneFromMien = (mien) => {
+  const domainInfoPhone = pickPhoneFromThongTinTenMiens(mien?.thongTinTenMiens);
+  if (domainInfoPhone) return domainInfoPhone;
+
+  return `${mien?.coSo?.sdt ?? ""}`.trim();
 };
 
 const fetchSalePhoneByDomain = async (domain) => {
@@ -102,21 +79,22 @@ const fetchSalePhoneByDomain = async (domain) => {
   }
 
   const request = (async () => {
-    const domainCandidates = buildDomainCandidates(normalizedHost);
-
-    for (const domainCandidate of domainCandidates) {
-      const mien = await fetchMienByTenMien({
-        tenMien: domainCandidate,
-        page: 0,
-        size: 6,
-      });
-      const salePhone = `${mien?.coSo?.sdt ?? ""}`.trim();
-      const normalizedPhone = toTelPhone(salePhone);
-
-      if (normalizedPhone) {
-        salePhoneCache.set(normalizedHost, normalizedPhone);
-        return normalizedPhone;
+    const resolvedPhone = await resolveByDomainCandidates(
+      normalizedHost,
+      async (domainCandidate) => {
+        const mien = await fetchMienByTenMien({
+          tenMien: domainCandidate,
+          page: 0,
+          size: 6,
+        });
+        const salePhone = resolveSalePhoneFromMien(mien);
+        return toTelPhone(salePhone);
       }
+    );
+
+    if (resolvedPhone) {
+      salePhoneCache.set(normalizedHost, resolvedPhone);
+      return resolvedPhone;
     }
 
     throw new Error(`Ten mien ${normalizedHost} khong co so dien thoai`);

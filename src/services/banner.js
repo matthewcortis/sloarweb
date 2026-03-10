@@ -28,6 +28,6 @@ export const bannerSaleData = {
   title: "Liên hệ tư vấn:",
   name: "Nguyễn Minh Trang – Kinh nghiệm hơn 10 năm trong lĩnh vực năng lượng mặt trời",
 
-  phone: "0964920242",
-  phoneLabel: "0964 920 242",
+  phone: "0976666905",
+  phoneLabel: "0976666905",
 };
