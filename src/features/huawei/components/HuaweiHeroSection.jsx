@@ -1,5 +1,7 @@
 import SolarMaxLogo from "../../../assets/Group.png";
 import Huawei from "../../../assets/icons/huawei.png";
+import heroFallbackImage from "../../../assets/huaweihome.png";
+import deviceFallbackImage from "../../../assets/product.png";
 
 const defaultDevices = [
   { id: 1, title: "1 - Inverter", imageSrc: "" },
@@ -10,7 +12,7 @@ const defaultDevices = [
 
 
 export default function HuaweiHeroSection({ data }) {
-  const heroSrc = data?.heroImageSrc || fallbackHeroSvg;
+  const heroSrc = data?.heroImageSrc || heroFallbackImage;
   const devices = data?.devices?.length ? data.devices : defaultDevices;
   const title =
     data?.title || "Gói giải pháp điện mặt trời mang đẳng cấp Huawei";
@@ -64,7 +66,7 @@ export default function HuaweiHeroSection({ data }) {
               </div>
               <div className="w-full flex justify-center">
                 <img
-                  src={item.imageSrc || fallbackDeviceSvg}
+                  src={item.imageSrc || deviceFallbackImage}
                   alt={item.title}
                   loading="lazy"
                   decoding="async"

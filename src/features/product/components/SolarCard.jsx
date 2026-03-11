@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import checkicon from "../../../assets/icons/check.svg";
+import checkWhite from "../../../assets/icons/check_write.svg";
+import checkRed from "../../../assets/icons/check_red.svg";
+import checkGreen from "../../../assets/icons/check_green.svg";
 import fallbackImage from "../../../assets/solarmax.jpg";
 
 export default function SolarCard({
@@ -9,6 +11,7 @@ export default function SolarCard({
   mainColor = "#00A859",
   textColor = "#000000ff",
   saveColor = "#E6F4ED",
+  saveIconColor,
   contactPhoneTel = "",
   hideDetailsOnMobile = false,
   className = "",
@@ -36,6 +39,22 @@ export default function SolarCard({
   const pvInfoLabel = `${data?.pvLabel ?? ""}`.trim() || "Công suất";
   const inverterInfoLabel = `Biến tần: ${data?.inverterLabel ?? ""}`.trim() || "Biến tần";
   const batteryInfoLabel = `Lưu trữ: ${data?.batteryLabel ?? ""}`.trim() || "Lưu trữ";
+  const normalizedMainColor = `${mainColor ?? ""}`.trim().toUpperCase();
+  const normalizedTextColor = `${textColor ?? ""}`.trim().toUpperCase();
+  const normalizedSaveIconColor = `${saveIconColor ?? ""}`.trim().toUpperCase();
+  const resolvedSaveIconColor =
+    normalizedSaveIconColor ||
+    (normalizedTextColor === "#FFFFFF"
+      ? "#FFFFFF"
+      : normalizedMainColor === "#EE4037"
+      ? "#EE4037"
+      : "#37AA6D");
+  const saveIconSrc =
+    resolvedSaveIconColor === "#FFFFFF"
+      ? checkWhite
+      : resolvedSaveIconColor === "#EE4037"
+      ? checkRed
+      : checkGreen;
 
   return (
     <div
@@ -103,7 +122,7 @@ export default function SolarCard({
           className="px-3 py-2 flex items-center gap-2 min-w-0"
           style={{ backgroundColor: saveColor }}
         >
-          <img src={checkicon} alt="check" className="w-[18px] h-[18px]" />
+          <img src={saveIconSrc} alt="" aria-hidden="true" className="w-[18px] h-[18px]" />
           <p
             className={`text-[16px] font-normal tracking-[0] ${hideDetailsOnMobile ? "leading-[22px] whitespace-normal" : "leading-[19px] truncate"}`}
             style={{ color: textColor }}

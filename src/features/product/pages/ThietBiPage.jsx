@@ -25,7 +25,9 @@ function BrandProductRow({ groupKey, products }) {
   };
 
   useEffect(() => {
-    updateDots();
+    if (typeof window === "undefined") return undefined;
+    const rafId = window.requestAnimationFrame(updateDots);
+    return () => window.cancelAnimationFrame(rafId);
   }, [products]);
 
   useEffect(() => {

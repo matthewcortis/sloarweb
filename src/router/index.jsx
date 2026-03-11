@@ -1,7 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollToTop from "../components/ScrollToTop";
-import ContactFab from "../components/ContactFab";
+import { ScrollToTop, ContactFab } from "../shared/components/common";
 const MainLayout = lazy(() => import("../layouts/MainLayout"));
 const HomePage = lazy(() => import("../features/home/pages/HomePage"));
 const ProductPage = lazy(() => import("../features/product/pages/ProductPage"));
@@ -9,7 +8,7 @@ const ProductDetail = lazy(() => import("../features/product/pages/ProductDetail
 const ThietBiPage = lazy(() => import("../features/product/pages/ThietBiPage"));
 const ThietBiDetail = lazy(() => import("../features/product/pages/ThietBiDetail"));
 const ThietBiThuongHieuPage = lazy(() => import("../features/product/pages/ThietBi_ThuongHieuPage"));
-const HuaWeiPage = lazy(() => import("../features/huawei/page/HuaWeiPage"));
+const HuaWeiPage = lazy(() => import("../features/huawei/pages/HuaWeiPage"));
 const HoiDapPage = lazy(() => import("../features/news/pages/HoiDapPage"));
 const VeChungToiPage = lazy(() => import("../features/news/pages/VeChungToiPage"));
 const MegaStoryPage = lazy(() => import("../features/news/pages/MegaStoryPage"));

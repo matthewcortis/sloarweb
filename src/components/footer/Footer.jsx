@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from '../../assets/Group.png';
-import { useSalePhone } from "../../hooks/useSalePhone";
+import { useSalePhone } from "../../shared/hooks";
 
 const footer = {
   company: {
@@ -48,7 +48,7 @@ const footer = {
       },
       {
         title: "Kho Hà Nội",
-        address: "Đường Hoàng Sa, Đông Anh, TP. Hà Nội",
+        address: "Đường Vân Nội, Đông Anh, Hà Nội",
       },
       {
         title: "Kho Hải Phòng",

@@ -1,4 +1,4 @@
-import SavingBadge from "../../../utils/TietKiemCard";
+import { TietKiemCard as SavingBadge } from "../../../shared/components/cards";
 import fallbackImage from "../../../assets/solarmax.jpg";
 
 export default function ProductInfo({
@@ -14,6 +14,15 @@ export default function ProductInfo({
   const resolvedSaveColor = `${theme?.saveColor ?? ""}`.trim() || "#E6F4ED";
   const resolvedSaveTextColor =
     `${theme?.saveTextColor ?? ""}`.trim() || resolvedMainColor;
+  const normalizedMainColor = resolvedMainColor.toUpperCase();
+  const normalizedSaveTextColor = resolvedSaveTextColor.toUpperCase();
+  const resolvedSaveIconColor =
+    `${theme?.saveIconColor ?? ""}`.trim() ||
+    (normalizedSaveTextColor === "#FFFFFF"
+      ? "#FFFFFF"
+      : normalizedMainColor === "#EE4037"
+      ? "#EE4037"
+      : "#37AA6D");
   const resolvedPriceColor =
     `${theme?.priceColor ?? ""}`.trim() || resolvedMainColor;
   const resolvedButtonBgColor =
@@ -52,6 +61,7 @@ export default function ProductInfo({
           value={save}
           bgColor={resolvedSaveColor}
           textColor={resolvedSaveTextColor}
+          iconColor={resolvedSaveIconColor}
         />
 
         {/* PRICE */}

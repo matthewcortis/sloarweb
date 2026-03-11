@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { fetchMienByTenMien } from "../services/mienApi";
+import { fetchMienByTenMien } from "../../services/mienApi";
 import {
   getCurrentDomain,
   normalizeHost,
   resolveByDomainCandidates,
-} from "../shared/utils/domain";
+} from "../utils/domain";
 
 const DEFAULT_SALE_PHONE = "0976666905";
 

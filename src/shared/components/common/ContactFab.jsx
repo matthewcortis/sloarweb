@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
-import { useSalePhone } from "../hooks/useSalePhone";
+import { useSalePhone } from "../../hooks";
 
 const SHOW_AFTER_SCROLL_PX = 240;
 

@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ProductCard from "../../product/components/SolarCard.jsx";
 import SolarCardShimmer from "../../product/components/SolarCardShimmer.jsx";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { useSalePhone } from "../../../hooks/useSalePhone";
+import { useSalePhone } from "../../../shared/hooks";
 import { resolveProductsCarouselTheme } from "../../../theme/styles/productsCarouselThemes.js";
 
 export default function ProductsCarousel({
@@ -14,6 +14,7 @@ export default function ProductsCarousel({
   mainColor,
   textColor,
   saveColor,
+  saveIconColor,
   hideDetailsOnMobile = false,
   scrollContainerClassName = "",
 }) {
@@ -25,6 +26,7 @@ export default function ProductsCarousel({
   const resolvedMainColor = mainColor ?? resolvedTheme.mainColor;
   const resolvedTextColor = textColor ?? resolvedTheme.textColor;
   const resolvedSaveColor = saveColor ?? resolvedTheme.saveColor;
+  const resolvedSaveIconColor = saveIconColor ?? resolvedTheme.saveIconColor;
 
   // drag state
   const isDown = useRef(false);
@@ -97,6 +99,7 @@ export default function ProductsCarousel({
                     mainColor={resolvedMainColor}
                     textColor={resolvedTextColor}
                     saveColor={resolvedSaveColor}
+                    saveIconColor={resolvedSaveIconColor}
                     contactPhoneTel={salePhoneTel}
                     hideDetailsOnMobile={hideDetailsOnMobile}
                     className={hideDetailsOnMobile ? "w-full max-w-none min-w-0" : ""}
@@ -242,6 +245,7 @@ export default function ProductsCarousel({
                   mainColor={resolvedMainColor}
                   textColor={resolvedTextColor}
                   saveColor={resolvedSaveColor}
+                  saveIconColor={resolvedSaveIconColor}
                   contactPhoneTel={salePhoneTel}
                   hideDetailsOnMobile={hideDetailsOnMobile}
                   className="w-full max-w-none"

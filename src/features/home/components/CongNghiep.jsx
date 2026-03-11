@@ -1,8 +1,8 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import MoTa from "./MoTa.jsx";
 import { hybridData } from "../../../services/mota.js";
 import { solarData } from "../../../services/congnghiep.js";
-import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
+import { CongNghiepCard } from "../../../shared/components/cards";
 import { fetchQuangCaoByViTri } from "../api/quangCaoApi";
 
 const CONG_NGHIEP_AD_POSITION = "WEB_BIEN_PHAP_THI_CONG_CONG_NGHIEP";
@@ -23,7 +23,7 @@ const mapQuangCaoToCards = (items = []) => {
   }));
 };
 
-export default function HybridProducts1Pha() {
+export default function CongNghiep() {
   const sliderRef = useRef(null);
   const intervalRef = useRef(null);
   const indexRef = useRef(0);
@@ -36,7 +36,12 @@ export default function HybridProducts1Pha() {
   const cardWidth = 290 + 16; // card + gap
 
   /* ================= AUTO SCROLL ================= */
-  const startAutoScroll = () => {
+  const stopAutoScroll = useCallback(() => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+  }, []);
+
+  const startAutoScroll = useCallback(() => {
     if (intervalRef.current || cards.length <= 1) return;
 
     intervalRef.current = setInterval(() => {
@@ -54,15 +59,10 @@ export default function HybridProducts1Pha() {
         indexRef.current = -1;
       }
     }, 3000);
-  };
-
-  const stopAutoScroll = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
-  };
+  }, [cards.length, cardWidth]);
 
   /* ================= DRAG ================= */
-  const onMouseDown = (e) => {
+  const onMouseDown = useCallback((e) => {
     if (
       typeof window !== "undefined" &&
       window.matchMedia("(pointer: coarse)").matches
@@ -81,17 +81,17 @@ export default function HybridProducts1Pha() {
 
     startXRef.current = e.pageX;
     scrollLeftRef.current = slider.scrollLeft;
-  };
+  }, [stopAutoScroll]);
 
-  const onMouseMove = (e) => {
+  const onMouseMove = useCallback((e) => {
     if (!isDownRef.current) return;
 
     e.preventDefault();
     const walk = (e.pageX - startXRef.current) * 0.8;
     sliderRef.current.scrollLeft = scrollLeftRef.current - walk;
-  };
+  }, []);
 
-  const onMouseUp = () => {
+  const onMouseUp = useCallback(() => {
     const slider = sliderRef.current;
     if (!slider) return;
 
@@ -102,7 +102,7 @@ export default function HybridProducts1Pha() {
     indexRef.current = Math.round(slider.scrollLeft / cardWidth);
 
     startAutoScroll();
-  };
+  }, [cardWidth, startAutoScroll]);
 
   useEffect(() => {
     let isActive = true;
@@ -142,7 +142,7 @@ export default function HybridProducts1Pha() {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
     };
-  }, []);
+  }, [onMouseMove, onMouseUp]);
 
   /* ================= INIT ================= */
   useEffect(() => {
@@ -152,13 +152,13 @@ export default function HybridProducts1Pha() {
 
     startAutoScroll();
     return stopAutoScroll;
-  }, [cards.length]);
+  }, [cards.length, startAutoScroll, stopAutoScroll]);
 
   return (
-    <div Triangle className="px-0 xl:px-[80px] pt-0 lg:pt-[20px]">
+    <div className="px-0 xl:px-[80px] pt-0 lg:pt-[20px]">
       {/* MÔ TẢ */}
       <div className="flex flex-col items-center max-w-[1280px] mx-auto">
-        <MoTa data={hybridData.moTaCongNghiep}  />
+        <MoTa data={hybridData.moTaCongNghiep} />
       </div>
 
       {/* SLIDER */}
@@ -183,10 +183,7 @@ export default function HybridProducts1Pha() {
         <div className="flex gap-4 py-4 w-max">
           {cards.map((card) => (
             <div key={card.id} className="snap-start">
-              <CongNghiepCard
-                image={card.image}
-                items={card.items}
-              />
+              <CongNghiepCard image={card.image} items={card.items} />
             </div>
           ))}
         </div>

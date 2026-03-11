@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import productFallbackImage from "../../../assets/product.png";
 import { fetchThietBiById } from "../api/thietBiApi";
+import { useSeoMeta } from "../../../shared/seo";
 
 const formatNumber = (value, maximumFractionDigits = 0) => {
   const numeric = Number(value);
@@ -225,6 +226,19 @@ export default function ThietBiDetail() {
       { label: "Chỉ số IP:", value: device.ip },
     ];
   }, [device]);
+  const seoTitle = device?.name
+    ? `${device.name} | Thiết bị điện mặt trời SolarMax`
+    : "Chi tiết thiết bị điện mặt trời | SolarMax";
+  const seoDescription = device
+    ? `Thông số ${device.name}: công suất ${device.power}, chỉ số IP ${device.ip}, giá ${device.price}.`
+    : "Thông tin chi tiết thiết bị điện mặt trời: thông số kỹ thuật, giá bán và tài liệu.";
+
+  useSeoMeta({
+    title: seoTitle,
+    description: seoDescription,
+    image: device?.image,
+    type: "product",
+  });
 
   if (loading) {
     return (

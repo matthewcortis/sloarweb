@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchQuangCaoImageUrlByViTri } from "../../api/quangCaoApi";
-import { useSalePhone } from "../../../../hooks/useSalePhone";
+import { useSalePhone } from "../../../../shared/hooks";
 
 const HOME_BANNER_3_POSITION = "WEB_HOME_BANNER_3";
 

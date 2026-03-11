@@ -1,7 +1,7 @@
 // src/components/HybridProductsSection.jsx
 import MoTa from "./MoTa.jsx";
 import ProductsCarousel from "./ProductsCarousel.jsx";
-import SoSanh3Pha from "./sosanh.jsx";
+import SoSanh3Pha from "./SoSanh3Pha.jsx";
 import { hybridData } from "../../../services/mota.js";
 import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
 import { useNavigate } from "react-router-dom";

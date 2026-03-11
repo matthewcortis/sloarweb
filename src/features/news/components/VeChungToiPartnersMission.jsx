@@ -1,7 +1,3 @@
-import flagIcon from "../../../assets/icons/Frame 41.png";
-import sunIcon from "../../../assets/icons/sun.png";
-import moonIcon from "../../../assets/icons/new moon.png";
-
 export default function VeChungToiPartnersMission({
   partners = [],
   missions = [],
@@ -83,9 +79,3 @@ export default function VeChungToiPartnersMission({
     </div>
   );
 }
-
-export const defaultMissionIcons = {
-  flag: flagIcon,
-  target: sunIcon,
-  core: moonIcon,
-};

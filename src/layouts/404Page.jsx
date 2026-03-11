@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useSeoMeta } from "../shared/seo";
 
 export default function NotFoundPage({ mode = "404" }) {
   const [searchParams] = useSearchParams();
@@ -26,6 +27,14 @@ export default function NotFoundPage({ mode = "404" }) {
       cta: "Về trang chủ",
     };
   }, [isMaintenance]);
+
+  useSeoMeta({
+    title: isMaintenance
+      ? "Hệ thống đang bảo trì | SolarMax"
+      : "Không tìm thấy trang | SolarMax",
+    description: pageMeta.description,
+    noIndex: true,
+  });
 
   return (
     <>

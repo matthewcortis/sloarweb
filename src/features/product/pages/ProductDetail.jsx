@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductInfo from "../components/ProductInfo";
-import BannerCard from "../../../utils/BannerCard";
+import { BannerCard, CongNghiepCard } from "../../../shared/components/cards";
 import { bannerData } from "../../../services/banner.js";
-import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
 import DeviceCategorySection from "../components/ThietBi";
 import VatTuKhac from "../components/VatTuKhac";
 import BienPhapThiCong from "../components/BienPhapThiCong";
@@ -22,11 +21,12 @@ import {
   mapTronGoiDeviceProducts,
   mapTronGoiOtherMaterials,
 } from "../../home/services/tronGoiProductMapper";
-import { useSalePhone } from "../../../hooks/useSalePhone";
+import { useSalePhone } from "../../../shared/hooks";
 import {
   PRODUCTS_CAROUSEL_THEME_KEYS,
   resolveProductsCarouselTheme,
 } from "../../../theme/styles/productsCarouselThemes.js";
+import { useSeoMeta } from "../../../shared/seo";
 
 const TRON_GOI_BANNER_POSITION = "WEB_BANNER_TRON_GOI_1";
 const THI_CONG_THIET_BI_POSITION = "WEB_BIEN_PHAP_THI_CONG_THIET_BI";
@@ -371,6 +371,19 @@ export default function ProductDetail() {
       buttonTextColor: "#FFFFFF",
     };
   }, [detailTheme, isHuaweiCombo]);
+  const seoTitle = product?.title
+    ? `${product.title} | Combo điện mặt trời SolarMax`
+    : "Chi tiết combo điện mặt trời | SolarMax";
+  const seoDescription = product?.save
+    ? `${product.save}. Xem chi tiết cấu hình, giá và phương án thi công tại SolarMax.`
+    : "Thông tin chi tiết combo điện mặt trời: cấu hình thiết bị, giá và phương án thi công.";
+
+  useSeoMeta({
+    title: seoTitle,
+    description: seoDescription,
+    image: product?.image || tronGoiBannerImage,
+    type: "product",
+  });
 
   if (loading) {
     return (

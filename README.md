@@ -1,106 +1,57 @@
-/basic-api/quang-cao/filter
-{
-  "filters": [
-    {
-      "fieldName": "viTri",
-      "operation": "EQUALS",
-      "value": "WEB_HEADER",
-      "logicType": "AND"
-    }
-  ],
-  "sorts": [
-    {
-      "fieldName": "id",
-      "direction": "ASC"
-    }
-  ],
-  "page": 0,
-  "size": 100
-}
- https://www.facebook.com/solarmax87
-https://www.tiktok.com/@solarmax87
-https://www.youtube.com/@solarmax87
-section là 39 và giữa các text là 24 
-https://v2.slmglobal.vn/api/basic-api/tron-goi/filter
+# SolarMax Web
 
-{
-  "filters": [
-    {
-      "fieldName": "coSo.ma",
-      "operation": "EQUALS",
-      "value": "HN",
-      "logicType": "AND"
-    }, 
-		
-    {
-      "fieldName": "loaiHeThong",
-      "operation": "EQUALS",
-      "value": "Hy-Brid",
-      "logicType": "AND"
-    }
-		, 
-		
-    {
-      "fieldName": "loaiPha",
-      "operation": "EQUALS",
-      "value": "1 pha",
-      "logicType": "AND"
-    }
-  ],
-  "sorts": [
-    {
-      "fieldName": "tongGia",
-      "direction": "DESC"
-    }
-  ],
-  "page": 0,
-  "size": 20
-} 
+Website frontend cho SolarMax, xây dựng bằng React + Vite.
 
-huawei
+## Công nghệ
+- React 19
+- Vite 7
+- Tailwind CSS 4
+- React Router
+- Axios
 
-https://v2.slmglobal.vn/api/basic-api/tron-goi/filter
+## Chạy dự án
+```bash
+npm install
+npm run dev
+```
 
+## Build và kiểm tra chất lượng
+```bash
+npm run lint
+npm run build
+npm run preview
+```
 
-{
-  "filters": [
-    {
-      "fieldName": "coSo.ma",
-      "operation": "EQUALS",
-      "value": "HN",
-      "logicType": "AND"
-    }, 
-		 {
-      "fieldName": "nhomTronGoi.ten",
-      "operation": "ILIKE",
-      "value": "HUAWEI",
-      "logicType": "AND"
-    }
-  ], 
-  "sorts": [
-    {
-      "fieldName": "tongGia",
-      "direction": "DESC"
-    }
-  ],
-  "page": 0,
-  "size": 20
-}
+## Cấu trúc thư mục
+```text
+src/
+  assets/                # Hình ảnh, icon, font, dữ liệu tĩnh
+  components/            # UI dùng ở layout cấp cao (navbar, footer)
+  features/              # Module theo domain nghiệp vụ
+    home/
+    product/
+    huawei/
+    news/
+  layouts/               # Khung trang, trang lỗi
+  libs/                  # DTO/parser tầng dữ liệu
+  router/                # Router toàn ứng dụng
+  services/              # API clients, model mapper
+  shared/                # Thành phần tái sử dụng dùng đa feature
+    components/
+      cards/
+      common/
+    constants/
+    hooks/
+    utils/
+  theme/                 # Theme config/style dùng chung
+```
 
+## Quy ước quản lý code tái sử dụng
+- Tất cả reusable UI phải đặt trong `src/shared/components/*`.
+- Hook dùng đa feature phải đặt trong `src/shared/hooks`.
+- Constant toàn app đặt trong `src/shared/constants`.
+- Logic đặc thù từng nghiệp vụ phải giữ trong `src/features/<feature-name>`.
+- Ưu tiên import qua `index.js` (barrel) tại `shared` để giảm đường dẫn tương đối dài.
 
-
-
-cuộn xuống mới hiển thị  toolbar fix logo nút mobile 
-fix in đậm mô tả 
-gạch ngang 
-sửa so sánhmobile
-banner chi tiết combo tràn viền, thiếu mái bằng, thêm megastory    
-story card bên ngoài home 
-
-  
-
-  nhấn logo đẩy web lên đầu 
-  đổi màu combodetail
-  sửa trân trang 
-  sửa img 
-  
+## Tài liệu bổ sung
+- Payload/API note: `docs/api-notes.md`

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_API } from "../shared/contants/api";
+import { BASE_API } from "../shared/constants/api";
 
 const apiService = axios.create({
   baseURL: BASE_API,

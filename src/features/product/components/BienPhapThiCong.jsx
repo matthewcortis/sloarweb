@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import CongNghiepCard from "../../../utils/CongNhiepCard.jsx";
+import { CongNghiepCard } from "../../../shared/components/cards";
 import congNghiepImage from "../../../assets/congnghiep.png";
 import { fetchQuangCaoByViTri } from "../../home/api/quangCaoApi";
 
@@ -211,9 +211,6 @@ export default function BienPhapThiCong({
 
   useEffect(() => {
     if (!hasMaiTonCategory && !hasMaiNgoiCategory && !hasMaiBangCategory) {
-      setMaiTonCards(null);
-      setMaiNgoiCards(null);
-      setMaiBangCards(null);
       return;
     }
 
@@ -249,8 +246,6 @@ export default function BienPhapThiCong({
         onReset: setMaiTonCards,
         errorLabel: "Khong tai duoc danh sach WEB_BIEN_PHAP_THI_CONG_1",
       });
-    } else {
-      setMaiTonCards(null);
     }
 
     if (hasMaiNgoiCategory) {
@@ -260,8 +255,6 @@ export default function BienPhapThiCong({
         onReset: setMaiNgoiCards,
         errorLabel: "Khong tai duoc danh sach WEB_BIEN_PHAP_THI_CONG_2",
       });
-    } else {
-      setMaiNgoiCards(null);
     }
 
     if (hasMaiBangCategory) {
@@ -271,8 +264,6 @@ export default function BienPhapThiCong({
         onReset: setMaiBangCards,
         errorLabel: "Khong tai duoc danh sach WEB_BIEN_PHAP_THI_CONG_3",
       });
-    } else {
-      setMaiBangCards(null);
     }
 
     return () => {

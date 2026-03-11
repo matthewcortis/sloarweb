@@ -7,6 +7,7 @@ import {
   resolveStorySummary,
   resolveStoryTitle,
 } from "../utils/megaStoryMapper";
+import { useSeoMeta } from "../../../shared/seo";
 
 const isLikelyHtml = (value) => /<\/?[a-z][\s\S]*>/i.test(value || "");
 
@@ -100,6 +101,17 @@ export default function MegaStoryDetailPage() {
   const title = resolveStoryTitle(story);
   const summary = resolveStorySummary(story);
   const image = resolveStoryCoverImage(story);
+
+  useSeoMeta({
+    title: title
+      ? `${title} | Tản mạn SolarMax`
+      : "Chi tiết bài viết | Tản mạn SolarMax",
+    description:
+      summary ||
+      "Nội dung chi tiết từ chuyên mục Tản mạn SolarMax về điện mặt trời và giải pháp năng lượng.",
+    image,
+    type: "article",
+  });
 
   return (
     <div className="px-[16px] xl:px-[80px] pb-[80px] pt-[24px]">

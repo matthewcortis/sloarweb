@@ -30,7 +30,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showOnMobile, setShowOnMobile] = useState(!autoHideOnMobile)
   const locationState = useLocation();
-  const [location, setLocation] = useState(() => {
+  const [location] = useState(() => {
     if (typeof window === "undefined") return "HN"
     const storedLocation = window.localStorage.getItem("solarmax-location")
     return storedLocation === "HN" || storedLocation === "HCM" ? storedLocation : "HN"
@@ -42,10 +42,6 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
   const panelClassName = isDark ? "bg-[#1D1D1F] text-white" : "bg-white"
   const panelTextClassName = isDark ? "text-white" : "text-gray-900"
   const closeButtonClassName = isDark ? "p-2 text-white" : "p-2 text-black"
-  const selectClassName = isDark
-    ? "bg-[#1D1D1F] text-white border-white/30"
-    : "bg-white text-gray-900 border-gray-300"
-
   useEffect(() => {
     window.localStorage.setItem("solarmax-location", location)
     window.dispatchEvent(
@@ -54,10 +50,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
   }, [location])
 
   useEffect(() => {
-    if (!autoHideOnMobile) {
-      setShowOnMobile(true)
-      return
-    }
+    if (!autoHideOnMobile) return
     if (typeof window === "undefined") return
 
     const media = window.matchMedia("(max-width: 1023px)")
@@ -69,7 +62,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
       setShowOnMobile(window.scrollY > 40)
     }
 
-    updateVisibility()
+    const rafId = window.requestAnimationFrame(updateVisibility)
     window.addEventListener("scroll", updateVisibility, { passive: true })
     window.addEventListener("resize", updateVisibility, { passive: true })
     if (media.addEventListener) {
@@ -79,6 +72,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
     }
 
     return () => {
+      window.cancelAnimationFrame(rafId)
       window.removeEventListener("scroll", updateVisibility)
       window.removeEventListener("resize", updateVisibility)
       if (media.removeEventListener) {
@@ -90,11 +84,22 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
   }, [autoHideOnMobile])
 
   useEffect(() => {
-    setMobileMenuOpen(false);
+    let rafId = null;
+    if (typeof window !== "undefined") {
+      rafId = window.requestAnimationFrame(() => {
+        setMobileMenuOpen(false);
+      });
+    }
     if (typeof document !== "undefined") {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     }
+
+    return () => {
+      if (rafId !== null && typeof window !== "undefined") {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, [locationState.pathname, locationState.search, locationState.hash]);
 
   useEffect(() => {
@@ -148,7 +153,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
 
         {/* DESKTOP SOCIAL ICONS */}
         <div className="hidden lg:flex items-center gap-4">
-          <select
+          {/* <select
             aria-label="Chọn khu vực"
             className={`rounded-md border px-2 py-1 text-base normal-case ${selectClassName}`}
             value={location}
@@ -156,7 +161,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
           >
             <option value="HN">HN</option>
             <option value="HCM">HCM</option>
-          </select>
+          </select> */}
           {SOCIAL_LINKS.map((social) => (
             <a
               key={social.name}
@@ -237,7 +242,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
             <Link to="/q&a" onClick={() => setMobileMenuOpen(false)}>Hỏi đáp</Link>
           </nav>
 
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <label className="block text-base normal-case mb-2">Khu vực</label>
             <select
               aria-label="Chọn khu vực"
@@ -248,7 +253,7 @@ export default function Header({ variant = "light", autoHideOnMobile = false }) 
               <option value="HN">HN</option>
               <option value="HCM">HCM</option>
             </select>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-4 mt-10">
             {SOCIAL_LINKS.map((social) => (

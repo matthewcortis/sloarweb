@@ -2,7 +2,7 @@ import { bannerSaleData } from "../../../services/banner.js";
 import BannerSaleHero from "./banners/BannerSale.jsx";
 import HybridBanner from "./MoTa.jsx";
 import { hybridData, moTaGioiThieu } from "../../../services/mota.js";
-import InfoCard from "../../../utils/GioiThieuCard.jsx";
+import { GioiThieuCard } from "../../../shared/components/cards";
 import { useNavigate } from "react-router-dom";
 export default function BannerSaleSupport() {
   const navigate = useNavigate();
@@ -172,7 +172,7 @@ export default function BannerSaleSupport() {
             "
           >
             {moTaGioiThieu.map((item) => (
-              <InfoCard
+              <GioiThieuCard
                 key={item.id}
                 image={item.image}
                 text={item.text}
