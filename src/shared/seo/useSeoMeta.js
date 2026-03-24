@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 const DEFAULT_TITLE = "SolarMax | Giải pháp điện mặt trời";
 const DEFAULT_DESCRIPTION =
-  "Giải pháp điện mặt trời dân dụng và doanh nghiệp: combo On-Grid, Hy-Brid, thiết bị và dịch vụ thi công tiêu chuẩn cao.";
-const DEFAULT_IMAGE = "/og-image.jpg";
+  "Liên hệ ngay SoLarMax để làm rõ từng tiêu chuẩn kĩ thuật nhỏ nhất, đảm bảo hệ thống điện mặt trời vận hành bên vững trong 20 năm.";
+const DEFAULT_IMAGE = "/image_link.jpg";
 const DEFAULT_TYPE = "website";
 const DEFAULT_SITE_NAME = "SolarMax";
 
