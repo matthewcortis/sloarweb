@@ -6,7 +6,7 @@ import { useSeoMeta } from "../shared/seo";
 const resolveLayoutSeoMeta = (pathname = "/") => {
   if (pathname === "/") {
     return {
-      title: "SolarMax | Giải pháp điện mặt trời",
+      title: "SolarMax | Bật để tiết kiệm điện",
       description:
         "Liên hệ ngay SoLarMax để làm rõ từng tiêu chuẩn kĩ thuật nhỏ nhất, đảm bảo hệ thống điện mặt trời vận hành bên vững trong 20 năm.",
     };
@@ -14,7 +14,7 @@ const resolveLayoutSeoMeta = (pathname = "/") => {
 
   if (pathname === "/huawei") {
     return {
-      title: "Giải pháp Huawei FusionSolar | SolarMax",
+      title: "Giải pháp Huawei | SolarMax",
       description:
         "Khám phá giải pháp điện mặt trời Huawei FusionSolar: inverter, optimizer, lưu trữ và quản lý hệ thống.",
     };
@@ -85,7 +85,7 @@ const resolveLayoutSeoMeta = (pathname = "/") => {
   }
 
   return {
-    title: "SolarMax | Giải pháp điện mặt trời",
+    title: "SolarMax | Bật để tiết kiệm điện",
     description:
       "Liên hệ ngay SoLarMax để làm rõ từng tiêu chuẩn kĩ thuật nhỏ nhất, đảm bảo hệ thống điện mặt trời vận hành bên vững trong 20 năm.",
   };

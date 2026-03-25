@@ -365,10 +365,11 @@ export default function ProductDetail() {
 
     return {
       ...detailTheme,
-      priceColor: "#111111",
-      saveTextColor: "#FFFFFF",
+      priceColor: "#EE4037",
+      saveTextColor: "#EE4037",
+      saveIconColor: "#EE4037",
       buttonBgColor: "#111111",
-      buttonTextColor: "#FFFFFF",
+      buttonTextColor: "#EE4037",
     };
   }, [detailTheme, isHuaweiCombo]);
   const seoTitle = product?.title
