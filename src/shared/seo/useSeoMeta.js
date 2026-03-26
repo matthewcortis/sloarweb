@@ -3,7 +3,8 @@ import { useEffect } from "react";
 const DEFAULT_TITLE = "SolarMax | Giải pháp điện mặt trời";
 const DEFAULT_DESCRIPTION =
   "Liên hệ ngay SoLarMax để làm rõ từng tiêu chuẩn kĩ thuật nhỏ nhất, đảm bảo hệ thống điện mặt trời vận hành bên vững trong 20 năm.";
-const DEFAULT_IMAGE = "/image_link.jpg";
+const DEFAULT_IMAGE =
+  "https://minio.slmglobal.vn/slm/quang_cao_tag_global_1774495829716";
 const DEFAULT_TYPE = "website";
 const DEFAULT_SITE_NAME = "SolarMax";
 
