@@ -1,5 +1,5 @@
 const normalizeNhomTronGoiTen = (value) =>
-  typeof value === "string" ? value.trim() : "";
+  typeof value === "string" ? value.trim().toLowerCase() : "";
 
 export const getNhomTronGoiTenFromProducts = (products = []) => {
   const source = Array.isArray(products) ? products : [];

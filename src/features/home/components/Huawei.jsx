@@ -16,6 +16,7 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
     const navigate = useNavigate();
     const { products, loading } = useTronGoiProducts({
         //banChay: BAN_CHAY,
+        nhomTronGoiTen: "Huawei",
         sortDirection: "DESC",
     });
     const nhomTronGoiTen = getNhomTronGoiTenFromProducts(products);
