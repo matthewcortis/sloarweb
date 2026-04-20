@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import checkWhite from "../../../assets/icons/check_write.svg";
 import checkRed from "../../../assets/icons/check_red.svg";
 import checkGreen from "../../../assets/icons/check_green.svg";
-import fallbackImage from "../../../assets/solarmax.jpg";
+import fallbackImage from "../../../assets/anhnen.jpg";
 
 export default function SolarCard({
   data,
@@ -103,7 +103,7 @@ export default function SolarCard({
         {/* Giữ tỉ lệ ảnh */}
         <div className={`w-full aspect-square overflow-hidden bg-[#F5F8FA] flex items-center justify-center ${hideDetailsOnMobile ? "rounded-[6px] md:rounded-[12px]" : "rounded-[12px]"}`}>
           <img
-            src={data.image}
+            src={data?.image || fallbackImage}
             alt="product"
             loading="lazy"
             decoding="async"

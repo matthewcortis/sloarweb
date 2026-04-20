@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import fallbackImage from "../../../assets/anhnen.jpg";
 
 export default function CongNghiepCard({
   image,
@@ -7,6 +8,12 @@ export default function CongNghiepCard({
 }) {
   const isResponsive = variant === "responsive";
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const resolvedImage = image || fallbackImage;
+
+  const handleImageError = (event) => {
+    event.currentTarget.onerror = null;
+    event.currentTarget.src = fallbackImage;
+  };
 
   useEffect(() => {
     if (!isPreviewOpen) return undefined;
@@ -42,10 +49,11 @@ export default function CongNghiepCard({
           aria-label="Mo rong anh"
         >
           <img
-            src={image}
+            src={resolvedImage}
             alt={alt}
             loading="lazy"
             decoding="async"
+            onError={handleImageError}
             className={[
               "object-cover rounded-[12px]",
               isResponsive ? "w-full h-[248px] md:h-[291px]" : "w-[290px] h-[291px]",
@@ -75,9 +83,10 @@ export default function CongNghiepCard({
             </button>
 
             <img
-              src={image}
+              src={resolvedImage}
               alt={alt}
               decoding="async"
+              onError={handleImageError}
               className="max-w-[96vw] max-h-[90vh] w-auto h-auto object-contain rounded-[12px] shadow-[0px_12px_30px_rgba(0,0,0,0.35)]"
             />
           </div>

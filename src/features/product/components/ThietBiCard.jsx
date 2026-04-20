@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import fallbackImage from "../../../assets/anhnen.jpg";
 
 export default function DeviceCard({ ThietBiCard }) {
   const navigate = useNavigate();
@@ -36,9 +37,13 @@ export default function DeviceCard({ ThietBiCard }) {
       <div className="flex flex-col gap-3">
         <div className="w-full h-[236px] md:h-[274px] rounded-[6px] overflow-hidden relative">
           <img
-            src={image}
+            src={image || fallbackImage}
             alt={name}
             className="w-full h-full object-contain"
+            onError={(event) => {
+              event.currentTarget.onerror = null;
+              event.currentTarget.src = fallbackImage;
+            }}
           />
 
           <span className="absolute top-2 left-2 bg-white px-2 py-1 rounded-full text-[16px] shadow">
