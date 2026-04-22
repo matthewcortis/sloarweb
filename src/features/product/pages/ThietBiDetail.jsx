@@ -94,7 +94,6 @@ const getPriceValue = (vatTu) => {
         found?.giaNhap ??
         found?.giaBanRaw ??
         found?.giaNhapRaw;
-      break;
     }
   }
 
