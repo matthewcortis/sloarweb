@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import banner from "../../../../assets/anhbiabanner.jpg";
+import fallbackImage from "../../../../assets/anhnen.jpg";
 import SoSanhHyOn from "../SoSanhHyOn";
 import { fetchMienByTenMien } from "../../../../services/mienApi";
 import {
@@ -21,7 +21,7 @@ const fetchDomainBanner = async (domain) => {
 };
 
 export default function SolarCompare() {
-  const [bannerSrc, setBannerSrc] = useState(banner);
+  const [bannerSrc, setBannerSrc] = useState(fallbackImage);
 
   useEffect(() => {
     let isActive = true;
@@ -62,7 +62,7 @@ export default function SolarCompare() {
               src={bannerSrc}
               alt="Solar compare banner"
               className="absolute inset-0 w-full h-full object-cover"
-              onError={() => setBannerSrc(banner)}
+              onError={() => setBannerSrc(fallbackImage)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent" />
           </div>
