@@ -3,24 +3,10 @@ import { useParams } from "react-router-dom";
 import productFallbackImage from "../../../assets/product.png";
 import { fetchThietBiById } from "../api/thietBiApi";
 import { useSeoMeta } from "../../../shared/seo";
-
-const formatNumber = (value, maximumFractionDigits = 0) => {
-  const numeric = Number(value);
-  if (!Number.isFinite(numeric)) return null;
-  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits }).format(
-    numeric
-  );
-};
-
-const formatCurrency = (value) => {
-  const numeric = Number(value);
-  if (Number.isFinite(numeric)) {
-    const formatted = formatNumber(numeric, 0);
-    return formatted ? `${formatted} đ` : "--";
-  }
-  if (typeof value === "string" && value.trim()) return value;
-  return "--";
-};
+import {
+  formatCurrencyVnd,
+  getLatestPriceFromThongTinGias,
+} from "../../../shared/utils/price";
 
 const getVatTuImage = (vatTu) => {
   const anhChinh = vatTu?.anhVatTus?.find?.((item) => item?.anhChinh);
@@ -74,40 +60,17 @@ const getPowerValue = (vatTu) => {
 };
 
 const getPriceValue = (vatTu) => {
-  const thongTinGias = Array.isArray(vatTu?.thongTinGias)
-    ? vatTu.thongTinGias
-    : [];
-
-  let rawPrice;
-  for (const info of thongTinGias) {
-    const dsGia = Array.isArray(info?.dsGia) ? info.dsGia : [];
-    const found = dsGia.find(
-      (item) =>
-        item?.giaBan ??
-        item?.giaNhap ??
-        item?.giaBanRaw ??
-        item?.giaNhapRaw
-    );
-    if (found) {
-      rawPrice =
-        found?.giaBan ??
-        found?.giaNhap ??
-        found?.giaBanRaw ??
-        found?.giaNhapRaw;
-    }
-  }
-
-  if (rawPrice == null) {
-    const direct = thongTinGias.find(
-      (item) => item?.giaBan ?? item?.gia ?? item?.giaNiemYet
-    );
-    rawPrice = direct?.giaBan ?? direct?.gia ?? direct?.giaNiemYet;
-  }
-
+  const latestPriceFromThongTinGia = getLatestPriceFromThongTinGias(
+    vatTu?.thongTinGias
+  );
   const raw =
-    rawPrice ?? vatTu?.gia ?? vatTu?.price ?? vatTu?.donGia ?? vatTu?.giaBan;
+    latestPriceFromThongTinGia ??
+    vatTu?.gia ??
+    vatTu?.price ??
+    vatTu?.donGia ??
+    vatTu?.giaBan;
 
-  return formatCurrency(raw);
+  return formatCurrencyVnd(raw);
 };
 
 const getIpValue = (vatTu) => {

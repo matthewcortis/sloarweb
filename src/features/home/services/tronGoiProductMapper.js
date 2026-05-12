@@ -1,4 +1,5 @@
 import productFallbackImage from "../../../assets/product.png";
+import { getLatestPriceFromThongTinGias } from "../../../shared/utils/price";
 
 const formatNumber = (value, maximumFractionDigits = 2) => {
   const numeric = Number(value);
@@ -360,6 +361,16 @@ export const mapTronGoiDeviceProducts = (tronGoi) => {
       ]);
 
       const groupCode = vatTu?.nhomVatTu?.ma;
+      const latestPriceFromThongTinGia = getLatestPriceFromThongTinGias(
+        vatTu?.thongTinGias,
+        tronGoi?.coSo?.ma
+      );
+      const rawPrice =
+        latestPriceFromThongTinGia ??
+        item?.gia ??
+        vatTu?.gia ??
+        vatTu?.donGia ??
+        vatTu?.giaBan;
 
       return {
         id: vatTu?.id ?? item?.id,
@@ -374,7 +385,7 @@ export const mapTronGoiDeviceProducts = (tronGoi) => {
         power: getPowerValue(vatTu, groupCode),
         size: sizeDetail ? formatThuocTinh(sizeDetail) : "--",
         weight: weightDetail ? formatThuocTinh(weightDetail) : "--",
-        price: formatCurrency(item?.gia),
+        price: formatCurrency(rawPrice),
       };
     });
 };
