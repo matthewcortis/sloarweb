@@ -78,7 +78,7 @@ export default function ProductInfo({
           >
             {price}
           </span>
-        </div>
+        </div> 
 
         {/* SPECS */}
         <div className="w-full text-base text-gray-700 grid grid-cols-[max-content_minmax(0,1fr)] gap-x-4 gap-y-1 lg:gap-x-8 lg:gap-y-2 lg:flex-1">
