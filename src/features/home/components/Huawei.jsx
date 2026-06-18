@@ -10,14 +10,61 @@ import {
 } from "../services/nhomTronGoiTenFilter.js";
 import { PRODUCTS_CAROUSEL_THEME_KEYS } from "../../../theme/styles/productsCarouselThemes.js";
 
-//const BAN_CHAY = false;
+const buildHuaweiFilterPayload = (coSoMa) => ({
+    filters: [
+        {
+            fieldName: "coSo.ma",
+            operation: "EQUALS",
+            value: coSoMa,
+            logicType: "AND",
+        },
+        {
+            fieldName: "loaiHeThong",
+            operation: "EQUALS",
+            value: "On-Grid",
+            logicType: "AND",
+        },
+        {
+            fieldName: "nhomTronGoi.ten",
+            operation: "ILIKE",
+            value: "JA Solar - Huawei",
+            logicType: "AND",
+        },
+        {
+            fieldName: "loaiPha",
+            operation: "EQUALS",
+            value: "3 pha",
+            logicType: "AND",
+        },
+        {
+            fieldName: "trangThai",
+            operation: "EQUALS",
+            value: "1",
+            logicType: "AND",
+        },
+        {
+            fieldName: "nhomTronGoi.trangThai",
+            operation: "EQUALS",
+            value: "1",
+            logicType: "AND",
+        },
+    ],
+    sorts: [
+        {
+            fieldName: "tongGia",
+            direction: "ASC",
+        },
+    ],
+    page: 0,
+    size: 20,
+});
+
+const HUAWEI_FILTER_PAYLOADS = ["HN", "HCM"].map(buildHuaweiFilterPayload);
 
 export default function Huawei({ hideDescriptionAndButton = false }) {
     const navigate = useNavigate();
     const { products, loading } = useTronGoiProducts({
-        //banChay: BAN_CHAY,
-        nhomTronGoiTen: "Huawei",
-        sortDirection: "DESC",
+        filterPayload: HUAWEI_FILTER_PAYLOADS,
     });
     const nhomTronGoiTen = getNhomTronGoiTenFromProducts(products);
     const filteredProducts = filterProductsByNhomTronGoiTen(
