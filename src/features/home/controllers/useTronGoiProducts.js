@@ -21,7 +21,7 @@ export const useTronGoiProducts = ({
   banChay,
   nhomTronGoiTen,
   nhomTronGoiTenOperation,
-  filterPayload,
+  buildFilterPayloads,
   page = 0,
   size = 20,
   sortField,
@@ -71,11 +71,14 @@ export const useTronGoiProducts = ({
           sortField,
           sortDirection,
         });
-        const payloads = Array.isArray(filterPayload)
-          ? filterPayload
-          : [filterPayload ?? defaultPayload];
+        const payloads =
+          typeof buildFilterPayloads === "function"
+            ? buildFilterPayloads(location)
+            : [defaultPayload];
         const responses = await Promise.all(payloads.map(fetchTronGoiByFilter));
-        const content = responses.flatMap((response) => response?.content ?? []);
+        const content = responses
+          .flatMap((response) => response?.content ?? [])
+          .sort((a, b) => Number(a?.tongGia ?? 0) - Number(b?.tongGia ?? 0));
         const mapped = content.map(mapTronGoi).map(mapTronGoiToProduct);
 
         if (isMounted) {
@@ -108,7 +111,7 @@ export const useTronGoiProducts = ({
     banChay,
     nhomTronGoiTen,
     nhomTronGoiTenOperation,
-    filterPayload,
+    buildFilterPayloads,
     page,
     size,
     sortField,

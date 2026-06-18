@@ -4,13 +4,21 @@ import { hybridData } from "../../../services/mota.js";
 import ProductsCarousel from "./ProductsCarousel.jsx";
 import { useNavigate } from "react-router-dom";
 import { useTronGoiProducts } from "../controllers/useTronGoiProducts";
-import {
-    filterProductsByNhomTronGoiTen,
-    getNhomTronGoiTenFromProducts,
-} from "../services/nhomTronGoiTenFilter.js";
 import { PRODUCTS_CAROUSEL_THEME_KEYS } from "../../../theme/styles/productsCarouselThemes.js";
 
-const buildHuaweiFilterPayload = (coSoMa) => ({
+const HUAWEI_PRESETS = [
+    {
+        loaiHeThong: "Hy-Brid",
+        nhomTronGoiTen: "JA Solar - Huawei - Huawei",
+    },
+    {
+        loaiHeThong: "On-Grid",
+        nhomTronGoiTen: "JA Solar - Huawei",
+    },
+];
+const HUAWEI_PHASES = ["1 pha", "3 pha"];
+
+const buildHuaweiPayload = ({ coSoMa, loaiHeThong, nhomTronGoiTen, loaiPha }) => ({
     filters: [
         {
             fieldName: "coSo.ma",
@@ -21,19 +29,19 @@ const buildHuaweiFilterPayload = (coSoMa) => ({
         {
             fieldName: "loaiHeThong",
             operation: "EQUALS",
-            value: "On-Grid",
+            value: loaiHeThong,
             logicType: "AND",
         },
         {
             fieldName: "nhomTronGoi.ten",
             operation: "ILIKE",
-            value: "JA Solar - Huawei",
+            value: nhomTronGoiTen,
             logicType: "AND",
         },
         {
             fieldName: "loaiPha",
             operation: "EQUALS",
-            value: "3 pha",
+            value: loaiPha,
             logicType: "AND",
         },
         {
@@ -59,18 +67,22 @@ const buildHuaweiFilterPayload = (coSoMa) => ({
     size: 20,
 });
 
-const HUAWEI_FILTER_PAYLOADS = ["HN", "HCM"].map(buildHuaweiFilterPayload);
+const buildHuaweiPayloads = (coSoMa) =>
+    HUAWEI_PRESETS.flatMap((preset) =>
+        HUAWEI_PHASES.map((loaiPha) =>
+            buildHuaweiPayload({
+                coSoMa,
+                loaiPha,
+                ...preset,
+            })
+        )
+    );
 
 export default function Huawei({ hideDescriptionAndButton = false }) {
     const navigate = useNavigate();
     const { products, loading } = useTronGoiProducts({
-        filterPayload: HUAWEI_FILTER_PAYLOADS,
+        buildFilterPayloads: buildHuaweiPayloads,
     });
-    const nhomTronGoiTen = getNhomTronGoiTenFromProducts(products);
-    const filteredProducts = filterProductsByNhomTronGoiTen(
-        products,
-        nhomTronGoiTen
-    );
     const huaweiBannerData = hideDescriptionAndButton
         ? { ...hybridData.moTaHuawei, description: "" }
         : hybridData.moTaHuawei;
@@ -102,7 +114,7 @@ export default function Huawei({ hideDescriptionAndButton = false }) {
 	        "
             >
                 <ProductsCarousel
-                    products={filteredProducts}
+                    products={products}
                     loading={loading}
                     theme={PRODUCTS_CAROUSEL_THEME_KEYS.HUAWEI}
                     scrollContainerClassName="py-4"
